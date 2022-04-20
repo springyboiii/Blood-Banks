@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+h4 {
+  text-align: center;
+}
+#myInput {
+  /* background-image: url("/css/searchicon.png"); */
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th,
+#myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header {
+  background-color: #cc5500;
+}
+tbody tr:hover {
+  background-color: #e97451;
+}
+
+.centerBox {
+  border: black solid 2px;
+  padding: 7%;
+  margin-top: 5%;
+}
+input {
+  border: black solid 50px;
+}
