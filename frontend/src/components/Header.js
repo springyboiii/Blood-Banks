@@ -36,7 +36,7 @@ const Header = () => {
           </Form>
 
           <Nav className="me-5 px-5">
-            <Nav.Link href="/signIn">
+            <Nav.Link href="/admin/signIn">
               {" "}
               Sign in<i className="fas fa-user ms-1"></i>{" "}
             </Nav.Link>

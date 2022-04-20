@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+h4 {
+  text-align: center;
+}
+.centerBox {
+  border: black solid 2px;
+  padding: 7%;
+  margin-top: 5%;
+}
+.btn {
+  width: 150%;
+}
+input {
+  border: black solid 50px;
+}

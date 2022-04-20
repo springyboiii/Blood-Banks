@@ -12,7 +12,16 @@ class Login extends Component {
     return (
       <>
         <div style={{ backgroundColor: "#be847a", height: "100vh" }}>
-       
+         <div className="nav-header">
+            <nav
+              className="navbar"
+              style={{ backgroundColor: "#880808", color: "white" }}
+            >
+              <h2 className="navbar-brand" style={{ marginLeft: "1%" }}>
+                 <img src={logo} alt="logo" /> Donating blood
+              </h2>
+            </nav>
+          </div>
           <div className="box container" style={{ backgroundColor: "#be847a" }}>
             <div className="row">
               <div
@@ -48,7 +57,7 @@ class Login extends Component {
                   <div className="row">
                     <div className="col-2"></div>
                     <div className="col-6">
-                      <button type="submit" className="btn btn-primary">
+                      <button type="submit" className="btn btn-info">
                         LOGIN
                       </button>
                     </div>

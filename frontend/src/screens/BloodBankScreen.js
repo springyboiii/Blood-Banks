@@ -4,8 +4,8 @@ import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import BloodInventory from "../components/BloodInventory";
 import bloodbanks from "../bloodbanks";
 
-const BloodBankScreen = ({ match }) => {
-  const bloodbank = bloodbanks.find((p) => p._id === match.params.id);
+const BloodBankScreen = () => {
+  const bloodbank = bloodbanks.find((p) => p._id === '1');
 
   return (
     <>
