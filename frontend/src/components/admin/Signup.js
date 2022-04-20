@@ -66,13 +66,17 @@ const Signup = () => {
             </div>
             <br />
             <div className="row">
-              <div className="col-4"></div>
-              <div className="col-4">
-                <button type="submit" className="btn btn-primary">
+              <div className="col-2"></div>
+              <div className="col-6">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  style={{ width: "150%" }}
+                >
                   Creat account
                 </button>
               </div>
-              <div className="col-4"></div>
+              <div className="col-3"></div>
             </div>
           </form>
         </div>

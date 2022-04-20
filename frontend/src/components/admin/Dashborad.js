@@ -17,7 +17,11 @@ const Dashborad = () => {
         <div className="row">
           <nav
             className="navbar"
-            style={{ backgroundColor: "#880808", color: "white" }}
+            style={{
+              backgroundColor: "#880808",
+              color: "white",
+              border: "2px solid black",
+            }}
           >
             <div className="col-4">
               <h2 className="navbar-brand" style={{ marginLeft: "5%" }}>

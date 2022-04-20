@@ -1,6 +1,7 @@
 import { Component } from "react";
 import "./Login.css";
 import SlideShow from "./SlidesShow";
+import Footer from "../Footer";
 import logo from "../../image/favicon-32x32.png";
 class Login extends Component {
   constructor() {
@@ -12,13 +13,17 @@ class Login extends Component {
     return (
       <>
         <div style={{ backgroundColor: "#be847a", height: "100vh" }}>
-         <div className="nav-header">
+          <div className="nav-header">
             <nav
               className="navbar"
-              style={{ backgroundColor: "#880808", color: "white" }}
+              style={{
+                backgroundColor: "#880808",
+                color: "white",
+                border: "2px solid black",
+              }}
             >
               <h2 className="navbar-brand" style={{ marginLeft: "1%" }}>
-                 <img src={logo} alt="logo" /> Donating blood
+                <img src={logo} alt="logo" /> Donating blood
               </h2>
             </nav>
           </div>
@@ -29,7 +34,9 @@ class Login extends Component {
                 style={{ backgroundColor: "#880808", color: "white" }}
               >
                 <form>
-                  <h3 style={{ textAlign: "center" }}>Login</h3>
+                  <h2 style={{ textAlign: "center" }}>Login</h2>
+                  <br />
+                  <br />
                   <div className="form-group">
                     <label htmlFor="exampleInputEmail1">User Name</label>
                     <input
@@ -41,6 +48,7 @@ class Login extends Component {
                       }}
                     />
                   </div>
+                  <br />
                   <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Password</label>
                     <input
@@ -53,15 +61,18 @@ class Login extends Component {
                     />
                   </div>
                   <br />
-                  <br />
                   <div className="row">
                     <div className="col-2"></div>
-                    <div className="col-6">
-                      <button type="submit" className="btn btn-info">
+                    <div className="col-5">
+                      <button
+                        type="submit"
+                        className="btn btn-info"
+                        style={{ width: "150%" }}
+                      >
                         LOGIN
                       </button>
                     </div>
-                    <div className="col-4"></div>
+                    <div className="col-5"></div>
                   </div>
                 </form>
               </div>
@@ -71,6 +82,7 @@ class Login extends Component {
             </div>
           </div>
         </div>
+        <Footer />
       </>
     );
   }

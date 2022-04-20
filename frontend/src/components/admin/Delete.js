@@ -16,15 +16,23 @@ const Delete = ({ bloodBankList }) => {
               <h4>Are you sure , you want to delete id number {id} account?</h4>
               <br />
               <div className="row">
-                <div className="col-3"></div>
+                <div className="col-2"></div>
                 <div className="col-2">
-                  <Link to="/admin/dashboard" className="btn btn-danger">
+                  <Link
+                    to="/admin/dashboard"
+                    className="btn btn-danger"
+                    style={{ width: "150%" }}
+                  >
                     Yse,I want
                   </Link>
                 </div>
-                <div className="col-2"></div>
+                <div className="col-3"></div>
                 <div className="col-3">
-                  <Link to="/admin/dashboard" className="btn btn-info">
+                  <Link
+                    to="/admin/dashboard"
+                    className="btn btn-info"
+                    style={{ width: "110%" }}
+                  >
                     No
                   </Link>
                 </div>
@@ -37,13 +45,17 @@ const Delete = ({ bloodBankList }) => {
               <h4>This blood bank id number {id} isn't available!!!</h4>
               <br />
               <div className="row">
-                <div className="col-5"></div>
-                <div className="col-3">
-                  <Link to="/admin/dashboard" className="btn btn-info">
+                <div className="col-2"></div>
+                <div className="col-5">
+                  <Link
+                    to="/admin/dashboard"
+                    className="btn btn-info"
+                    style={{ width: "150%" }}
+                  >
                     Go back
                   </Link>
                 </div>
-                <div className="col-4"></div>
+                <div className="col-5"></div>
               </div>
             </div>
           )}

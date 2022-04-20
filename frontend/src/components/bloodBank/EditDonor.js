@@ -87,9 +87,13 @@ const EditDonor = ({ donorList }) => {
                 </div>
                 <br />
                 <div className="row">
-                  <div className="col-4"></div>
-                  <div className="col-4">
-                    <button type="submit" className="btn btn-primary">
+                  <div className="col-2"></div>
+                  <div className="col-6">
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      style={{ width: "150%" }}
+                    >
                       Update id number {id} account details
                     </button>
                   </div>
@@ -100,16 +104,22 @@ const EditDonor = ({ donorList }) => {
           )}
           {!isAvailble && (
             <div>
-              <h4>This donor id number {id} isn't available!!!</h4>
+              <h4 style={{ textAlign: "center" }}>
+                This donor id number {id} isn't available!!!
+              </h4>
               <br />
               <div className="row">
-                <div className="col-4"></div>
-                <div className="col-3">
-                  <Link to="/bloodBank/dashboard" className="btn btn-info">
+                <div className="col-2"></div>
+                <div className="col-5">
+                  <Link
+                    to="/admin/dashboard"
+                    className="btn btn-info"
+                    style={{ width: "150%" }}
+                  >
                     Go back
                   </Link>
                 </div>
-                <div className="col-4"></div>
+                <div className="col-5"></div>
               </div>
             </div>
           )}

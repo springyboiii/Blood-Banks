@@ -93,9 +93,13 @@ const Upadate = ({ bloodBankList }) => {
                 </div>
                 <br />
                 <div className="row">
-                  <div className="col-4"></div>
-                  <div className="col-4">
-                    <button type="submit" className="btn btn-primary">
+                  <div className="col-2"></div>
+                  <div className="col-6">
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      style={{ width: "150%" }}
+                    >
                       Update id number {id} account details
                     </button>
                   </div>
@@ -106,16 +110,22 @@ const Upadate = ({ bloodBankList }) => {
           )}
           {!isAvailble && (
             <div>
-              <h4>This blood bank id number {id} isn't available!!!</h4>
+              <h4 style={{ textAlign: "center" }}>
+                This blood bank id number {id} isn't available!!!
+              </h4>
               <br />
               <div className="row">
-                <div className="col-4"></div>
-                <div className="col-3">
-                  <Link to="/admin/dashboard" className="btn btn-info">
+                <div className="col-2"></div>
+                <div className="col-5">
+                  <Link
+                    to="/admin/dashboard"
+                    className="btn btn-info"
+                    style={{ width: "150%" }}
+                  >
                     Go back
                   </Link>
                 </div>
-                <div className="col-4"></div>
+                <div className="col-5"></div>
               </div>
             </div>
           )}

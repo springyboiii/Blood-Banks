@@ -36,7 +36,7 @@ const BloodBankTable = (props) => {
   return (
     <>
       <div>
-        <h2 style={{ textAlign: "center" }}>Dashborad</h2>
+        <h1 style={{ textAlign: "center" }}>Dashborad</h1>
         <div className="row">
           <div className="col-1">
             <label htmlFor="myInput">
