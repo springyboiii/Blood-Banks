@@ -7,7 +7,7 @@ const NotFoundPage = () => {
         <div className="row center">
           <div className="col-4"></div>
           <div className="col-6 text-center text-danger">
-            <h1>404</h1>
+            <h1 className="h1">404</h1>
             <br />
             <h2>NOT FOUND</h2>
             <br />

@@ -8,28 +8,28 @@ const BloodInventory = () => {
         <Col className="px-0" md={3}>
           <Card className="bg-primary">
             <Card.Body>
-              <Card.Text>A+</Card.Text>
+              <Card.Text className="cardttext">A+</Card.Text>
             </Card.Body>
           </Card>
         </Col>
         <Col className="px-0" md={3}>
           <Card className="bg-success">
             <Card.Body>
-              <Card.Text>A-</Card.Text>
+              <Card.Text className="cardttext">A-</Card.Text>
             </Card.Body>
           </Card>
         </Col>
         <Col className="px-0" md={3}>
           <Card className="bg-primary">
             <Card.Body>
-              <Card.Text>B+</Card.Text>
+              <Card.Text className="cardttext">B+</Card.Text>
             </Card.Body>
           </Card>
         </Col>
         <Col className="px-0" md={3}>
           <Card className="bg-success">
             <Card.Body>
-              <Card.Text>B-</Card.Text>
+              <Card.Text className="cardttext">B-</Card.Text>
             </Card.Body>
           </Card>
         </Col>
@@ -39,28 +39,28 @@ const BloodInventory = () => {
         <Col className="px-0" md={3}>
           <Card className="bg-primary">
             <Card.Body>
-              <Card.Text >AB</Card.Text>
+              <Card.Text className="cardttext">AB-</Card.Text>
             </Card.Body>
           </Card>
         </Col>
         <Col className="px-0" md={3}>
           <Card className="bg-success">
             <Card.Body>
-              <Card.Text>AB-</Card.Text>
+              <Card.Text className="cardttext">AB-</Card.Text>
             </Card.Body>
           </Card>
         </Col>
         <Col className="px-0" md={3}>
           <Card className="bg-primary">
             <Card.Body>
-              <Card.Text>O+</Card.Text>
+              <Card.Text className="cardttext">O+</Card.Text>
             </Card.Body>
           </Card>
         </Col>
         <Col className="px-0" md={3}>
           <Card className="bg-success">
             <Card.Body>
-              <Card.Text>O-</Card.Text>
+              <Card.Text className="cardttext">O-</Card.Text>
             </Card.Body>
           </Card>
         </Col>

@@ -36,7 +36,7 @@ const BloodBankTable = (props) => {
   return (
     <>
       <div>
-        <h1 style={{ textAlign: "center" }}>Dashborad</h1>
+        <h1 className="h1" style={{ textAlign: "center" }}>Dashborad</h1>
         <div className="row">
           <div className="col-1">
             <label htmlFor="myInput">
@@ -52,6 +52,7 @@ const BloodBankTable = (props) => {
             <input
               type="text"
               id="myInput"
+              className="input"
               onChange={(e) => {
                 setData(e.target.value);
               }}

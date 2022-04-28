@@ -13,7 +13,7 @@ const Delete = ({ bloodBankList }) => {
         <div className="centerBox">
           {isAvailble && (
             <div>
-              <h4>Are you sure , you want to delete id number {id} account?</h4>
+              <h4 className="h4">Are you sure , you want to delete id number {id} account?</h4>
               <br />
               <div className="row">
                 <div className="col-2"></div>
@@ -42,7 +42,7 @@ const Delete = ({ bloodBankList }) => {
           )}
           {!isAvailble && (
             <div>
-              <h4>This blood bank id number {id} isn't available!!!</h4>
+              <h4 className="h4">This blood bank id number {id} isn't available!!!</h4>
               <br />
               <div className="row">
                 <div className="col-2"></div>

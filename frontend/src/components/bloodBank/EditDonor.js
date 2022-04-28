@@ -7,7 +7,7 @@ const EditDonor = ({ donorList }) => {
   const isAvailble = getFilter.length === 1 ? true : false;
   return (
     <>
-      <div className="container">
+      <div className="container align-left" >
         <div className="centerBox">
           {isAvailble && (
             <div>
@@ -20,7 +20,7 @@ const EditDonor = ({ donorList }) => {
                     <div className="col-8">
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control input"
                         id="donorId"
                         value={getFilter[0].id}
                         readOnly
@@ -37,7 +37,7 @@ const EditDonor = ({ donorList }) => {
                     <div className="col-8">
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control input"
                         id="donorName"
                         value={getFilter[0].name}
                         onChange={(e) => {
@@ -56,7 +56,7 @@ const EditDonor = ({ donorList }) => {
                     <div className="col-8">
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control input"
                         id="donorLocation"
                         value={getFilter[0].location}
                         onChange={(e) => {
@@ -75,7 +75,7 @@ const EditDonor = ({ donorList }) => {
                     <div className="col-8">
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control input"
                         id="donorcontactNumber"
                         value={getFilter[0].contactNumber}
                         onChange={(e) => {
