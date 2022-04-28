@@ -1,7 +1,8 @@
+
 .screen {
   background-color: "#bbd0c9";
   height: 100vh;
-}
+} 
 .box {
   margin-top: 2%;
 }
@@ -29,7 +30,7 @@
   animation-duration: 2s;
   animation-delay: 1s;
 }
-label {
+.label {
   padding-bottom: 5%;
 }
 @keyframes form {
@@ -40,16 +41,19 @@ label {
     left: 0px;
   }
 }
+/*
 * {
   box-sizing: border-box;
 }
+*/
 body {
   font-family: Verdana, sans-serif;
 }
+
 .mySlides {
   display: none;
 }
-img {
+.img {
   vertical-align: middle;
 }
 

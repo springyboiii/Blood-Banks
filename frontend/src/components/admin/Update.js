@@ -9,7 +9,7 @@ const Upadate = ({ bloodBankList }) => {
   const isAvailble = getFilter.length === 1 ? true : false;
   return (
     <>
-      <div className="container">
+      <div className="container align-left" >
         <div className="centerBox">
           {isAvailble && (
             <div>
@@ -22,7 +22,7 @@ const Upadate = ({ bloodBankList }) => {
                     <div className="col-8">
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control input"
                         id="bloodBankId"
                         value={getFilter[0].id}
                         readOnly
@@ -39,7 +39,7 @@ const Upadate = ({ bloodBankList }) => {
                     <div className="col-8">
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control input"
                         id="bloodBankName"
                         value={getFilter[0].name}
                         onChange={(e) => {
@@ -60,7 +60,7 @@ const Upadate = ({ bloodBankList }) => {
                     <div className="col-8">
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control input"
                         id="bloodBankLocation"
                         value={getFilter[0].location}
                         onChange={(e) => {
@@ -81,7 +81,7 @@ const Upadate = ({ bloodBankList }) => {
                     <div className="col-8">
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control input"
                         id="bloodBankcontactNumber"
                         value={getFilter[0].contactNumber}
                         onChange={(e) => {
@@ -110,7 +110,7 @@ const Upadate = ({ bloodBankList }) => {
           )}
           {!isAvailble && (
             <div>
-              <h4 style={{ textAlign: "center" }}>
+              <h4 className="h4" style={{ textAlign: "center" }}>
                 This blood bank id number {id} isn't available!!!
               </h4>
               <br />

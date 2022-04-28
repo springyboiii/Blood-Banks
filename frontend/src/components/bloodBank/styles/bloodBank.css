@@ -1,6 +1,8 @@
+
 * {
   box-sizing: border-box;
 }
+
 h4 {
   text-align: center;
 }
@@ -12,6 +14,7 @@ h4 {
 .btn {
   width: 150%;
 }
-input {
+/*see*/
+.input {
   border: black solid 50px;
 }

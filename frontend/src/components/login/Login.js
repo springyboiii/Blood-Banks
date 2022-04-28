@@ -23,7 +23,7 @@ class Login extends Component {
               }}
             >
               <h2 className="navbar-brand" style={{ marginLeft: "1%" }}>
-                <img src={logo} alt="logo" /> Donating blood
+                <img className="img" src={logo} alt="logo" /> Donating blood
               </h2>
             </nav>
           </div>
@@ -38,7 +38,7 @@ class Login extends Component {
                   <br />
                   <br />
                   <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">User Name</label>
+                    <label className="label" htmlFor="exampleInputEmail1">User Name</label>
                     <input
                       type="text"
                       className="form-control"
@@ -50,7 +50,7 @@ class Login extends Component {
                   </div>
                   <br />
                   <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <label  className="label" htmlFor="exampleInputPassword1">Password</label>
                     <input
                       type="password"
                       className="form-control"

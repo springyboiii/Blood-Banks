@@ -17,7 +17,7 @@ const Signup = () => {
                 <div className="col-8">
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input"
                     id="bloodBankName"
                     onChange={(e) => {
                       setName(e.target.value);
@@ -35,7 +35,7 @@ const Signup = () => {
                 <div className="col-8">
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input"
                     id="bloodBankLocation"
                     onChange={(e) => {
                       setLoaction(e.target.value);
@@ -55,7 +55,7 @@ const Signup = () => {
                 <div className="col-8">
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input"
                     id="bloodBankcontactNumber"
                     onChange={(e) => {
                       setContact(e.target.value);
