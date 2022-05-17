@@ -5,6 +5,7 @@ import CampCard from '../components/CampCard';
 const ViewCampScreen = () => {
   return (
     <Container>
+      <h1>All Campaigns</h1>
         <CampCard/>
         <CampCard/>
         <CampCard/>
