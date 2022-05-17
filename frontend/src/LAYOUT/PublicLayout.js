@@ -9,6 +9,11 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Container } from "react-bootstrap";
 import HomeScreen from "../screens/HomeScreen";
+import ViewDonoursScreen from "../screens/ViewDonoursScreen";
+import DonourEditScreen from "../screens/DonourEditScreen";
+import DonourAddScreen from "../screens/DonourAddScreen";
+import DeleteDonor from "../components/DeleteDonor";
+import users from "../users";
 
 const PublicLayout = () => {
   return (
@@ -23,6 +28,10 @@ const PublicLayout = () => {
             <Route path="/editProfile" element={<EditProfileScreen/>} />
             <Route path="/updateInventory" element={<UpdateInventoryScreen/>} />
             <Route path="/viewCamp" element={<ViewCampScreen/>} />
+            <Route path="/viewDonours" element={<ViewDonoursScreen/>} />
+            <Route path="/donour/edit/*" element={<DonourEditScreen/>} />
+            <Route path="/donour/add" element={<DonourAddScreen/>} />
+            <Route path="/donour/delete" element={<DeleteDonor donorList={users}/>} />
             <Route path="/addCamp" element={<AddCampScreen/>} />
           </Routes>
         </Container>

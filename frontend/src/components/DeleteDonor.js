@@ -1,9 +1,11 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import "./styles/bloodBank.css";
+
+
+
 const DeleteDonor = ({ donorList }) => {
-  const { id } = useParams();
-  let getFilter = donorList.filter((donor) => Number(id) === donor.id);
+  const  id  = 1;
+  let getFilter = donorList.filter((donor) => 1 === donor._id);
   const isAvailble = getFilter.length === 1 ? true : false;
   return (
     <>
@@ -19,7 +21,7 @@ const DeleteDonor = ({ donorList }) => {
                 <div className="col-2"></div>
                 <div className="col-2">
                   <Link
-                    to="/admin/dashboard"
+                    to="/viewDonours"
                     className="btn btn-danger"
                     style={{ width: "150%" }}
                   >
@@ -29,7 +31,7 @@ const DeleteDonor = ({ donorList }) => {
                 <div className="col-3"></div>
                 <div className="col-3">
                   <Link
-                    to="/admin/dashboard"
+                    to="/viewDonours"
                     className="btn btn-info"
                     style={{ width: "110%" }}
                   >
@@ -48,7 +50,7 @@ const DeleteDonor = ({ donorList }) => {
                 <div className="col-2"></div>
                 <div className="col-5">
                   <Link
-                    to="/admin/dashboard"
+                    to="/viewDonours"
                     className="btn btn-info"
                     style={{ width: "150%" }}
                   >
