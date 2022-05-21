@@ -52,25 +52,7 @@ const bloodbanks = [
         'Bambalapitija,Colombo 7',
       email: 'colombocentral@gmail.com',
       telephone: '0212786479',
-    },
-    {
-        _id: '6',
-        name: 'Colombo Central',
-        image: '/images/blood7.jpg',
-        address:
-          'Bambalapitija,Colombo 7',
-        email: 'colombocentral@gmail.com',
-        telephone: '0212786479',
-      },
-      {
-        _id: '6',
-        name: 'Colombo Central',
-        image: '/images/blood8.jpg',
-        address:
-          'Bambalapitija,Colombo 7',
-        email: 'colombocentral@gmail.com',
-        telephone: '0212786479',
-      },
+    }
       
   ]
   
