@@ -7,7 +7,7 @@ import Delete from "./Delete";
 import Signup from "./Signup";
 import Upadate from "./Update";
 import bloodbanks from "../../bloodbanks";
-const Dashborad = () => {
+const Dashborad = ({bloodbanks}) => {
   // let bloodBankList = [
   //   { id: 1, name: "rukshan", location: "xxx", contactNumber: "xxxxxxxxxx" },
   //   { id: 2, name: "supun", location: "xxx", contactNumber: "xxxxxxxxxx" },

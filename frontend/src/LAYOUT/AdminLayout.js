@@ -3,10 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import Dashborad from "../components/admin/Dashborad";
 import NotFoundPage from "../components/NotFoundPage";
 
-const AdminLayout = () => {
+const AdminLayout = ({bloodbanks}) => {
   return (
     <Routes>
-      <Route path="dashboard/*" element={<Dashborad />} />
+      <Route path="dashboard/*" element={<Dashborad bloodbanks={bloodbanks} />} />
       <Route path="*" element={<NotFoundPage />}></Route>
     </Routes>
   );
