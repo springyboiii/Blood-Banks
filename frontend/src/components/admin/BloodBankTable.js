@@ -76,11 +76,11 @@ const BloodBankTable = (props) => {
             {bloodBankList &&
               bloodBankList.map((bloodBank) => {
                 return (
-                  <tr key={bloodBank.id}>
-                    <td>{bloodBank.id}</td>
+                  <tr key={bloodBank._id}>
+                    <td>{bloodBank._id}</td>
                     <td>{bloodBank.name}</td>
-                    <td>{bloodBank.location}</td>
-                    <td>{bloodBank.contactNumber}</td>
+                    <td>{bloodBank.address}</td>
+                    <td>{bloodBank.telephone}</td>
                     <td>
                       <Link to={`/admin/dashboard/${bloodBank.id}/edit`}>
                         <i className="material-icons">edit</i>
