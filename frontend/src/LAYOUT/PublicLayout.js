@@ -15,7 +15,7 @@ import DonourAddScreen from "../screens/DonourAddScreen";
 import DeleteDonor from "../components/DeleteDonor";
 import users from "../users";
 
-const PublicLayout = ({bloodbanks}) => {
+const PublicLayout = ({bloodbanks,campaigns}) => {
   return (
     <>
       <Header />
@@ -27,7 +27,7 @@ const PublicLayout = ({bloodbanks}) => {
             <Route path="/bloodbank/:id" element={<BloodBankScreen/>} />
             <Route path="/editProfile" element={<EditProfileScreen/>} />
             <Route path="/updateInventory" element={<UpdateInventoryScreen/>} />
-            <Route path="/viewCamp" element={<ViewCampScreen/>} />
+            <Route path="/viewCamp" element={<ViewCampScreen campaigns={campaigns}/>} />
             <Route path="/viewDonours" element={<ViewDonoursScreen/>} />
             <Route path="/donour/edit/*" element={<DonourEditScreen/>} />
             <Route path="/donour/add" element={<DonourAddScreen/>} />
