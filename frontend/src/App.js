@@ -15,8 +15,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/signIn*" element={<Login />} />
-        <Route path="/admin/*" element={<AdminLayout bloodbanks={bloodbanks} />} />
-        <Route path="/*" element={<PublicLayout bloodbanks={bloodbanks} campaigns={campaigns}/>} />
+        <Route path="/admin/*" element={<AdminLayout bloodbanks={bloodbanksState} />} />
+        <Route path="/*" element={<PublicLayout bloodbanks={bloodbanksState} campaigns={campaigns}/>} />
       </Routes>
     </Router>
   );
