@@ -4,7 +4,7 @@ import "./styles/admin.css";
 const Delete = ({ bloodBankList }) => {
   const { id } = useParams();
   let getFilter = bloodBankList.filter(
-    (bloodBank) => Number(id) === bloodBank.id
+    (bloodBank) => Number(id) === bloodBank._id
   );
   const isAvailble = getFilter.length === 1 ? true : false;
   return (
