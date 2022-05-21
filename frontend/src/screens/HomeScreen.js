@@ -2,15 +2,16 @@ import React from "react";
 import { Row, Col, DropdownButton, Dropdown } from "react-bootstrap";
 import BloodBank from "../components/BloodBank";
 import bloodbanks from "../bloodbanks";
-
+import { useState } from "react";
 const HomeScreen = () => {
+  const [bloodbanksState, setBloodBanks] = useState(bloodbanks);
   return (
     <>
       <div style={{display:'flex' ,flexDirection:'row'}}>
       
         <h1>All BloodBanks</h1>
        
-        
+        {/* <h1>{bloodbanks.map()}</h1> */}
         
         <DropdownButton  id="dropdown-basic-button" title="Sort by" className="mx-3">
           <Dropdown.Item href="#/action-1">A+</Dropdown.Item>
@@ -33,7 +34,7 @@ const HomeScreen = () => {
       </div>
 
       <Row>
-        {bloodbanks.map((bloodbank) => (
+        {bloodbanksState.map((bloodbank) => (
           <Col sm={12} md={6} lg={4} xl={3}>
             <BloodBank bloodbank={bloodbank} />
           </Col>
