@@ -6,11 +6,12 @@ import BloodBankTable from "./BloodBankTable";
 import Delete from "./Delete";
 import Signup from "./Signup";
 import Upadate from "./Update";
+import bloodbanks from "../../bloodbanks";
 const Dashborad = () => {
-  let bloodBankList = [
-    { id: 1, name: "rukshan", location: "xxx", contactNumber: "xxxxxxxxxx" },
-    { id: 2, name: "supun", location: "xxx", contactNumber: "xxxxxxxxxx" },
-  ];
+  // let bloodBankList = [
+  //   { id: 1, name: "rukshan", location: "xxx", contactNumber: "xxxxxxxxxx" },
+  //   { id: 2, name: "supun", location: "xxx", contactNumber: "xxxxxxxxxx" },
+  // ];
   return (
     <>
       <div className="nav-header">
@@ -46,16 +47,16 @@ const Dashborad = () => {
         <Routes>
           <Route
             path=""
-            element={<BloodBankTable bloodBankList={bloodBankList} />}
+            element={<BloodBankTable bloodBankList={bloodbanks} />}
           ></Route>
           <Route path="addBd" element={<Signup />}></Route>
           <Route
             path=":id/edit"
-            element={<Upadate bloodBankList={bloodBankList} />}
+            element={<Upadate bloodBankList={bloodbanks} />}
           ></Route>
           <Route
             path=":id/delete"
-            element={<Delete bloodBankList={bloodBankList} />}
+            element={<Delete bloodBankList={bloodbanks} />}
           ></Route>
           <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
