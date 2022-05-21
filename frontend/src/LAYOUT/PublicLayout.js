@@ -15,7 +15,7 @@ import DonourAddScreen from "../screens/DonourAddScreen";
 import DeleteDonor from "../components/DeleteDonor";
 import users from "../users";
 
-const PublicLayout = () => {
+const PublicLayout = ({bloodbanks}) => {
   return (
     <>
       <Header />
@@ -23,7 +23,7 @@ const PublicLayout = () => {
       <main className="py-3">
         <Container>
           <Routes>
-            <Route path="" element={<HomeScreen/>}/>
+            <Route path="" element={<HomeScreen bloodbanks={bloodbanks}/>}/>
             <Route path="/bloodbank/:id" element={<BloodBankScreen/>} />
             <Route path="/editProfile" element={<EditProfileScreen/>} />
             <Route path="/updateInventory" element={<UpdateInventoryScreen/>} />
