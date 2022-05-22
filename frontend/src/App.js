@@ -36,9 +36,7 @@ render(){
       </Routes>
     </Router>
   );
-  return(
-  <p>{this.state.apiResponse}</p>
-  )
+  
 }
 }
 
