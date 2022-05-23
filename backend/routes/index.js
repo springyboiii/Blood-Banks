@@ -1,4 +1,5 @@
 var express = require('express');
+const cors = require('cors');
 var router = express.Router();
 
 
@@ -11,16 +12,30 @@ const db = mysql.createPool({
   database: 'bloodbanks'
 });
 
+router.use(cors());
+router.use(express.json());
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  db.query("INSERT INTO bloodbanks_bloodbanks (title,description,completed) VALUES ('Colombo', 'Available', 1);", (err, result) => {
+  res.render('index', { title: 'Express' });
+});
+
+router.post('/donour/add',(req,res)=>{
+
+  const name = req.body.name;
+  const blood = req.body.b_type;
+  const phone = req.body.contact_no;
+  const address = req.body.address;
+
+  const sqlInsert = "INSERT INTO donor (name,b_type,contact_no,address) VALUES (?,?,?,?);"
+  db.query(sqlInsert,[name, blood, phone, address],(err,result)=>{
     if (err) {
       console.log(err);
+      return;
     } else {
       res.send(result);
     }
   });
-  res.render('index', { title: 'Express' });
 });
 
 module.exports = router;
