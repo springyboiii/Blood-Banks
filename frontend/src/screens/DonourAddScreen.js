@@ -20,7 +20,8 @@ const DonourAddScreen = () => {
       name: name,
       b_type: blood,
       contact_no: phone,
-      address: address
+      address: address,
+      email: email
     }).then(()=>{
       alert("succesful insert")
     });
