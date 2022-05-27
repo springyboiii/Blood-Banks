@@ -8,7 +8,7 @@ const mysql = require('mysql');
 const db = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'Sandu@123',
+  password: 'arvinth',
   database: 'BloodBank'
 });
 
@@ -30,6 +30,26 @@ router.post('/donour/add',(req,res)=>{
 
   const sqlInsert = "INSERT INTO donor (name,b_type,contact_no,address,email) VALUES (?,?,?,?,?);"
   db.query(sqlInsert,[name, blood, phone, address,email],(err,result)=>{
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      res.send(result);
+    }
+  });
+});
+router.post('/admin/dashboard/addBd',(req,res)=>{
+
+  const name = req.body.name;
+  const username = req.body.username;
+  const password = req.body.password;
+  const email = req.body.email;
+  const description = req.body.description;
+  const location = req.body.location;
+  const contact = req.body.contact;
+
+  const sqlInsert = "INSERT INTO bank (firstname,lastname,username,password,contact_no,address,email,about) VALUES (?,?,?,?,?,?,?,?);"
+  db.query(sqlInsert,[name,name,username,password,contact,location,email,description],(err,result)=>{
     if (err) {
       console.log(err);
       return;
