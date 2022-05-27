@@ -1,17 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Card, Button, Form } from "react-bootstrap";
 import FormContainer from "../components/FormContainer ";
+import Axios from "axios";
 
-const addCampScreen = () => {
+const AddCampScreen = () => {
+
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [org, setOrg] = useState("");
+  const [location, setLocation] = useState("");
+  const [bank_ID, setBank_ID] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
+
+  const submitCamp=()=>{
+    Axios.post("http://localhost:9000/addCamp", {
+      camp_name: name,
+      description : description,
+      date: date,
+      time: time,
+      location  : location,
+      org_name: org,
+      bank_ID: bank_ID
+    }).then(()=>{
+      alert("succesful insert")
+    });
+  };
+
   return (
     <FormContainer>
       <Card>
         <Card.Header>Add Camp</Card.Header>
         <Card.Body>
-          <Form>
+          <Form onSubmit={submitHandler}>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="disabledTextInput">Camp Name</Form.Label>
-              <Form.Control placeholder="Name" />
+              <Form.Control 
+                type="name"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -21,6 +54,8 @@ const addCampScreen = () => {
                 as="textarea"
                 rows={2}
                 placeholder="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
               <Form.Text muted>Description must be below 200 words</Form.Text>
             </Form.Group>
@@ -31,22 +66,55 @@ const addCampScreen = () => {
                   <Form.Label htmlFor="disabledTextInput">Date</Form.Label>
                   <Form.Control
                     type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
                   />
                 </Form.Group>
               </Col>
               <Col md={6}>
                 <Form.Group className="mb-3">
                   <Form.Label htmlFor="disabledTextInput">Time</Form.Label>
-                  <Form.Control type="time" placeholder="Last Name" />
+                  <Form.Control 
+                    type="time" 
+                    placeholder="Last Name"
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
+                  />
                 </Form.Group>
               </Col>
             </Row>
 
             <Form.Group className="mb-3">
               <Form.Label htmlFor="disabledTextInput">
+                Location
+              </Form.Label>
+              <Form.Control 
+                placeholder="Location" 
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="disabledTextInput">
+                Bank Name
+              </Form.Label>
+              <Form.Control 
+                placeholder="Bank Name" 
+                value={bank_ID}
+                onChange={(e) => setBank_ID(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="disabledTextInput">
                 Organization Name
               </Form.Label>
-              <Form.Control placeholder="Organization Name" />
+              <Form.Control 
+                placeholder="Organization Name"
+                value={org}
+                onChange={(e) => setOrg(e.target.value)}
+              />
             </Form.Group>
 
             <Form.Group controlId="formFile" className="mb-3">
@@ -54,7 +122,7 @@ const addCampScreen = () => {
               <Form.Control type="file" />
             </Form.Group>
 
-            <Button variant="info" className="justify-content-center">
+            <Button variant="info" className="justify-content-center" onClick={submitCamp}>
               Add Camp
             </Button>
           </Form>
@@ -64,4 +132,4 @@ const addCampScreen = () => {
   );
 };
 
-export default addCampScreen;
+export default AddCampScreen;
