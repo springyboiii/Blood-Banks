@@ -176,9 +176,7 @@ const Signup = () => {
                 >
                   Creat account
                 </button>
-                <Button type="submit" variant="info" onClick={submitBloodbank}>
-                Update
-              </Button>
+                
               </div>
               <div className="col-3"></div>
             </div>
