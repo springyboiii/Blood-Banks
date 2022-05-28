@@ -3,15 +3,44 @@ import "./Login.css";
 import SlideShow from "./SlidesShow";
 import Footer from "../Footer";
 import logo from "../../image/favicon-32x32.png";
+import Axios from "axios";
 class Login extends Component {
   constructor() {
     super();
-    this.state = { userName: "", password: "", isAuthenticated: false };
+    this.state = { userName: "", password: "", isAuthenticated: "" };
   }
+   submitHandler = (e) => {
+    e.preventDefault();
+  };
+  
+   submitCredentials=(e)=>{
+    e.preventDefault();
+    
+    Axios.post("http://localhost:9000/signIn", {
+      
+      userName: this.state.userName,
+      password: this.state.password,
+      
+    }).then((response)=>{
+      if (response.data.message){
+        this.setState({isAuthenticated:response.data.message});
+      }else{
+        this.setState({isAuthenticated:response.data[0].username});
+
+        // console.log(response);
+      
+      }
+      
+    });
+  };
+
+
 
   render() {
     return (
       <>
+              <h1>{this.state.isAuthenticated}</h1>
+
         <div style={{ backgroundColor: "#be847a", height: "100vh" }}>
           <div className="nav-header">
             <nav
@@ -33,7 +62,7 @@ class Login extends Component {
                 className="col-4 form"
                 style={{ backgroundColor: "#880808", color: "white" }}
               >
-                <form>
+                <form onSubmit={this.submitHandler}>
                   <h2 style={{ textAlign: "center" }}>Login</h2>
                   <br />
                   <br />
@@ -45,6 +74,7 @@ class Login extends Component {
                       placeholder="Enter User Name"
                       onChange={(e) => {
                         this.setState({ userName: e.target.value });
+                        // console.log(e.target.value);
                       }}
                     />
                   </div>
@@ -68,6 +98,7 @@ class Login extends Component {
                         type="submit"
                         className="btn btn-info"
                         style={{ width: "150%" }}
+                        onClick={this.submitCredentials}
                       >
                         LOGIN
                       </button>
