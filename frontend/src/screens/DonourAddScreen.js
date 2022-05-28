@@ -23,7 +23,7 @@ const DonourAddScreen = () => {
       address: address,
       email: email
     }).then(()=>{
-      alert("succesful insert")
+      window.location.href='/viewDonours'
     });
   };
 

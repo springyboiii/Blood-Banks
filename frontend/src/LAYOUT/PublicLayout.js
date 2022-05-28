@@ -31,7 +31,7 @@ const PublicLayout = ({bloodbanks,campaigns}) => {
             <Route path="/viewDonours" element={<ViewDonoursScreen/>} />
             <Route path="/donour/edit/:id" element={<DonourEditScreen/>} />
             <Route path="/donour/add" element={<DonourAddScreen/>} />
-            <Route path="/donour/delete" element={<DeleteDonor donorList={users}/>} />
+            <Route path="/donour/delete/:id" element={<DeleteDonor donorList={users}/>} />
             <Route path="/addCamp" element={<AddCampScreen/>} />
           </Routes>
         </Container>
