@@ -1,20 +1,43 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect   } from "react";
+import { Link, useParams} from "react-router-dom";
 import { Form, Button, Card } from "react-bootstrap";
 import FormContainer from "../components/FormContainer ";
-import users from "../users";
+import Axios from "axios";
 
 const DonourEditScreen = () => {
-  const user1 = users[0];
-
-  const [name, setName] = useState(user1.name);
-  const [address, setAddress] = useState(user1.address);
-  const [email, setEmail] = useState(user1.email);
-  const [phone, setPhone] = useState(user1.phone);
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [email, setEmail] = useState('');
+  const [contact_no, setPhone] = useState('');
 
   const submitHandler = (e) => {
     e.preventDefault();
   };
+
+  const params = useParams()
+
+  useEffect(()=>{
+    getDonorDetails();
+  },[])
+
+  const getDonorDetails = async ()=>{
+    let result = await fetch(`http://localhost:9000/viewDonourID/${params.id}`);
+    result = await result.json();
+    setName(result[0].name)
+    setAddress(result[0].address)
+    setEmail(result[0].email)
+    setPhone(result[0].contact_no)
+  }
+
+  const updateDonor = async () =>{
+    console.log(name, address, contact_no, email)
+    let result = await Axios.put(`http://localhost:9000/donour/edit/${params.id}`, {
+      name: name,
+      address: address,
+      email: email,
+      phone: contact_no
+    });
+  };  
 
   return (
     <>
@@ -30,17 +53,17 @@ const DonourEditScreen = () => {
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   type="name"
-                  placeholder="Enter name"
+                  placeholder="Enter Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 ></Form.Control>
               </Form.Group>
 
-              <Form.Group controlId="Phone" className="mb-3">
+              <Form.Group controlId="phone" className="mb-3">
                 <Form.Label>Phone Number</Form.Label>
                 <Form.Control
                   placeholder="Enter Phone"
-                  value={phone}
+                  value={contact_no}
                   onChange={(e) => setPhone(e.target.value)}
                 ></Form.Control>
               </Form.Group>
@@ -63,10 +86,9 @@ const DonourEditScreen = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-
-              <Button type="submit" variant="info">
+              <Button type="submit" variant="info" onClick={updateDonor}>
                 Update
-              </Button>
+              </Button> 
             </Form>
           </Card.Body>
         </Card>

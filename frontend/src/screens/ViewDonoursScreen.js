@@ -2,7 +2,6 @@ import React, { useState, useEffect  } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
 import Axios from "axios";
-import users from "../users";
 
 const ViewDonoursScreen = () => {
   
