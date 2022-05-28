@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState, useEffect  } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
-import users from "../users";
+import Axios from "axios";
 
 const ViewDonoursScreen = () => {
+  
+  const [donorList, setDonorList] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const req = await Axios.get("http://localhost:9000/viewDonours");
+      setDonorList(req.data);
+    }
+    fetchData();
+  }, []);
+
   return (
-    <>
+    <>  
       <div style={{ display: "flex", flexDirection: "row" }} className="mb-3">
         <h1>Donours</h1>
         <LinkContainer to={`/donour/add`}>
@@ -28,19 +38,19 @@ const ViewDonoursScreen = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr key={user._id}>
-              <td>{user._id}</td>
-              <td>{user.name}</td>
-              <td>{user.blood}</td>
-              <td>{user.address}</td>
-              <td>{user.phone}</td>
+          {donorList.map((val, key) => (
+            <tr key={donorList._id}>
+              <td>{val.ID}</td>
+              <td>{val.name}</td>
+              <td>{val.b_type}</td>
+              <td>{val.address}</td>
+              <td>{val.contact_no}</td>
               <td>
-                <a href={`mailto:${user.email}`}>{user.email}</a>
+                <a href={`mailto:${val.email}`}>{val.email}</a>
               </td>
 
               <td>
-                <LinkContainer to={`/donour/edit/${user._id}`}>
+                <LinkContainer to={`/donour/edit/${val.ID}`}>
                   <Button variant="light" className="btn-sm">
                     <i className="fas fa-edit"></i>
                   </Button>
