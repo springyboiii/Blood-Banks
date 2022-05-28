@@ -4,7 +4,7 @@ const users=[
         name:"Ashokkumar",
         blood:"A+",
         address:"V.M Road",
-        email:"ashok.google@.com",
+        email:"ashok@google.com",
         phone:"0762786479",
     },
 ]

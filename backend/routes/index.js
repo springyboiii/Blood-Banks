@@ -59,4 +59,34 @@ router.post('/addCamp',(req,res)=>{
   });
 });
 
+router.get('/viewDonours', (req,res)=>{
+  db.query("SELECT * FROM donor;", (err, result) =>{
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+router.put(`/donour/edit/:id`, (req, res) => {
+  const name = req.body.name;
+  const phone = req.body.contact_no;
+  const address = req.body.address;
+  const email = req.body.email;
+  const id = req.params.id;
+  console.log(id);
+  db.query(
+    "UPDATE donor SET name = ?, contact_no=?, address=?, email=? WHERE id = ? ",
+    [name, phone, address, email, id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
 module.exports = router;
