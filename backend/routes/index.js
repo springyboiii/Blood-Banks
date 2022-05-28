@@ -47,10 +47,10 @@ router.post("/admin/dashboard/addBd", (req, res) => {
   const contact = req.body.contact;
 
   const sqlInsert =
-    "INSERT INTO bank (firstname,lastname,username,password,contact_no,address,email,about) VALUES (?,?,?,?,?,?,?,?);";
+    "INSERT INTO bank (name,username,password,contact_no,address,email,about) VALUES (?,?,?,?,?,?,?);";
   db.query(
     sqlInsert,
-    [name, name, username, password, contact, location, email, description],
+    [name, username, password, contact, location, email, description],
     (err, result) => {
       if (err) {
         console.log(err);
