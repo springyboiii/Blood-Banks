@@ -4,19 +4,38 @@ import { Row, Col, Card, Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import { useEffect } from "react";
 import  Axios  from "axios";
-const EditProfileScreen = () => {
+const EditProfileScreen = ({username}) => {
+  const [username1, setUsername] = useState(username);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
   const [contact, setContact] = useState("");
-  const [location, setLoaction] = useState("");
+  const [location, setLocation] = useState("");
   useEffect(() => {
     return () => {
-      Axios.get('http://localhost:9000/editProfile').then((response) => { console.log(response) })
+      Axios.post("http://localhost:9000/editProfile", {
+      
+      username: username1,
+      
+    }).then((response)=>{
+      setName(response.data[0].name);
+      setContact(response.data[0].contact_no);
+      setUsername(response.data[0].username);
+      setEmail(response.data[0].email);
+      setLocation(response.data[0].address);
+      setDescription(response.data[0].about);
+      console.log(response.data);
+      alert("succesful insert");
+      
+    });
+      Axios.get('http://localhost:9000/editProfile').then((response) => { console.log(response.data) });
+    
     };
   }, [])
   return (
+    
     <Row>
+      {console.log({username1})}
       <Col md={4}>
         <Card>
           <Card.Header>Profile Picture</Card.Header>
@@ -43,7 +62,7 @@ const EditProfileScreen = () => {
                 <Form.Label htmlFor="disabledTextInput">Username</Form.Label>
                 <Form.Control
                   id="disabledTextInput"
-                  placeholder="colombo1254"
+                  placeholder={username1}
                   disabled
                 />
               </Form.Group>
@@ -77,7 +96,7 @@ const EditProfileScreen = () => {
                     <Form.Label htmlFor="disabledTextInput">Organization Name</Form.Label>
                     <Form.Control
                       id="disabledTextInput"
-                      placeholder="Organization Name"
+                      placeholder={name}
 
                     />
                   </Form.Group>
@@ -87,7 +106,7 @@ const EditProfileScreen = () => {
                     <Form.Label htmlFor="disabledTextInput">Address</Form.Label>
                     <Form.Control
                       id="disabledTextInput"
-                      placeholder="Address"
+                      placeholder={location}
 
                     />
                   </Form.Group>
@@ -100,7 +119,7 @@ const EditProfileScreen = () => {
                     <Form.Label htmlFor="disabledTextInput">Telephone</Form.Label>
                     <Form.Control
                       id="disabledTextInput"
-                      placeholder="Organization Name"
+                      placeholder={contact}
 
                     />
                   </Form.Group>
@@ -110,7 +129,7 @@ const EditProfileScreen = () => {
                     <Form.Label htmlFor="disabledTextInput">Email</Form.Label>
                     <Form.Control
                       id="disabledTextInput"
-                      placeholder="Address"
+                      placeholder={email}
 
                     />
                   </Form.Group>
@@ -123,7 +142,7 @@ const EditProfileScreen = () => {
                   type="text"
                   as="textarea" rows={3}
                   id="disabledTextInput"
-                  placeholder="About"
+                  placeholder={description}
 
                 />
               </Form.Group>

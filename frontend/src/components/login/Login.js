@@ -4,14 +4,19 @@ import SlideShow from "./SlidesShow";
 import Footer from "../Footer";
 import logo from "../../image/favicon-32x32.png";
 import Axios from "axios";
+import { Navigate } from 'react-router-dom';
+import EditProfileScreen from "../../screens/EditProfileScreen";
+import Header from "../Header";
+// import Footer from "../Footer";
 class Login extends Component {
-  constructor() {
-    super();
-    this.state = { userName: "", password: "", isAuthenticated: "" };
+  constructor(props) {
+    super(props);
+    this.state = { userName: "", password: "", isAuthenticated: false};
   }
-   submitHandler = (e) => {
-    e.preventDefault();
-  };
+  
+  //  submitHandler = (e) => {
+  //   e.preventDefault();
+  // };
   
    submitCredentials=(e)=>{
     e.preventDefault();
@@ -23,25 +28,37 @@ class Login extends Component {
       
     }).then((response)=>{
       if (response.data.message){
-        this.setState({isAuthenticated:response.data.message});
+        this.setState({isAuthenticated:false},() => {
+          console.log(this.state.isAuthenticated, 'isAuthenticated');
+        
+      });
+        // console.log(this.state.isAuthenticated);
       }else{
-        this.setState({isAuthenticated:response.data[0].username});
-
-        // console.log(response);
+        // this.setState({isAuthenticated:response.data[0].username});
+        this.props.setUsername(this.state.userName);
+        // console.log(this.state.userName);
+        this.setState({isAuthenticated:true});
+        
+        alert("asd")
+        console.log(response);
+        // window.open("/editProfile","_self");
+        
       
       }
       
     });
+    
   };
 
 
 
   render() {
     return (
+      
       <>
-              <h1>{this.state.isAuthenticated}</h1>
+             {this.state.isAuthenticated && <div><Header/> <EditProfileScreen username={this.state.userName}/></div>}
 
-        <div style={{ backgroundColor: "#be847a", height: "100vh" }}>
+        {!this.state.isAuthenticated &&<div style={{ backgroundColor: "#be847a", height: "100vh" }}>
           <div className="nav-header">
             <nav
               className="navbar"
@@ -112,8 +129,9 @@ class Login extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div>}
         <Footer />
+       
       </>
     );
   }

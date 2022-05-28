@@ -14,10 +14,14 @@ import DonourEditScreen from "../screens/DonourEditScreen";
 import DonourAddScreen from "../screens/DonourAddScreen";
 import DeleteDonor from "../components/DeleteDonor";
 import users from "../users";
+import { useState } from "react";
 
-const PublicLayout = ({bloodbanks,campaigns}) => {
+const PublicLayout = ({bloodbanks,campaigns,username}) => {
+  const [username1, setUsername] = useState(username)
+  
   return (
     <>
+    {console.log({username})}
       <Header />
 
       <main className="py-3">
@@ -25,7 +29,7 @@ const PublicLayout = ({bloodbanks,campaigns}) => {
           <Routes>
             <Route path="/a" element={<HomeScreen bloodbanks={bloodbanks}/>}/>
             <Route path="/bloodbank/:id" element={<BloodBankScreen/>} />
-            <Route path="/editProfile" element={<EditProfileScreen/>} />
+            <Route path="/editProfile" element={<EditProfileScreen username={username1} />} />
             <Route path="/updateInventory" element={<UpdateInventoryScreen/>} />
             <Route path="/viewCamp" element={<ViewCampScreen campaigns={campaigns}/>} />
             <Route path="/viewDonours" element={<ViewDonoursScreen/>} />

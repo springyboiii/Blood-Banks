@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./styles/admin.css";
 import Axios from "axios";
 import { Form, Button, Card } from "react-bootstrap";
+
 const Signup = () => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -25,7 +26,8 @@ const Signup = () => {
       contact:contact,
       location:location,
     }).then(()=>{
-      alert("succesful insert")
+      alert("succesful insert");
+      
     });
   };
 
