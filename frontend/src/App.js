@@ -11,7 +11,7 @@ import campaigns from "./campaigns";
 class App extends React.Component{
   constructor(props){
     super(props);
-    this.state={apiResponse:"",bloodbanksState : bloodbanks,campaignsState :campaigns };
+    this.state={apiResponse:"",bloodbanksState : bloodbanks,campaignsState :campaigns , username:""};
   }
   callAPI(){
     fetch("http://localhost:9000/test")
@@ -22,17 +22,22 @@ class App extends React.Component{
   componentWillMount(){
     this.callAPI();
   }
+  setUsername=(username1)=>{
+    console.log(username1,"hello");
+    this.setState({username:username1}, () => {
+      console.log(this.state.username, 'username');
+    
+  })}
 
 render(){
-  // const [bloodbanksState, setBloodBanks] = useState(bloodbanks);
-  // const [campaignsState,setCampaigns]=useState(campaigns);
+ 
   return (
     
     <Router>
       <Routes>
-        <Route path="/signIn*" element={<Login />} />
+        <Route path="/signIn*" element={<Login setUsername={this.setUsername}/>} />
         <Route path="/admin/*" element={<AdminLayout bloodbanks={this.state.bloodbanksState} />} />
-        <Route path="/*" element={<PublicLayout bloodbanks={this.state.bloodbanksState} campaigns={this.state.campaignsState}/>} />
+        <Route path="/*" element={<PublicLayout bloodbanks={this.state.bloodbanksState} campaigns={this.state.campaignsState} username={this.state.username}/>} />
       </Routes>
     </Router>
   );

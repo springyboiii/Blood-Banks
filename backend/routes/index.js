@@ -40,12 +40,33 @@ router.post("/donour/add", (req, res) => {
 
 router.get('/editProfile', (req, res) => {
   const sqlSelect = "Select * from bank ;";
+  
   db.query(
     sqlSelect,
 
     (err, result) => {
       res.send(result);
       
+    }
+  );
+});
+router.post("/editProfile", (req, res) => {
+  
+  const username = req.body.username;
+  
+
+  const sqlSelect =
+    "select * from bank where username=?";
+  db.query(
+    sqlSelect,
+    [ username],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        res.send(result);
+      }
     }
   );
 });

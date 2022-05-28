@@ -47,8 +47,8 @@ const SlideShow = () => {
       <br />
 
       <div style={{ textAlign: "center" }}>
-        <span class="dot"></span>
-        <span class="dot"></span>
+        <span className="dot"></span>
+        <span className="dot"></span>
       </div>
     </>
   );
