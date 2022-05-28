@@ -6,7 +6,7 @@ const BloodBank = ({ bloodbank }) => {
   return (
     <Card className='my-3 p-3 rounded'>
       <a href={`/bloodbank/${bloodbank._id}`}>
-        <Card.Img src={bloodbank.image} variant='top' style={{ objectFit:'cover'}} />
+        <Card.Img src='/images/blood6.jpg' variant='top' style={{ objectFit:'cover'}} />
       </a>
 
       <Card.Body>

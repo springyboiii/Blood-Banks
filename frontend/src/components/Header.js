@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <Navbar className="px-5" bg="primary" expand="lg" variant="dark">
       <Container fluid>
-        <Navbar.Brand href="/">Blood Bank</Navbar.Brand>
+        <Navbar.Brand href="/a">Blood Bank</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

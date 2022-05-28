@@ -1,7 +1,20 @@
 import React from "react";
 import { Row, Col, Card, Button, Form } from "react-bootstrap";
 //import classes from '../components/EditProfileScreen.css'
+import { useState } from "react";
+import { useEffect } from "react";
+import  Axios  from "axios";
 const EditProfileScreen = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [description, setDescription] = useState("");
+  const [contact, setContact] = useState("");
+  const [location, setLoaction] = useState("");
+  useEffect(() => {
+    return () => {
+      Axios.get('http://localhost:9000/editProfile').then((response) => { console.log(response) })
+    };
+  }, [])
   return (
     <Row>
       <Col md={4}>
@@ -35,7 +48,7 @@ const EditProfileScreen = () => {
                 />
               </Form.Group>
 
-              <Row>
+              {/* <Row>
                 <Col md={6}>
                 <Form.Group className="mb-3">
                   <Form.Label htmlFor="disabledTextInput">Executive's First Name</Form.Label>
@@ -56,62 +69,62 @@ const EditProfileScreen = () => {
                   />
                    </Form.Group>
                 </Col>
+              </Row> */}
+
+              <Row>
+                <Col md={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">Organization Name</Form.Label>
+                    <Form.Control
+                      id="disabledTextInput"
+                      placeholder="Organization Name"
+
+                    />
+                  </Form.Group>
+                </Col>
+                <Col md={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">Address</Form.Label>
+                    <Form.Control
+                      id="disabledTextInput"
+                      placeholder="Address"
+
+                    />
+                  </Form.Group>
+                </Col>
               </Row>
 
               <Row>
                 <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="disabledTextInput">Organization Name</Form.Label>
-                  <Form.Control
-                    id="disabledTextInput"
-                    placeholder="Organization Name"
-                  
-                  />
-                   </Form.Group>
-                </Col>
-                <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="disabledTextInput">Address</Form.Label>
-                  <Form.Control
-                    id="disabledTextInput"
-                    placeholder="Address"
-                    
-                  />
-                   </Form.Group>
-                </Col>
-              </Row>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">Telephone</Form.Label>
+                    <Form.Control
+                      id="disabledTextInput"
+                      placeholder="Organization Name"
 
-              <Row>
-                <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="disabledTextInput">Telephone</Form.Label>
-                  <Form.Control
-                    id="disabledTextInput"
-                    placeholder="Organization Name"
-                  
-                  />
-                   </Form.Group>
+                    />
+                  </Form.Group>
                 </Col>
                 <Col md={6}>
-                    <Form.Group className="mb-3">
-                  <Form.Label htmlFor="disabledTextInput">Email</Form.Label>
-                  <Form.Control
-                    id="disabledTextInput"
-                    placeholder="Address"
-                    
-                  />
-                   </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">Email</Form.Label>
+                    <Form.Control
+                      id="disabledTextInput"
+                      placeholder="Address"
+
+                    />
+                  </Form.Group>
                 </Col>
               </Row>
 
               <Form.Group className="mb-3">
                 <Form.Label htmlFor="disabledTextInput">About</Form.Label>
                 <Form.Control
-                type="text"
-                as="textarea" rows={3}
+                  type="text"
+                  as="textarea" rows={3}
                   id="disabledTextInput"
                   placeholder="About"
-                
+
                 />
               </Form.Group>
               <Button variant="info" className="justify-content-center">Update</Button>
