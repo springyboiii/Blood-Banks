@@ -37,6 +37,29 @@ router.post("/donour/add", (req, res) => {
     }
   });
 });
+
+router.get('/editProfile', (req, res) => {
+  const sqlSelect = "Select * from bank ;";
+  db.query(
+    sqlSelect,
+
+    (err, result) => {
+      res.send(result);
+      
+    }
+  );
+});
+router.get("/dashboard", (req, res) => {
+  const sqlSelect = "Select * from bank ;";
+  db.query(
+    sqlSelect,
+
+    (err, result) => {
+      res.send(result);
+      console.log(result)
+    }
+  );
+});
 router.post("/admin/dashboard/addBd", (req, res) => {
   const name = req.body.name;
   const username = req.body.username;
@@ -65,17 +88,16 @@ router.post("/admin/dashboard/addBd", (req, res) => {
 router.post("/signIn", (req, res) => {
   const username = req.body.userName;
   const password = req.body.password;
-  const passQuery = "Select * from bank WHERE username = ? AND password=? ;"
+  const passQuery = "Select * from bank WHERE username = ? AND password=? ;";
   db.query(passQuery, [username, password], (err, result) => {
     if (err) {
-      res.send({err:err})
-    } 
-      if (result.length>0) {
-        res.send(result);
-      }else {
-        res.send({message:"Wrong username/password"})
-      }
-    
+      res.send({ err: err });
+    }
+    if (result.length > 0) {
+      res.send(result);
+    } else {
+      res.send({ message: "Wrong username/password" });
+    }
   });
 });
 

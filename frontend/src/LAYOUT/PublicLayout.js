@@ -23,7 +23,7 @@ const PublicLayout = ({bloodbanks,campaigns}) => {
       <main className="py-3">
         <Container>
           <Routes>
-            <Route path="" element={<HomeScreen bloodbanks={bloodbanks}/>}/>
+            <Route path="/a" element={<HomeScreen bloodbanks={bloodbanks}/>}/>
             <Route path="/bloodbank/:id" element={<BloodBankScreen/>} />
             <Route path="/editProfile" element={<EditProfileScreen/>} />
             <Route path="/updateInventory" element={<UpdateInventoryScreen/>} />
