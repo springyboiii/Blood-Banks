@@ -10,7 +10,6 @@ const HomeScreen = ({ bloodbanks }) => {
   useEffect(() => {
     return () => {
       Axios.get("http://localhost:9000/dashboard").then((response) => {
-        // console.log(response.data);
         setBloodBanksnew(response.data)
       });
     };

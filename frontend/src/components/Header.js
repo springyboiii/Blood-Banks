@@ -16,7 +16,7 @@ const Header = ({username,isLoggedIn}) => {
     
     <Navbar className="px-5" bg="primary" expand="lg" variant="dark">
       <Container fluid>
-      {/* {console.log({username1},"Header")} */}
+   
         <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -44,7 +44,7 @@ const Header = ({username,isLoggedIn}) => {
               {IsLoggedIn ? (username):("Sign in")}
               <i className="fas fa-user ms-1"></i>{" "}
             </Nav.Link>
-            {/* {console.log(IsLoggedIn)} */}
+           
 {IsLoggedIn &&<div>
             <NavDropdown title="" id="basic-nav-dropdown" className="mx-0">
               <NavDropdown.Item href="">

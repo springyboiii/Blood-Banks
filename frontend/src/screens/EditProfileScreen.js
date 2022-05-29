@@ -24,7 +24,7 @@ const EditProfileScreen = ({username}) => {
       setEmail(response.data[0].email);
       setLocation(response.data[0].address);
       setDescription(response.data[0].about);
-      // console.log(response.data);
+      
       // alert("succesful insert");
       
     });
@@ -49,7 +49,6 @@ const EditProfileScreen = ({username}) => {
   return (
     
     <Row>
-      {/* {console.log({username1})} */}
       <Col md={4}>
         <Card>
           <Card.Header>Profile Picture</Card.Header>

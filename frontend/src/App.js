@@ -23,16 +23,11 @@ class App extends React.Component{
     this.callAPI();
   }
   setUsername=(username1)=>{
-    console.log(username1,"hello");
-    this.setState({username:username1}, () => {
-      console.log(this.state.username, 'App.js username');
     
-  })}
-  // shouldComponentUpdate() {
-  //   console.log('Greeting - shouldComponentUpdate lifecycle');
-
-  //   return false;
-  // }
+    this.setState({username:username1}, 
+    
+  )}
+ 
 
 render(){
  
