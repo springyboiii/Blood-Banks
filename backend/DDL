@@ -1,16 +1,16 @@
 CREATE DATABASE 'BloodBank';
 CREATE TABLE `bank` (
-  `firstname` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
-  `ID` int(100) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `ID` int NOT NULL AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `contact_no` int(10) NOT NULL,
+  `contact_no` int NOT NULL,
   `address` varchar(100) NOT NULL,
-  `email` varchar(100),
+  `email` varchar(100) DEFAULT NULL,
   `about` text,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
+
 
 CREATE TABLE `camp` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
