@@ -9,8 +9,9 @@ import {
   FormControl,
 } from "react-bootstrap";
 import { useState } from "react";
-const Header = ({username}) => {
+const Header = ({username,isLoggedIn}) => {
   const [username1, setUsername] = useState(username)
+  const [IsLoggedIn, setIsLoggedIn] = useState(isLoggedIn)
   return (
     
     <Navbar className="px-5" bg="primary" expand="lg" variant="dark">
@@ -43,7 +44,8 @@ const Header = ({username}) => {
               {" "}
               Sign in<i className="fas fa-user ms-1"></i>{" "}
             </Nav.Link>
-
+            {console.log(IsLoggedIn)}
+{IsLoggedIn &&<div>
             <NavDropdown title="" id="basic-nav-dropdown" className="mx-0">
               <NavDropdown.Item href="/editProfile">
                 Edit Profile
@@ -57,7 +59,8 @@ const Header = ({username}) => {
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">Logout</NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown></div>
+}
           </Nav>
           <Nav></Nav>
         </Navbar.Collapse>

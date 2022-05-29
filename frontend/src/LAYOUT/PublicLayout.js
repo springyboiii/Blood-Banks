@@ -22,7 +22,7 @@ const PublicLayout = ({bloodbanks,campaigns,username}) => {
   return (
     <>
     {/* {console.log({username1}, "PublicLayout")} */}
-      <Header username={username1}/>
+      <Header username={username1} isLoggedIn={false}/>
 
       <main className="py-3">
         <Container>
