@@ -8,7 +8,7 @@ const BloodBankTable = (props) => {
   useEffect(() => {
     return () => {
       Axios.get("http://localhost:9000/dashboard").then((response) => {
-        console.log(response.data);
+    
         setBloodBankList(response.data)
       });
     };
@@ -34,7 +34,7 @@ const BloodBankTable = (props) => {
   //       }
   //     }
   //   }
-  //   // console.log(rowList);
+
   //   for (let index = 1; index < tr.length; index++) {
   //     if (rowList.includes(index) && tr[index]) {
   //       tr[index].style.display = "";

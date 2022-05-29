@@ -77,7 +77,7 @@ router.get("/dashboard", (req, res) => {
 
     (err, result) => {
       res.send(result);
-      console.log(result)
+      
     }
   );
 });

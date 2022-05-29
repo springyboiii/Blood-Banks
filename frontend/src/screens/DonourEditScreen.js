@@ -30,7 +30,7 @@ const DonourEditScreen = () => {
   }
 
   const updateDonor = async () =>{
-    console.log(name, address, contact_no, email)
+  
     let result = await Axios.put(`http://localhost:9000/donour/edit/${params.id}`, {
       name: name,
       address: address,
