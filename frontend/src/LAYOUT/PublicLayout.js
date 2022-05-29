@@ -22,7 +22,7 @@ const PublicLayout = ({bloodbanks,campaigns,username}) => {
   return (
     <>
     {/* {console.log({username1}, "PublicLayout")} */}
-      <Header username={username1}/>
+      <Header username={username1} isLoggedIn={false}/>
 
       <main className="py-3">
         <Container>
@@ -31,7 +31,7 @@ const PublicLayout = ({bloodbanks,campaigns,username}) => {
             <Route path="/bloodbank/:id" element={<BloodBankScreen/>} />
             <Route path="/editProfile" element={<EditProfileScreen username={username1} />} />
             <Route path="/updateInventory" element={<UpdateInventoryScreen/>} />
-            <Route path="/viewCamp" element={<ViewCampScreen campaigns={campaigns}/>} />
+            <Route path="/viewCamp/*" element={<ViewCampScreen campaigns={campaigns}/>} />
             <Route path="/viewDonours" element={<ViewDonoursScreen/>} />
             <Route path="/donour/edit/:id" element={<DonourEditScreen/>} />
             <Route path="/donour/add" element={<DonourAddScreen/>} />
