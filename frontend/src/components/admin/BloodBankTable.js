@@ -24,7 +24,7 @@ const BloodBankTable = (props) => {
         }
       }
     }
-    console.log(rowList);
+    // console.log(rowList);
     for (let index = 1; index < tr.length; index++) {
       if (rowList.includes(index) && tr[index]) {
         tr[index].style.display = "";

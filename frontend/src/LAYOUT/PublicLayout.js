@@ -18,11 +18,11 @@ import { useState } from "react";
 
 const PublicLayout = ({bloodbanks,campaigns,username}) => {
   const [username1, setUsername] = useState(username)
-  
+  // setUsername({username});
   return (
     <>
-    {console.log({username})}
-      <Header />
+    {/* {console.log({username1}, "PublicLayout")} */}
+      <Header username={username1}/>
 
       <main className="py-3">
         <Container>
