@@ -39,8 +39,8 @@ class Login extends Component {
         // console.log(this.state.userName);
         this.setState({isAuthenticated:true});
         
-        alert("asd")
-        console.log(response);
+        alert("logged in")
+        // console.log(response);
         // window.open("/editProfile","_self");
         
       
@@ -56,7 +56,7 @@ class Login extends Component {
     return (
       
       <>
-             {this.state.isAuthenticated && <div><Header/> <EditProfileScreen username={this.state.userName}/></div>}
+             {this.state.isAuthenticated && <div><Header username={this.state.userName}/> <EditProfileScreen username={this.state.userName}/></div>}
 
         {!this.state.isAuthenticated &&<div style={{ backgroundColor: "#be847a", height: "100vh" }}>
           <div className="nav-header">

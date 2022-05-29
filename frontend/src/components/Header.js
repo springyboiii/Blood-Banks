@@ -9,11 +9,13 @@ import {
   FormControl,
 } from "react-bootstrap";
 
-const Header = () => {
+const Header = ({username}) => {
   return (
+    
     <Navbar className="px-5" bg="primary" expand="lg" variant="dark">
       <Container fluid>
-        <Navbar.Brand href="/a">Blood Bank</Navbar.Brand>
+      {console.log({username})}
+        <Navbar.Brand href="/">{username}</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

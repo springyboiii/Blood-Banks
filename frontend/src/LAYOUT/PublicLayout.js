@@ -18,16 +18,16 @@ import { useState } from "react";
 
 const PublicLayout = ({bloodbanks,campaigns,username}) => {
   const [username1, setUsername] = useState(username)
-  
+  // setUsername({username});
   return (
     <>
-    {console.log({username})}
-      <Header />
+    {/* {console.log({username1}, "PublicLayout")} */}
+      <Header username={username1}/>
 
       <main className="py-3">
         <Container>
           <Routes>
-            <Route path="/a" element={<HomeScreen bloodbanks={bloodbanks}/>}/>
+            <Route path="/" element={<HomeScreen bloodbanks={bloodbanks}/>}/>
             <Route path="/bloodbank/:id" element={<BloodBankScreen/>} />
             <Route path="/editProfile" element={<EditProfileScreen username={username1} />} />
             <Route path="/updateInventory" element={<UpdateInventoryScreen/>} />

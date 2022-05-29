@@ -81,6 +81,28 @@ router.get("/dashboard", (req, res) => {
     }
   );
 });
+router.post("/updateBloodbank", (req, res) => {
+  const name = req.body.name;
+  const username = req.body.username;
+  const email = req.body.email;
+  const description = req.body.description;
+  const location = req.body.location;
+  const contact = req.body.contact;
+  console.log("posted");
+  const sqlUpdate ="UPDATE bank SET name=?,contact_no=?,address=?,email=?,about=? WHERE username=?;";
+  db.query(
+    sqlUpdate,
+    [name, contact, location, email, description, username],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
 router.post("/admin/dashboard/addBd", (req, res) => {
   const name = req.body.name;
   const username = req.body.username;

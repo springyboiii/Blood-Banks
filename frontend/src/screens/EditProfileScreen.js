@@ -24,18 +24,32 @@ const EditProfileScreen = ({username}) => {
       setEmail(response.data[0].email);
       setLocation(response.data[0].address);
       setDescription(response.data[0].about);
-      console.log(response.data);
+      // console.log(response.data);
       alert("succesful insert");
       
     });
-      Axios.get('http://localhost:9000/editProfile').then((response) => { console.log(response.data) });
+      // Axios.get('http://localhost:9000/editProfile').then((response) => { console.log(response.data) });
     
     };
-  }, [])
+  }, []);
+  const updateBloodbank=()=>{
+    Axios.post("http://localhost:9000/updateBloodBank", {
+      name: name,
+      username: username,
+       
+      email:email,
+      description:description,
+      contact:contact,
+      location:location,
+    }).then(()=>{
+      alert("succesful update");
+      
+    });
+  };
   return (
     
     <Row>
-      {console.log({username1})}
+      {/* {console.log({username1})} */}
       <Col md={4}>
         <Card>
           <Card.Header>Profile Picture</Card.Header>
@@ -97,7 +111,9 @@ const EditProfileScreen = ({username}) => {
                     <Form.Control
                       id="disabledTextInput"
                       placeholder={name}
-
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
                     />
                   </Form.Group>
                 </Col>
@@ -107,7 +123,9 @@ const EditProfileScreen = ({username}) => {
                     <Form.Control
                       id="disabledTextInput"
                       placeholder={location}
-
+                      onChange={(e) => {
+                        setLocation(e.target.value);
+                      }}
                     />
                   </Form.Group>
                 </Col>
@@ -120,7 +138,9 @@ const EditProfileScreen = ({username}) => {
                     <Form.Control
                       id="disabledTextInput"
                       placeholder={contact}
-
+                      onChange={(e) => {
+                        setContact(e.target.value);
+                      }}
                     />
                   </Form.Group>
                 </Col>
@@ -130,7 +150,9 @@ const EditProfileScreen = ({username}) => {
                     <Form.Control
                       id="disabledTextInput"
                       placeholder={email}
-
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
                     />
                   </Form.Group>
                 </Col>
@@ -143,9 +165,19 @@ const EditProfileScreen = ({username}) => {
                   as="textarea" rows={3}
                   id="disabledTextInput"
                   placeholder={description}
-
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
                 />
               </Form.Group>
+              <button
+                  type="submit"
+                  className="btn btn-primary"
+                  style={{ width: "150%" }}
+                  onClick={updateBloodbank}
+                >
+                  Update
+                </button>
               <Button variant="info" className="justify-content-center">Update</Button>
             </Form>
           </Card.Body>

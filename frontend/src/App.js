@@ -25,9 +25,14 @@ class App extends React.Component{
   setUsername=(username1)=>{
     console.log(username1,"hello");
     this.setState({username:username1}, () => {
-      console.log(this.state.username, 'username');
+      console.log(this.state.username, 'App.js username');
     
   })}
+  // shouldComponentUpdate() {
+  //   console.log('Greeting - shouldComponentUpdate lifecycle');
+
+  //   return false;
+  // }
 
 render(){
  
@@ -37,7 +42,7 @@ render(){
       <Routes>
         <Route path="/signIn*" element={<Login setUsername={this.setUsername}/>} />
         <Route path="/admin/*" element={<AdminLayout bloodbanks={this.state.bloodbanksState} />} />
-        <Route path="/*" element={<PublicLayout bloodbanks={this.state.bloodbanksState} campaigns={this.state.campaignsState} username={this.state.username}/>} />
+        <Route path="/" element={<PublicLayout bloodbanks={this.state.bloodbanksState} campaigns={this.state.campaignsState} username={this.state.username}/>} />
       </Routes>
     </Router>
   );
