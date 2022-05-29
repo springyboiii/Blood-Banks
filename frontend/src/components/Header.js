@@ -29,7 +29,7 @@ const Header = ({username,isLoggedIn}) => {
             <Nav.Link href="/viewCamp">Campaigns</Nav.Link>
           </Nav>
 
-          <Form className="d-flex me-auto">
+          {/* <Form className="d-flex me-auto">
             <FormControl
               type="search"
               placeholder="Search"
@@ -37,7 +37,7 @@ const Header = ({username,isLoggedIn}) => {
               aria-label="Search"
             />
             <Button variant="btn btn-success">Search</Button>
-          </Form>
+          </Form> */}
 
           <Nav className="me-5 px-5">
             <Nav.Link href={IsLoggedIn ? (""):("/signIn")}>

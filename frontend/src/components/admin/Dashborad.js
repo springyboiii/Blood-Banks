@@ -12,6 +12,7 @@ const Dashborad = ({bloodbanks}) => {
   //   { id: 1, name: "rukshan", location: "xxx", contactNumber: "xxxxxxxxxx" },
   //   { id: 2, name: "supun", location: "xxx", contactNumber: "xxxxxxxxxx" },
   // ];
+  
   return (
     <>
       <div className="nav-header">

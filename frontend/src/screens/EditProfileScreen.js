@@ -25,7 +25,7 @@ const EditProfileScreen = ({username}) => {
       setLocation(response.data[0].address);
       setDescription(response.data[0].about);
       // console.log(response.data);
-      alert("succesful insert");
+      // alert("succesful insert");
       
     });
       // Axios.get('http://localhost:9000/editProfile').then((response) => { console.log(response.data) });
@@ -42,7 +42,7 @@ const EditProfileScreen = ({username}) => {
       contact:contact,
       location:location,
     }).then(()=>{
-      alert("succesful update");
+      // alert("succesful update");
       
     });
   };
@@ -61,9 +61,9 @@ const EditProfileScreen = ({username}) => {
             ></Card.Img>
           </Card.Body>
           <Card.Body className="text-center">
-            <Button variant="info" className="justify-content-center">
+            {/* <Button variant="info" className="justify-content-center">
               Upload New
-            </Button>
+            </Button> */}
           </Card.Body>
         </Card>
       </Col>
@@ -170,15 +170,15 @@ const EditProfileScreen = ({username}) => {
                   }}
                 />
               </Form.Group>
-              <button
+              {/* <button
                   type="submit"
                   className="btn btn-primary"
                   style={{ width: "150%" }}
                   onClick={updateBloodbank}
                 >
                   Update
-                </button>
-              <Button variant="info" className="justify-content-center">Update</Button>
+                </button> */}
+              <Button variant="info" className="justify-content-center" onClick={updateBloodbank}>Update</Button>
             </Form>
           </Card.Body>
         </Card>
