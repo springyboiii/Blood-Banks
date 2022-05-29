@@ -1,9 +1,55 @@
 import React from "react";
 import { Row, Col, Card, Button, Form } from "react-bootstrap";
 //import classes from '../components/EditProfileScreen.css'
-const EditProfileScreen = () => {
+import { useState } from "react";
+import { useEffect } from "react";
+import  Axios  from "axios";
+const EditProfileScreen = ({username}) => {
+  const [username1, setUsername] = useState(username);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [description, setDescription] = useState("");
+  const [contact, setContact] = useState("");
+  const [location, setLocation] = useState("");
+  useEffect(() => {
+    return () => {
+      Axios.post("http://localhost:9000/editProfile", {
+      
+      username: username1,
+      
+    }).then((response)=>{
+      setName(response.data[0].name);
+      setContact(response.data[0].contact_no);
+      setUsername(response.data[0].username);
+      setEmail(response.data[0].email);
+      setLocation(response.data[0].address);
+      setDescription(response.data[0].about);
+      // console.log(response.data);
+      alert("succesful insert");
+      
+    });
+      // Axios.get('http://localhost:9000/editProfile').then((response) => { console.log(response.data) });
+    
+    };
+  }, []);
+  const updateBloodbank=()=>{
+    Axios.post("http://localhost:9000/updateBloodBank", {
+      name: name,
+      username: username,
+       
+      email:email,
+      description:description,
+      contact:contact,
+      location:location,
+    }).then(()=>{
+      alert("succesful update");
+      
+    });
+  };
   return (
+    
     <Row>
+      {/* {console.log({username1})} */}
       <Col md={4}>
         <Card>
           <Card.Header>Profile Picture</Card.Header>
@@ -30,12 +76,12 @@ const EditProfileScreen = () => {
                 <Form.Label htmlFor="disabledTextInput">Username</Form.Label>
                 <Form.Control
                   id="disabledTextInput"
-                  placeholder="colombo1254"
+                  placeholder={username1}
                   disabled
                 />
               </Form.Group>
 
-              <Row>
+              {/* <Row>
                 <Col md={6}>
                 <Form.Group className="mb-3">
                   <Form.Label htmlFor="disabledTextInput">Executive's First Name</Form.Label>
@@ -56,64 +102,82 @@ const EditProfileScreen = () => {
                   />
                    </Form.Group>
                 </Col>
+              </Row> */}
+
+              <Row>
+                <Col md={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">Organization Name</Form.Label>
+                    <Form.Control
+                      id="disabledTextInput"
+                      placeholder={name}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col md={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">Address</Form.Label>
+                    <Form.Control
+                      id="disabledTextInput"
+                      placeholder={location}
+                      onChange={(e) => {
+                        setLocation(e.target.value);
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
               </Row>
 
               <Row>
                 <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="disabledTextInput">Organization Name</Form.Label>
-                  <Form.Control
-                    id="disabledTextInput"
-                    placeholder="Organization Name"
-                  
-                  />
-                   </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">Telephone</Form.Label>
+                    <Form.Control
+                      id="disabledTextInput"
+                      placeholder={contact}
+                      onChange={(e) => {
+                        setContact(e.target.value);
+                      }}
+                    />
+                  </Form.Group>
                 </Col>
                 <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="disabledTextInput">Address</Form.Label>
-                  <Form.Control
-                    id="disabledTextInput"
-                    placeholder="Address"
-                    
-                  />
-                   </Form.Group>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="disabledTextInput">Telephone</Form.Label>
-                  <Form.Control
-                    id="disabledTextInput"
-                    placeholder="Organization Name"
-                  
-                  />
-                   </Form.Group>
-                </Col>
-                <Col md={6}>
-                    <Form.Group className="mb-3">
-                  <Form.Label htmlFor="disabledTextInput">Email</Form.Label>
-                  <Form.Control
-                    id="disabledTextInput"
-                    placeholder="Address"
-                    
-                  />
-                   </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">Email</Form.Label>
+                    <Form.Control
+                      id="disabledTextInput"
+                      placeholder={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                    />
+                  </Form.Group>
                 </Col>
               </Row>
 
               <Form.Group className="mb-3">
                 <Form.Label htmlFor="disabledTextInput">About</Form.Label>
                 <Form.Control
-                type="text"
-                as="textarea" rows={3}
+                  type="text"
+                  as="textarea" rows={3}
                   id="disabledTextInput"
-                  placeholder="About"
-                
+                  placeholder={description}
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
                 />
               </Form.Group>
+              <button
+                  type="submit"
+                  className="btn btn-primary"
+                  style={{ width: "150%" }}
+                  onClick={updateBloodbank}
+                >
+                  Update
+                </button>
               <Button variant="info" className="justify-content-center">Update</Button>
             </Form>
           </Card.Body>

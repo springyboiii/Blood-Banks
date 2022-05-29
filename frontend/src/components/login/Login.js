@@ -3,16 +3,62 @@ import "./Login.css";
 import SlideShow from "./SlidesShow";
 import Footer from "../Footer";
 import logo from "../../image/favicon-32x32.png";
+import Axios from "axios";
+import { Navigate } from 'react-router-dom';
+import EditProfileScreen from "../../screens/EditProfileScreen";
+import Header from "../Header";
+// import Footer from "../Footer";
 class Login extends Component {
-  constructor() {
-    super();
-    this.state = { userName: "", password: "", isAuthenticated: false };
+  constructor(props) {
+    super(props);
+    this.state = { userName: "", password: "", isAuthenticated: false};
   }
+  
+  //  submitHandler = (e) => {
+  //   e.preventDefault();
+  // };
+  
+   submitCredentials=(e)=>{
+    e.preventDefault();
+    
+    Axios.post("http://localhost:9000/signIn", {
+      
+      userName: this.state.userName,
+      password: this.state.password,
+      
+    }).then((response)=>{
+      if (response.data.message){
+        this.setState({isAuthenticated:false},() => {
+          console.log(this.state.isAuthenticated, 'isAuthenticated');
+        
+      });
+        // console.log(this.state.isAuthenticated);
+      }else{
+        // this.setState({isAuthenticated:response.data[0].username});
+        this.props.setUsername(this.state.userName);
+        // console.log(this.state.userName);
+        this.setState({isAuthenticated:true});
+        
+        alert("logged in")
+        // console.log(response);
+        // window.open("/editProfile","_self");
+        
+      
+      }
+      
+    });
+    
+  };
+
+
 
   render() {
     return (
+      
       <>
-        <div style={{ backgroundColor: "#be847a", height: "100vh" }}>
+             {this.state.isAuthenticated && <div><Header username={this.state.userName}/> <EditProfileScreen username={this.state.userName}/></div>}
+
+        {!this.state.isAuthenticated &&<div style={{ backgroundColor: "#be847a", height: "100vh" }}>
           <div className="nav-header">
             <nav
               className="navbar"
@@ -33,7 +79,7 @@ class Login extends Component {
                 className="col-4 form"
                 style={{ backgroundColor: "#880808", color: "white" }}
               >
-                <form>
+                <form onSubmit={this.submitHandler}>
                   <h2 style={{ textAlign: "center" }}>Login</h2>
                   <br />
                   <br />
@@ -45,6 +91,7 @@ class Login extends Component {
                       placeholder="Enter User Name"
                       onChange={(e) => {
                         this.setState({ userName: e.target.value });
+                        // console.log(e.target.value);
                       }}
                     />
                   </div>
@@ -68,6 +115,7 @@ class Login extends Component {
                         type="submit"
                         className="btn btn-info"
                         style={{ width: "150%" }}
+                        onClick={this.submitCredentials}
                       >
                         LOGIN
                       </button>
@@ -81,8 +129,9 @@ class Login extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div>}
         <Footer />
+       
       </>
     );
   }
