@@ -112,4 +112,14 @@ router.delete('/donour/delete/:id', (req, res) => {
   );
 });
 
+router.get("/viewCamp", (req, res) => {
+  db.query("SELECT * FROM camp;", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 module.exports = router;
