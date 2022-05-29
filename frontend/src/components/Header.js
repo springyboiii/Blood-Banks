@@ -8,13 +8,14 @@ import {
   Button,
   FormControl,
 } from "react-bootstrap";
-
+import { useState } from "react";
 const Header = ({username}) => {
+  const [username1, setUsername] = useState(username)
   return (
     
     <Navbar className="px-5" bg="primary" expand="lg" variant="dark">
       <Container fluid>
-      {console.log({username})}
+      {console.log({username1},"Header")}
         <Navbar.Brand href="/">{username}</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">

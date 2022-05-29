@@ -42,7 +42,7 @@ render(){
       <Routes>
         <Route path="/signIn*" element={<Login setUsername={this.setUsername}/>} />
         <Route path="/admin/*" element={<AdminLayout bloodbanks={this.state.bloodbanksState} />} />
-        <Route path="/" element={<PublicLayout bloodbanks={this.state.bloodbanksState} campaigns={this.state.campaignsState} username={this.state.username}/>} />
+        <Route path="*" element={<PublicLayout bloodbanks={this.state.bloodbanksState} campaigns={this.state.campaignsState} username={this.state.username}/>} />
       </Routes>
     </Router>
   );
