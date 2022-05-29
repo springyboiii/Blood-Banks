@@ -1,10 +1,16 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-
-
+import Axios from "axios";
 
 const DeleteDonor = ({ donorList }) => {
-  const  id  = 1;
+  const params = useParams();
+
+  const deleteDonor = ()=>{
+    Axios.delete(`http://localhost:9000/donour/delete/${params.id}`).then(()=>{
+      window.location.href='/viewDonours'
+    });
+  };
+
   let getFilter = donorList.filter((donor) => 1 === donor._id);
   const isAvailble = getFilter.length === 1 ? true : false;
   return (
@@ -14,7 +20,7 @@ const DeleteDonor = ({ donorList }) => {
           {isAvailble && (
             <div>
               <h4>
-                Are you sure , you want to delete id number {id} donor details?
+                Are you sure , you want to delete id number {params.id} donor details?
               </h4>
               <br />
               <div className="row">
@@ -24,15 +30,15 @@ const DeleteDonor = ({ donorList }) => {
                     to="/viewDonours"
                     className="btn btn-danger"
                     style={{ width: "150%" }}
-                  >
-                    Yse,I want
+                    onClick={deleteDonor}>
+                    Yes,I want                    
                   </Link>
                 </div>
                 <div className="col-3"></div>
                 <div className="col-3">
                   <Link
                     to="/viewDonours"
-                    className="btn btn-info"
+                    className="btn btn-info"  
                     style={{ width: "110%" }}
                   >
                     No
@@ -44,7 +50,7 @@ const DeleteDonor = ({ donorList }) => {
           )}
           {!isAvailble && (
             <div>
-              <h4>This donor id number {id} isn't available!!!</h4>
+              <h4>This donor id number {params.id} isn't available!!!</h4>
               <br />
               <div className="row">
                 <div className="col-2"></div>

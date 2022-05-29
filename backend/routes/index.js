@@ -208,4 +208,27 @@ router.put('/donour/edit/:id', (req, res) => {
   );
 });
 
+router.delete('/donour/delete/:id', (req, res) => {
+  const id = req.params.id;
+  db.query(
+    "DELETE FROM donor WHERE id=?", id,(err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+router.get("/viewCamp", (req, res) => {
+  db.query("SELECT * FROM camp;", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 module.exports = router;

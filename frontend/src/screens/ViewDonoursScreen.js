@@ -55,7 +55,7 @@ const ViewDonoursScreen = () => {
                     <i className="fas fa-edit"></i>
                   </Button>
                 </LinkContainer>
-                <LinkContainer to={`/donour/delete`}>
+                <LinkContainer to={`/donour/delete/${val.ID}`}>
                   <Button variant="primary" className="btn-sm">
                     <i className="fas fa-trash"></i>
                   </Button>

@@ -37,6 +37,7 @@ const DonourEditScreen = () => {
       email: email,
       phone: contact_no
     });
+    window.location.href='/viewDonours'
   };  
 
   return (

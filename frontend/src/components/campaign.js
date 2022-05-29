@@ -9,13 +9,13 @@ import {
   ListGroupItem,
   Container,
 } from "react-bootstrap";
-
-
-const Campaign = ({campaign}) => {
+ 
+ 
+const Campaign = (props) => {
  
   return (
     <Card className="mb-2">
-
+ 
         <Row>
           <Col md={3}>
             <Card.Img
@@ -24,25 +24,22 @@ const Campaign = ({campaign}) => {
               className="mx-3 my-3"
               style={{ height: '250px', width: '250px', objectFit: "cover" }} />
           </Col>
-
+ 
           <Col md={7} className='my-2 px-5'>
-            <Card.Title>{campaign.title}</Card.Title>
+            <Card.Title>{props.title}</Card.Title>
             <Card.Text>
-              {campaign.description}
+              {props.description}
             </Card.Text>
             <ListGroup className="list-group-flush">
-              <ListGroupItem>{campaign.date}</ListGroupItem>
-              <ListGroupItem>{campaign.time}</ListGroupItem>
-              <ListGroupItem>{campaign.venue}</ListGroupItem>
-              <ListGroupItem>{campaign.organizer}</ListGroupItem>
+              <ListGroupItem>{props.date.slice(0,10)}</ListGroupItem>
+              <ListGroupItem>{props.time}</ListGroupItem>
+              <ListGroupItem>{props.location}</ListGroupItem>
+              <ListGroupItem>{props.org}</ListGroupItem>
             </ListGroup>
           </Col>
         </Row>
-
-
-
       </Card>
   );
 };
-
+ 
 export default Campaign;
