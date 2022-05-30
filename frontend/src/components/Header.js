@@ -26,8 +26,8 @@ const Header = ({username,isLoggedIn}) => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/viewCamp">Campaigns</Nav.Link>
+            <Nav.Link ><Link to="/">Home</Link></Nav.Link>
+            <Nav.Link ><Link to="viewCamp">Campaign</Link></Nav.Link>
           </Nav>
 
           {/* <Form className="d-flex me-auto">
@@ -46,7 +46,7 @@ const Header = ({username,isLoggedIn}) => {
               <i className="fas fa-user ms-1"></i>{" "}
             </Nav.Link>
            
-{IsLoggedIn &&
+{//{IsLoggedIn &&}
 <div>
             <NavDropdown title="" id="basic-nav-dropdown" className="mx-0">
               <NavDropdown.Item >
@@ -61,7 +61,7 @@ const Header = ({username,isLoggedIn}) => {
                 <Link to="/viewDonours">View Donours</Link>
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">Logout</NavDropdown.Item>
+              <NavDropdown.Item href="/">Logout</NavDropdown.Item>
             </NavDropdown></div>
  }  
           </Nav>
