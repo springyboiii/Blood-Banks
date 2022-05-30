@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Row, Col, Card, Button, Form } from "react-bootstrap";
 import FormContainer from "../components/FormContainer ";
 import Axios from "axios";
 
 const AddCampScreen = () => {
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
@@ -17,6 +18,7 @@ const AddCampScreen = () => {
   };
 
   const submitCamp = () => {
+
     Axios.post("http://localhost:9000/addCamp", {
       camp_name: name,
       description: description,
@@ -27,6 +29,7 @@ const AddCampScreen = () => {
       bank_ID: bank_ID,
     }).then(() => {
       alert("succesful insert");
+
     });
   };
 
@@ -96,7 +99,9 @@ const AddCampScreen = () => {
               <Form.Label htmlFor="disabledTextInput">Bank Name</Form.Label>
               <Form.Control
                 placeholder="Bank Name"
+
                 value={bank_ID}
+                disabled
                 onChange={(e) => setBank_ID(e.target.value)}
               />
             </Form.Group>
