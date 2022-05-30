@@ -7,7 +7,7 @@ const mysql = require("mysql");
 const db = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "Watson 123",
+  password: "Sandu@123",
   database: "BloodBank",
 });
 
@@ -223,6 +223,17 @@ router.delete('/donour/delete/:id', (req, res) => {
 
 router.get("/viewCamp", (req, res) => {
   db.query("SELECT * FROM camp;", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+router.get('/bankID', (req,res)=>{
+  const name = req.body.name;
+  db.query("SELECT ID FROM bank WHERE name=?;", name, (err, result) =>{
     if (err) {
       console.log(err);
     } else {

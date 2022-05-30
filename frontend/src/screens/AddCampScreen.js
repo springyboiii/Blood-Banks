@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Row, Col, Card, Button, Form } from "react-bootstrap";
 import FormContainer from "../components/FormContainer ";
 import Axios from "axios";
 
-const AddCampScreen = () => {
+const AddCampScreen = ({username}) => {
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -17,6 +17,18 @@ const AddCampScreen = () => {
     e.preventDefault();
   };
 
+  useEffect(()=>{
+    getBankID();
+  },[])
+
+  const getBankID=()=>{
+    console.log(username);
+    Axios.post("http://localhost:9000/bankID",{
+      bank_ID: bank_ID,
+      name: username
+    });
+  }
+
   const submitCamp=()=>{
     Axios.post("http://localhost:9000/addCamp", {
       camp_name: name,
@@ -25,7 +37,6 @@ const AddCampScreen = () => {
       time: time,
       location  : location,
       org_name: org,
-      bank_ID: bank_ID
     }).then(()=>{
       alert("succesful insert")
     });
@@ -100,8 +111,8 @@ const AddCampScreen = () => {
                 Bank Name
               </Form.Label>
               <Form.Control 
-                placeholder="Bank Name" 
                 value={bank_ID}
+                disabled
                 onChange={(e) => setBank_ID(e.target.value)}
               />
             </Form.Group>
