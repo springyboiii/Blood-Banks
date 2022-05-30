@@ -104,6 +104,8 @@ router.post("/updateBloodbank", (req, res) => {
   );
 });
 router.post("/admin/dashboard/addBd", (req, res) => {
+
+  console.log(req);
   const name = req.body.name;
   const username = req.body.username;
   const password = req.body.password;
@@ -117,6 +119,19 @@ router.post("/admin/dashboard/addBd", (req, res) => {
   db.query(
     sqlInsert,
     [name, username, password, contact, location, email, description],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        res.send(result);
+      }
+    }
+  );
+
+   db.query(
+    "INSERT INTO inventory (bank_ID) SELECT ID FROM bank Where name=?;",
+    [name],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -267,6 +282,38 @@ router.get("/getInventory/:bank_ID", (req, res) => {
         console.log(err);
       } else {
         res.send(result);
+      }
+    }
+  );
+});
+
+router.get("/getInventoryDetails/:bank_ID", (req, res) => {
+  const bank_ID = req.params.bank_ID;
+  db.query(
+    "SELECT * FROM inventory WHERE bank_ID=?",
+    bank_ID,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+        console.log(result);
+      }
+    }
+  );
+});
+
+router.get("/getBank/:bank_ID", (req, res) => {
+  const bank_ID = req.params.bank_ID;
+  db.query(
+    "SELECT * FROM bank WHERE ID=?",
+    bank_ID,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+        console.log(result);
       }
     }
   );
