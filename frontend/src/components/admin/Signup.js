@@ -16,19 +16,19 @@ const Signup = () => {
     e.preventDefault();
   };
 
-  const submitBloodbank=()=>{
+  const submitBloodbank = () => {
     Axios.post("http://localhost:9000/admin/dashboard/addBd", {
       name: name,
       username: username,
-      password:password,
-      email:email,
-      description:description,
-      contact:contact,
-      location:location,
-    }).then(()=>{
-      alert("succesful insert");
-      
+      password: password,
+      email: email,
+      description: description,
+      contact: contact,
+      location: location,
+    }).then(() => {
+      alert("Successful insert");
     });
+    //window.location.href = "/admin/dashboard";
   };
 
   return (
@@ -55,7 +55,7 @@ const Signup = () => {
             </div>
 
             <br />
-            
+
             <div className="form-group">
               <div className="row">
                 <div className="col-4">
@@ -127,7 +127,7 @@ const Signup = () => {
                 </div>
               </div>
             </div>
-            
+
             <br />
             <div className="form-group">
               <div className="row">
@@ -176,9 +176,8 @@ const Signup = () => {
                   style={{ width: "150%" }}
                   onClick={submitBloodbank}
                 >
-                  Creat account
+                  Create account
                 </button>
-                
               </div>
               <div className="col-3"></div>
             </div>

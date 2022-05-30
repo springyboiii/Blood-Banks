@@ -28,19 +28,16 @@ class Login extends Component {
       
     }).then((response)=>{
       if (response.data.message){
-        this.setState({isAuthenticated:false},() => {
-          console.log(this.state.isAuthenticated, 'isAuthenticated');
-        
-      });
-        // console.log(this.state.isAuthenticated);
+        this.setState({isAuthenticated:false},);
+       
       }else{
         // this.setState({isAuthenticated:response.data[0].username});
         this.props.setUsername(this.state.userName);
-        // console.log(this.state.userName);
+        
         this.setState({isAuthenticated:true});
         
         alert("logged in")
-        // console.log(response);
+        
         // window.open("/editProfile","_self");
         
       
@@ -91,7 +88,7 @@ class Login extends Component {
                       placeholder="Enter User Name"
                       onChange={(e) => {
                         this.setState({ userName: e.target.value });
-                        // console.log(e.target.value);
+                        
                       }}
                     />
                   </div>

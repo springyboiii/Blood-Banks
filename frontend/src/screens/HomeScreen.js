@@ -10,7 +10,6 @@ const HomeScreen = ({ bloodbanks }) => {
   useEffect(() => {
     return () => {
       Axios.get("http://localhost:9000/dashboard").then((response) => {
-        // console.log(response.data);
         setBloodBanksnew(response.data)
       });
     };
@@ -22,7 +21,7 @@ const HomeScreen = ({ bloodbanks }) => {
         {/* <h2>name :{bloodbanksnew.name}</h2> */}
         {/* <h1>{bloodbanks.map()}</h1> */}
 
-        <DropdownButton
+        {/* <DropdownButton
           id="dropdown-basic-button"
           title="Sort by"
           className="mx-3"
@@ -38,7 +37,7 @@ const HomeScreen = ({ bloodbanks }) => {
           <Dropdown.Divider />
           <Dropdown.Item href="#/action-1">O+</Dropdown.Item>
           <Dropdown.Item href="#/action-2">O-</Dropdown.Item>
-        </DropdownButton>
+        </DropdownButton> */}
         {/* <Row>
        {bloodbanksnew.map((val)=>{
           return <h1 key={val}>name :{val.name}</h1>
