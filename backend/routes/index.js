@@ -7,8 +7,8 @@ const mysql = require("mysql");
 const db = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "password",
-  database: "bloodbanks",
+  password: "Sandu@123",
+  database: "BloodBank",
 });
 
 router.use(cors());
