@@ -8,12 +8,14 @@ import {
   Button,
   FormControl,
 } from "react-bootstrap";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { Link } from "react-router-dom";
-const Header = ({username,isLoggedIn}) => {
-  const [username1, setUsername] = useState(username)
-  const [IsLoggedIn, setIsLoggedIn] = useState(isLoggedIn)
-  return (
+import {UserContext} from "../UserContext"
+const Header = () => {
+  // const [username1, setUsername] = useState(username)
+  // const [IsLoggedIn, setIsLoggedIn] = useState(isLoggedIn)
+  const {username,setUsernameState} = useContext(UserContext);
+    return (
     
     <Navbar className="px-5" bg="primary" expand="lg" variant="dark">
       <Container fluid>
@@ -41,13 +43,15 @@ const Header = ({username,isLoggedIn}) => {
           </Form> */}
 
           <Nav className="me-5 px-5">
-            <Nav.Link href={IsLoggedIn ? (""):("/signIn")}>
-              {IsLoggedIn ? (username):("Sign in")}
+          {username=="Context"&& <div>
+            <Nav.Link href="/signIn">SignIn
+              {/* {IsLoggedIn ? (username):("Sign in")} */}
               <i className="fas fa-user ms-1"></i>{" "}
             </Nav.Link>
-           
+            </div>}
+           {console.log(username)}
 {//{IsLoggedIn &&}
-<div>
+ username != "Context" && <div>
             <NavDropdown title="" id="basic-nav-dropdown" className="mx-0">
               <NavDropdown.Item >
                 <Link to="">Edit Profile</Link>
@@ -62,8 +66,9 @@ const Header = ({username,isLoggedIn}) => {
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/">Logout</NavDropdown.Item>
-            </NavDropdown></div>
- }  
+            </NavDropdown>
+            </div>}
+
           </Nav>
           <Nav></Nav>
         </Navbar.Collapse>
