@@ -23,10 +23,9 @@ const BloodBank = ({ bloodbank }) => {
         </Card.Text>
         <Card.Text as='div'>
           <div className='my-3'>
-            <BloodInventory/>
+            <BloodInventory />
           </div>
         </Card.Text>
-
         
       </Card.Body>
     </Card>

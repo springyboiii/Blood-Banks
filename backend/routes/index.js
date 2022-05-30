@@ -7,8 +7,8 @@ const mysql = require("mysql");
 const db = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "Watson 123",
-  database: "BloodBank",
+  password: "password",
+  database: "bloodbanks",
 });
 
 router.use(cors());
@@ -104,6 +104,8 @@ router.post("/updateBloodbank", (req, res) => {
   );
 });
 router.post("/admin/dashboard/addBd", (req, res) => {
+
+  console.log(req);
   const name = req.body.name;
   const username = req.body.username;
   const password = req.body.password;
@@ -117,6 +119,19 @@ router.post("/admin/dashboard/addBd", (req, res) => {
   db.query(
     sqlInsert,
     [name, username, password, contact, location, email, description],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        res.send(result);
+      }
+    }
+  );
+
+   db.query(
+    "INSERT INTO inventory (bank_ID) SELECT ID FROM bank Where name=?;",
+    [name],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -229,6 +244,79 @@ router.get("/viewCamp", (req, res) => {
       res.send(result);
     }
   });
+});
+
+router.post("/updateInventory/:bank_ID", (req, res) => {
+  const a_pos = req.body.a_pos;
+  const a_neg = req.body.a_neg;
+  const b_pos = req.body.b_pos;
+  const b_neg = req.body.b_neg;
+  const ab_pos = req.body.ab_pos;
+  const ab_neg = req.body.ab_neg;
+  const o_pos = req.body.o_pos;
+  const o_neg = req.body.o_neg;
+
+  const bank_ID = req.params.bank_ID;
+
+  db.query(
+    "UPDATE inventory SET a_pos =?, a_neg =?, b_pos=?, b_neg=?, ab_pos=?, ab_neg=?,o_pos=?, o_neg=? WHERE bank_ID = ?",
+    [a_pos, a_neg, b_pos, b_neg, ab_pos, ab_neg, o_pos, o_neg, bank_ID],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+router.get("/getInventory/:bank_ID", (req, res) => {
+  const bank_ID = req.params.bank_ID;
+  db.query(
+    "SELECT * FROM inventory WHERE bank_ID=?",
+    bank_ID,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+router.get("/getInventoryDetails/:bank_ID", (req, res) => {
+  const bank_ID = req.params.bank_ID;
+  db.query(
+    "SELECT * FROM inventory WHERE bank_ID=?",
+    bank_ID,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+        console.log(result);
+      }
+    }
+  );
+});
+
+router.get("/getBank/:bank_ID", (req, res) => {
+  const bank_ID = req.params.bank_ID;
+  db.query(
+    "SELECT * FROM bank WHERE ID=?",
+    bank_ID,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+        console.log(result);
+      }
+    }
+  );
 });
 
 module.exports = router;

@@ -37,13 +37,29 @@ CREATE TABLE `donor` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
+-- CREATE TABLE `inventory` (
+--   `ID` int(100) NOT NULL AUTO_INCREMENT,
+--   `bank_ID` int(100) NOT NULL,
+--   /*`b_type` tinyint(10) NOT NULL COMMENT '1-A+,2-A-,3-B+,4-B-,5-AB+,6-AB-,7-O+,8-O-	',*/
+--   `b_type` varchar(3) NOT NULL,
+--   `availability` tinyint(1) NOT NULL,
+--   PRIMARY KEY (`ID`),
+--   KEY `bank_ID` (`bank_ID`),
+--   CONSTRAINT `inventory_ibfk_1` FOREIGN KEY (`bank_ID`) REFERENCES `bank` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
 CREATE TABLE `inventory` (
-  `ID` int(100) NOT NULL AUTO_INCREMENT,
-  `bank_ID` int(100) NOT NULL,
-  /*`b_type` tinyint(10) NOT NULL COMMENT '1-A+,2-A-,3-B+,4-B-,5-AB+,6-AB-,7-O+,8-O-	',*/
-  `b_type` varchar(3) NOT NULL,
-  `availability` tinyint(1) NOT NULL,
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `bank_ID` int NOT NULL,
+  `a_pos` tinyint NOT NULL DEFAULT '0',
+  `a_neg` tinyint NOT NULL DEFAULT '0',
+  `b_pos` tinyint NOT NULL DEFAULT '0',
+  `b_neg` tinyint NOT NULL DEFAULT '0',
+  `ab_pos` tinyint NOT NULL DEFAULT '0',
+  `ab_neg` tinyint NOT NULL DEFAULT '0',
+  `o_pos` tinyint NOT NULL DEFAULT '0',
+  `o_neg` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
-  KEY `bank_ID` (`bank_ID`),
+  UNIQUE KEY `bank_ID` (`bank_ID`),
   CONSTRAINT `inventory_ibfk_1` FOREIGN KEY (`bank_ID`) REFERENCES `bank` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

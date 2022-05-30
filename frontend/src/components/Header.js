@@ -8,16 +8,12 @@ import {
   Button,
   FormControl,
 } from "react-bootstrap";
-import { useState } from "react";
-const Header = ({username,isLoggedIn}) => {
-  const [username1, setUsername] = useState(username)
-  const [IsLoggedIn, setIsLoggedIn] = useState(isLoggedIn)
+
+const Header = () => {
   return (
-    
     <Navbar className="px-5" bg="primary" expand="lg" variant="dark">
       <Container fluid>
-   
-        <Navbar.Brand href="/"></Navbar.Brand>
+        <Navbar.Brand href="/">Blood Bank</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -29,7 +25,7 @@ const Header = ({username,isLoggedIn}) => {
             <Nav.Link href="/viewCamp">Campaigns</Nav.Link>
           </Nav>
 
-          {/* <Form className="d-flex me-auto">
+          <Form className="d-flex me-auto">
             <FormControl
               type="search"
               placeholder="Search"
@@ -37,20 +33,19 @@ const Header = ({username,isLoggedIn}) => {
               aria-label="Search"
             />
             <Button variant="btn btn-success">Search</Button>
-          </Form> */}
+          </Form>
 
           <Nav className="me-5 px-5">
-            <Nav.Link href={IsLoggedIn ? (""):("/signIn")}>
-              {IsLoggedIn ? (username):("Sign in")}
-              <i className="fas fa-user ms-1"></i>{" "}
+            <Nav.Link href="/signIn">
+              {" "}
+              Sign in<i className="fas fa-user ms-1"></i>{" "}
             </Nav.Link>
-           
-{IsLoggedIn &&<div>
+
             <NavDropdown title="" id="basic-nav-dropdown" className="mx-0">
-              <NavDropdown.Item href="">
+              <NavDropdown.Item href="/editProfile">
                 Edit Profile
               </NavDropdown.Item>
-              <NavDropdown.Item href="/updateInventory">
+              <NavDropdown.Item href="/updateInventory/:bank_ID">
                 Update Inventory
               </NavDropdown.Item>
               <NavDropdown.Item href="/addCamp">Add Camp</NavDropdown.Item>
@@ -59,8 +54,7 @@ const Header = ({username,isLoggedIn}) => {
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">Logout</NavDropdown.Item>
-            </NavDropdown></div>
-}
+            </NavDropdown>
           </Nav>
           <Nav></Nav>
         </Navbar.Collapse>
