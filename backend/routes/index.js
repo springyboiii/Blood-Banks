@@ -244,6 +244,7 @@ router.get("/viewCamp", (req, res) => {
       res.send(result);
     }
   });
+}); 
 
 router.post("/updateInventory/:bank_ID", (req, res) => {
   const a_pos = req.body.a_pos;
