@@ -5,44 +5,46 @@ import PublicLayout from "./LAYOUT/PublicLayout";
 import AdminLayout from "./LAYOUT/AdminLayout";
 import Login from "./components/login/Login";
 import bloodbanks from "./bloodbanks";
-import React, { useState } from "react";
+import React, { useState, useContext, createContext } from "react";
 import campaigns from "./campaigns";
-// import { render } from "../../backend/app";
-class App extends React.Component{
-  constructor(props){
-    super(props);
-    this.state={apiResponse:"",bloodbanksState : bloodbanks,campaignsState :campaigns , username:""};
-  }
-  callAPI(){
-    fetch("http://localhost:9000/test")
-    .then(res =>res.text())
-    .then(res =>this.setState({apiResponse : res}))
+import { UserContext } from "./UserContext";
 
-  }
-  componentWillMount(){
-    this.callAPI();
-  }
-  setUsername=(username1)=>{
-    
-    this.setState({username:username1}, 
-    
-  )}
- 
-
-render(){
- 
+const App = () => {
+  const [username, setUsernameState] = useState("Context");
+  // const username="Context";
+  // const setUsername = (username1) => {
+  //   setUsernameState(username1);
+  // };
+  console.log(username);
   return (
-    
     <Router>
       <Routes>
-        <Route path="/signIn*" element={<Login setUsername={this.setUsername}/>} />
-        <Route path="/admin/*" element={<AdminLayout bloodbanks={this.state.bloodbanksState} />} />
-        <Route path="*" element={<PublicLayout bloodbanks={this.state.bloodbanksState} campaigns={this.state.campaignsState} username={this.state.username}/>} />
+        
+
+        <Route
+          path="/admin/*"
+          element={<AdminLayout />}
+        />
+
+        <Route
+          path="*"
+          element={
+            <UserContext.Provider value={{username,setUsernameState}}>
+              <PublicLayout/>
+             </UserContext.Provider> 
+          }
+        />
+        <Route
+          path="/signIn*"
+          element={
+            <UserContext.Provider value={{username,setUsernameState}}>
+              <Login />
+            </UserContext.Provider>
+          }
+        />
       </Routes>
     </Router>
   );
-  
-}
-}
+};
 
 export default App;

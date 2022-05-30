@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import BloodBankScreen from "../screens/BloodBankScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
@@ -15,20 +15,25 @@ import DonourAddScreen from "../screens/DonourAddScreen";
 import DeleteDonor from "../components/DeleteDonor";
 import users from "../users";
 import { useState } from "react";
+import React, { useContext } from 'react';
+import {UserContext} from "../UserContext";
+const PublicLayout = ({bloodbanks,campaigns}) => {
+  const {username,setUsernameState} = useContext(UserContext);
 
-const PublicLayout = ({bloodbanks,campaigns,username}) => {
-  const [username1, setUsername] = useState(username)
+  // const [username1, setUsername] = useState(username)
+  // const username=useContext(UserContext);
   // setUsername({username});
   return (
     <>
-      <Header username={username1} isLoggedIn={false}/>
-
+    <h1>{username}</h1>
+      <Header isLoggedIn={false}/>
+      {/* {console.log(username,"public")} */}
       <main className="py-3">
         <Container>
           <Routes>
             <Route path="/" element={<HomeScreen bloodbanks={bloodbanks}/>}/>
             <Route path="/bloodbank/:id" element={<BloodBankScreen/>} />
-            {/* <Route path="/editProfile" element={<EditProfileScreen username={username1} />} /> */}
+            <Route path="/editProfile" element={<EditProfileScreen  />} />
             <Route path="/updateInventory" element={<UpdateInventoryScreen/>} />
             <Route path="/viewCamp/*" element={<ViewCampScreen campaigns={campaigns}/>} />
             <Route path="/viewDonours" element={<ViewDonoursScreen/>} />

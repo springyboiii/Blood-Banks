@@ -9,6 +9,7 @@ import {
   FormControl,
 } from "react-bootstrap";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const Header = ({username,isLoggedIn}) => {
   const [username1, setUsername] = useState(username)
   const [IsLoggedIn, setIsLoggedIn] = useState(isLoggedIn)
@@ -45,22 +46,24 @@ const Header = ({username,isLoggedIn}) => {
               <i className="fas fa-user ms-1"></i>{" "}
             </Nav.Link>
            
-{IsLoggedIn &&<div>
+{IsLoggedIn &&
+<div>
             <NavDropdown title="" id="basic-nav-dropdown" className="mx-0">
-              <NavDropdown.Item href="">
-                Edit Profile
+              <NavDropdown.Item >
+                <Link to="">Edit Profile</Link>
+
               </NavDropdown.Item>
-              <NavDropdown.Item href="/updateInventory">
-                Update Inventory
+              <NavDropdown.Item >
+                <Link to="/updateInventory">Update Inventory</Link>
               </NavDropdown.Item>
-              <NavDropdown.Item href="/addCamp">Add Camp</NavDropdown.Item>
-              <NavDropdown.Item href="/viewDonours">
-                View Donours
+              <NavDropdown.Item ><Link to="/addCamp">Add Camp</Link></NavDropdown.Item>
+              <NavDropdown.Item >
+                <Link to="/viewDonours">View Donours</Link>
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">Logout</NavDropdown.Item>
             </NavDropdown></div>
-}
+ }  
           </Nav>
           <Nav></Nav>
         </Navbar.Collapse>
