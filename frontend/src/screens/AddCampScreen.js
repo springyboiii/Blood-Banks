@@ -1,21 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import { Row, Col, Card, Button, Form } from "react-bootstrap";
+import { useState } from "react";
+import { useEffect } from "react";
+import  Axios  from "axios";
 import FormContainer from "../components/FormContainer ";
-import Axios from "axios";
+const AddCampScreen = ({username}) => {
+    const [username1, setUsername] = useState(username);
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [date, setDate] = useState("");
+    const [time, setTime] = useState("");
+    const [org, setOrg] = useState("");
+    const [location, setLocation] = useState("");
+    const [bank_ID, setBank_ID] = useState("");
 
-const AddCampScreen = () => {
+    const submitHandler = (e) => {
+      e.preventDefault();
+    };
 
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [org, setOrg] = useState("");
-  const [location, setLocation] = useState("");
-  const [bank_ID, setBank_ID] = useState("");
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-  };
+  useEffect(() => {
+    return () => {
+      setUsername(username);
+        Axios.post("http://localhost:9000/bankID",{
+          username: username1
+        }).then((response)=>{
+          setBank_ID(response.data[0].ID);
+        });
+      };
+  },[]);
 
   const submitCamp=()=>{
     Axios.post("http://localhost:9000/addCamp", {
@@ -30,7 +42,6 @@ const AddCampScreen = () => {
       alert("succesful insert")
     });
   };
-
   return (
     <FormContainer>
       <Card>
@@ -102,6 +113,7 @@ const AddCampScreen = () => {
               <Form.Control 
                 placeholder="Bank Name" 
                 value={bank_ID}
+                disabled
                 onChange={(e) => setBank_ID(e.target.value)}
               />
             </Form.Group>

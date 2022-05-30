@@ -15,6 +15,12 @@ const Header = () => {
   // const [username1, setUsername] = useState(username)
   // const [IsLoggedIn, setIsLoggedIn] = useState(isLoggedIn)
   const {username,setUsernameState} = useContext(UserContext);
+    const linkStyle = {
+      margin: "1rem",
+      textDecoration: "none",
+      color: 'white'
+    };
+    
     return (
     
     <Navbar className="px-5" bg="primary" expand="lg" variant="dark">
@@ -28,8 +34,10 @@ const Header = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link ><Link to="/">Home</Link></Nav.Link>
-            <Nav.Link ><Link to="viewCamp">Campaign</Link></Nav.Link>
+            <Nav.Link ><Link to="/" style={linkStyle}>Home</Link></Nav.Link>
+            <Nav.Link ><Link to="viewCamp" style={linkStyle}>Campaign</Link></Nav.Link>
+            
+            
           </Nav>
 
           {/* <Form className="d-flex me-auto">
@@ -50,11 +58,17 @@ const Header = () => {
             </Nav.Link>
             </div>}
            {console.log(username)}
+           </Nav>
+           
+           
 {//{IsLoggedIn &&}
  username != "Context" && <div>
-            <NavDropdown title="" id="basic-nav-dropdown" className="mx-0">
+   <Nav className="me-5 px-5">
+   <Nav> <Nav.Link ><Link to=" " style={linkStyle}>{username}</Link><i className="fas fa-user ms-1"></i>{" "}</Nav.Link> </Nav>
+            <NavDropdown title="" id="basic-nav-dropdown" className="mx-0"> 
+            
               <NavDropdown.Item >
-                <Link to="">Edit Profile</Link>
+                <Link to="/editProfile">Edit Profile</Link>
 
               </NavDropdown.Item>
               <NavDropdown.Item >
@@ -67,9 +81,10 @@ const Header = () => {
               <NavDropdown.Divider />
               <NavDropdown.Item href="/">Logout</NavDropdown.Item>
             </NavDropdown>
-            </div>}
+            
 
           </Nav>
+          </div>}
           <Nav></Nav>
         </Navbar.Collapse>
       </Container>
