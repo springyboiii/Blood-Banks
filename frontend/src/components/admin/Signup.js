@@ -26,9 +26,15 @@ const Signup = () => {
       contact:contact,
       location:location,
     }).then(()=>{
+      createInventory();
       alert("succesful insert");
       
     });
+  };
+
+  const createInventory = () => { 
+    Axios.post("http://localhost:9000/admin/dashboard/addInventory", 
+    { username: username, }).then(() => {}); 
   };
 
   return (

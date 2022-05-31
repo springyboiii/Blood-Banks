@@ -109,7 +109,8 @@ const Login = () => {
                       style={{ width: "150%" }}
                       onClick={submitCredentials}
                     >
-                      <Link to= {username!="Context"?("/editProfile"):("")}>LOGIN</Link>
+                      {//<Link to= {username!=""?("/bank/editProfile"):("")}>LOGIN</Link>
+                      }Login
                     </button>
                   </div>
                   <div className="col-5"></div>

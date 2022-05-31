@@ -135,6 +135,18 @@ router.post("/admin/dashboard/addBd", (req, res) => {
   ); */
 });
 
+router.post("/admin/dashboard/addInventory", (req, res) => { 
+  const username = req.body.username; 
+  db.query( "INSERT INTO inventory (bank_ID) SELECT ID FROM bank Where username=?;", 
+  [username], (err, result) => { 
+    if (err) { 
+      console.log(err); 
+      return; } 
+  else { res.send(result); 
+    console.log(result); } 
+  } ); 
+}); 
+
 router.post("/signIn", (req, res) => {
   const username = req.body.userName;
   const password = req.body.password;
