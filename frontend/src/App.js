@@ -15,7 +15,6 @@ const App = () => {
   // const setUsername = (username1) => {
   //   setUsernameState(username1);
   // };
-  console.log(username);
   return (
     <Router>
       <Routes>

@@ -71,13 +71,12 @@ router.post("/editProfile", (req, res) => {
   );
 });
 router.get("/dashboard", (req, res) => {
-  const sqlSelect = "Select * from bank ;";
+  const sqlSelect = "Select * from bank;";
   db.query(
     sqlSelect,
 
     (err, result) => {
       res.send(result);
-      
     }
   );
 });
@@ -127,18 +126,18 @@ router.post("/admin/dashboard/addBd", (req, res) => {
     }
   );
 
-  // db.query(
-  //   "INSERT INTO inventory (bank_ID) SELECT ID FROM bank Where name=?;",
-  //   [name],
-  //   (err, result) => {
-  //     if (err) {
-  //       console.log(err);
-  //       return;
-  //     } else {
-  //       res.send(result);
-  //     }
-  //   }
-  // );
+  db.query(
+    "INSERT INTO inventory (bank_ID) SELECT ID FROM bank Where name=?;",
+    [name],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        res.send(result);
+      }
+    }
+  );
 });
 
 router.post("/signIn", (req, res) => {
@@ -246,7 +245,6 @@ router.get("/viewCamp", (req, res) => {
 
 router.post('/bankID', (req,res)=>{
   const username = req.body.username;
-  console.log(username,"username");
   db.query("SELECT ID FROM bank WHERE username=?", username, (err, result) =>{
     if (err) {
       console.log(err);
@@ -258,7 +256,6 @@ router.post('/bankID', (req,res)=>{
 
 router.get("/getInventory/:username", (req, res) => {
   const username = req.params.username;
-  console.log(username);
   db.query(
     "SELECT * FROM inventory WHERE bank_ID = (SELECT ID FROM bank WHERE username=?)",
     username,
@@ -267,7 +264,6 @@ router.get("/getInventory/:username", (req, res) => {
         console.log(err);
       } else {
         res.send(result);
-        console.log(result)
       }
     }
   );
@@ -292,6 +288,36 @@ router.post("/updateInventory/:username", (req, res) => {
       if (err) {
         console.log(err);
         return;
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+router.get("/getInventoryDetails/:bank_ID", (req, res) => {
+  const bank_ID = req.params.bank_ID;
+  db.query(
+    "SELECT * FROM inventory WHERE bank_ID=?",
+    bank_ID,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+router.get("/getBank/:bank_ID", (req, res) => {
+  const bank_ID = req.params.bank_ID;
+  db.query(
+    "SELECT * FROM bank WHERE ID=?",
+    bank_ID,
+    (err, result) => {
+      if (err) {
+        console.log(err);
       } else {
         res.send(result);
       }
