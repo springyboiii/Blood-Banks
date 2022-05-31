@@ -5,12 +5,12 @@ import BloodInventory from './BloodInventory'
 const BloodBank = ({ bloodbank }) => {
   return (
     <Card className='my-3 p-3 rounded'>
-      <a href={`/bloodbank/${bloodbank._id}`}>
+      <a href={`/bloodbank/${bloodbank.name}`}>
         <Card.Img src='/images/blood6.jpg' variant='top' style={{ objectFit:'cover'}} />
       </a>
 
       <Card.Body>
-        <a  href={`/bloodbank/${bloodbank._id}`} style={{ textDecoration: 'none',color:'black' }}>
+        <a  href={`/bloodbank/${bloodbank.ID}`} style={{ textDecoration: 'none',color:'black' }}>
           <Card.Title as='div'>
             <strong>{bloodbank.name}</strong>
           </Card.Title>
@@ -23,7 +23,7 @@ const BloodBank = ({ bloodbank }) => {
         </Card.Text>
         <Card.Text as='div'>
           <div className='my-3'>
-            <BloodInventory/>
+            <BloodInventory bank_ID={bloodbank.ID}/>
           </div>
         </Card.Text>
 
