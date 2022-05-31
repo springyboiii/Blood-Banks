@@ -7,7 +7,7 @@ const mysql = require("mysql");
 const db = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "Watson 123",
+  password: "password",
   database: "BloodBank",
 });
 
@@ -126,6 +126,19 @@ router.post("/admin/dashboard/addBd", (req, res) => {
       }
     }
   );
+
+  // db.query(
+  //   "INSERT INTO inventory (bank_ID) SELECT ID FROM bank Where name=?;",
+  //   [name],
+  //   (err, result) => {
+  //     if (err) {
+  //       console.log(err);
+  //       return;
+  //     } else {
+  //       res.send(result);
+  //     }
+  //   }
+  // );
 });
 
 router.post("/signIn", (req, res) => {
@@ -241,6 +254,49 @@ router.post('/bankID', (req,res)=>{
       res.send(result);
     }
   });
+});
+
+router.get("/getInventory/:username", (req, res) => {
+  const username = req.params.username;
+  console.log(username);
+  db.query(
+    "SELECT * FROM inventory WHERE bank_ID = (SELECT ID FROM bank WHERE username=?)",
+    username,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+        console.log(result)
+      }
+    }
+  );
+});
+
+router.post("/updateInventory/:username", (req, res) => {
+  const username = req.params.username;
+
+  const a_pos = req.body.a_pos;
+  const a_neg = req.body.a_neg;
+  const b_pos = req.body.b_pos;
+  const b_neg = req.body.b_neg;
+  const ab_pos = req.body.ab_pos;
+  const ab_neg = req.body.ab_neg;
+  const o_pos = req.body.o_pos;
+  const o_neg = req.body.o_neg;
+
+  db.query(
+    "UPDATE inventory SET a_pos =?, a_neg =?, b_pos=?, b_neg=?, ab_pos=?, ab_neg=?,o_pos=?, o_neg=? WHERE bank_ID = (SELECT ID FROM bank WHERE username=?)",
+    [a_pos, a_neg, b_pos, b_neg, ab_pos, ab_neg, o_pos, o_neg, username],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        res.send(result);
+      }
+    }
+  );
 });
 
 module.exports = router;
