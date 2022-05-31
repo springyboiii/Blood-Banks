@@ -4,8 +4,8 @@ import { Form, Table, Button } from "react-bootstrap";
 import Axios from "axios";
 import { UserContext } from "../UserContext";
 
-const UpdateInventoryScreen = ({ username }) => {
-  // const { username, setUsernameState } = useContext(UserContext);
+const UpdateInventoryScreen = () => {
+  const { username, setUsernameState } = useContext(UserContext);
   const [username1, setUsername] = useState(username);
   //const params = useParams();
   const [a_pos, setAp] = useState(0);
@@ -45,8 +45,9 @@ const UpdateInventoryScreen = ({ username }) => {
   }, []);
 
   const getInventory = async () => {
-    let result = await fetch(`http://localhost:9000/getInventory/${username}`);
+    let result = await fetch(`http://localhost:9000/bank/getInventory/${username}`);
     result = await result.json();
+    console.log(username);
     setAp(result[0].a_pos);
     setAn(result[0].a_neg);
     setBp(result[0].b_pos);
@@ -97,7 +98,7 @@ const UpdateInventoryScreen = ({ username }) => {
   };
 
   const submit = (username) => {
-    Axios.post(`http://localhost:9000/updateInventory/${username}`, {
+    Axios.post(`http://localhost:9000/bank/updateInventory/${username}`, {
       a_pos: a_pos,
       a_neg: a_neg,
       b_pos: b_pos,

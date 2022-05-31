@@ -40,35 +40,28 @@ router.post("/donour/add", (req, res) => {
 
 // router.get('/editProfile', (req, res) => {
 //   const sqlSelect = "Select * from bank ;";
-  
+
 //   db.query(
 //     sqlSelect,
 
 //     (err, result) => {
 //       res.send(result);
-      
+
 //     }
 //   );
 // });
 router.post("/editProfile", (req, res) => {
-  
   const username = req.body.username;
-  
 
-  const sqlSelect =
-    "select * from bank where username=?";
-  db.query(
-    sqlSelect,
-    [ username],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        return;
-      } else {
-        res.send(result);
-      }
+  const sqlSelect = "select * from bank where username=?";
+  db.query(sqlSelect, [username], (err, result) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      res.send(result);
     }
-  );
+  });
 });
 router.get("/dashboard", (req, res) => {
   const sqlSelect = "Select * from bank;";
@@ -88,7 +81,8 @@ router.post("/updateBloodbank", (req, res) => {
   const location = req.body.location;
   const contact = req.body.contact;
   console.log("posted");
-  const sqlUpdate ="UPDATE bank SET name=?,contact_no=?,address=?,email=?,about=? WHERE username=?;";
+  const sqlUpdate =
+    "UPDATE bank SET name=?,contact_no=?,address=?,email=?,about=? WHERE username=?;";
   db.query(
     sqlUpdate,
     [name, contact, location, email, description, username],
@@ -127,14 +121,15 @@ router.post("/admin/dashboard/addBd", (req, res) => {
   );
 
   db.query(
-    "INSERT INTO inventory (bank_ID) SELECT ID FROM bank Where name=?;",
-    [name],
+    "INSERT INTO inventory (bank_ID) SELECT ID FROM bank Where username=?;",
+    [username],
     (err, result) => {
       if (err) {
         console.log(err);
         return;
       } else {
         res.send(result);
+        console.log(result);
       }
     }
   );
@@ -180,8 +175,8 @@ router.post("/addCamp", (req, res) => {
   );
 });
 
-router.get('/viewDonours', (req,res)=>{
-  db.query("SELECT * FROM donor;", (err, result) =>{
+router.get("/viewDonours", (req, res) => {
+  db.query("SELECT * FROM donor;", (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -190,9 +185,9 @@ router.get('/viewDonours', (req,res)=>{
   });
 });
 
-router.get('/viewDonourID/:id', (req,res)=>{
+router.get("/viewDonourID/:id", (req, res) => {
   const id = req.params.id;
-  db.query("SELECT * FROM donor WHERE ID=?", id, (err, result) =>{
+  db.query("SELECT * FROM donor WHERE ID=?", id, (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -201,7 +196,7 @@ router.get('/viewDonourID/:id', (req,res)=>{
   });
 });
 
-router.put('/donour/edit/:id', (req, res) => {
+router.put("/donour/edit/:id", (req, res) => {
   const name = req.body.name;
   const phone = req.body.phone;
   const address = req.body.address;
@@ -220,17 +215,15 @@ router.put('/donour/edit/:id', (req, res) => {
   );
 });
 
-router.delete('/donour/delete/:id', (req, res) => {
+router.delete("/donour/delete/:id", (req, res) => {
   const id = req.params.id;
-  db.query(
-    "DELETE FROM donor WHERE id=?", id,(err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send(result);
-      }
+  db.query("DELETE FROM donor WHERE id=?", id, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
     }
-  );
+  });
 });
 
 router.get("/viewCamp", (req, res) => {
@@ -243,9 +236,9 @@ router.get("/viewCamp", (req, res) => {
   });
 });
 
-router.post('/bankID', (req,res)=>{
+router.post("/bankID", (req, res) => {
   const username = req.body.username;
-  db.query("SELECT ID FROM bank WHERE username=?", username, (err, result) =>{
+  db.query("SELECT ID FROM bank WHERE username=?", username, (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -254,8 +247,9 @@ router.post('/bankID', (req,res)=>{
   });
 });
 
-router.get("/getInventory/:username", (req, res) => {
+router.get("/bank/getInventory/:username", (req, res) => {
   const username = req.params.username;
+  console.log(username,"username");
   db.query(
     "SELECT * FROM inventory WHERE bank_ID = (SELECT ID FROM bank WHERE username=?)",
     username,
@@ -264,12 +258,13 @@ router.get("/getInventory/:username", (req, res) => {
         console.log(err);
       } else {
         res.send(result);
+        console.log(result);
       }
     }
   );
 });
 
-router.post("/updateInventory/:username", (req, res) => {
+router.post("/bank/updateInventory/:username", (req, res) => {
   const username = req.params.username;
 
   const a_pos = req.body.a_pos;
@@ -304,6 +299,7 @@ router.get("/getInventoryDetails/:bank_ID", (req, res) => {
       if (err) {
         console.log(err);
       } else {
+        //console.log(result);
         res.send(result);
       }
     }
@@ -312,17 +308,13 @@ router.get("/getInventoryDetails/:bank_ID", (req, res) => {
 
 router.get("/getBank/:bank_ID", (req, res) => {
   const bank_ID = req.params.bank_ID;
-  db.query(
-    "SELECT * FROM bank WHERE ID=?",
-    bank_ID,
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send(result);
-      }
+  db.query("SELECT * FROM bank WHERE ID=?", bank_ID, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
     }
-  );
+  });
 });
 
 module.exports = router;

@@ -5,6 +5,8 @@ import BloodInventory from "../components/BloodInventory";
 import bloodbanks from "../bloodbanks";
 import { useParams } from "react-router-dom";
 import Axios from "axios";
+import { UserContext } from "../UserContext";
+
 
 const BloodBankScreen = () => {
   const params = useParams();
@@ -36,7 +38,9 @@ const BloodBankScreen = () => {
     let result1 = await fetch(
       `http://localhost:9000/getInventoryDetails/${bank_ID}`
     );
+    //console.log(bank_ID);
     result1 = await result1.json();
+    //console.log(result1);
     setAp(result1[0].a_pos);
     setAn(result1[0].a_neg);
     setBp(result1[0].b_pos);
@@ -45,11 +49,13 @@ const BloodBankScreen = () => {
     setABn(result1[0].ab_neg);
     setOp(result1[0].o_pos);
     setOn(result1[0].o_neg);
+    //console.log(result1,"jedbhe");
   };
 
   const getBank = async () => {
     let result2 = await fetch(`http://localhost:9000/getBank/${bank_ID}`);
     result2 = await result2.json();
+     //console.log(result2);
     setName(result2[0].name);
     setAddress(result2[0].address);
     setEmail(result2[0].email);
@@ -89,14 +95,15 @@ const BloodBankScreen = () => {
 
           <BloodInventory
             resultValues={{
-              a_pos: a_pos,
-              a_neg: a_neg,
-              b_pos: b_pos,
-              b_neg: b_neg,
-              ab_pos: ab_pos,
-              ab_neg: ab_neg,
-              o_pos: o_pos,
-              o_neg: o_neg,
+              bank_ID:bank_ID,
+              // a_pos: a_pos,
+              // a_neg: a_neg,
+              // b_pos: b_pos,
+              // b_neg: b_neg,
+              // ab_pos: ab_pos,
+              // ab_neg: ab_neg,
+              // o_pos: o_pos,
+              // o_neg: o_neg,
             }}
           />
         </Col>

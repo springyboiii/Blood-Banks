@@ -32,8 +32,8 @@ const PublicLayout = ({bloodbanks,campaigns}) => {
           <Routes>
             <Route path="/" element={<HomeScreen/>}/>
             <Route path="/bloodbank/:bank_ID" element={<BloodBankScreen/>} />
-            <Route path="/editProfile" element={<EditProfileScreen  />} />
-            <Route path="/updateInventory" element={<UpdateInventoryScreen username={username}/>} />
+            {/* <Route path="/editProfile" element={<EditProfileScreen  />} />
+            <Route path="/updateInventory" element={<UpdateInventoryScreen username={username}/>} /> */}
             <Route path="/viewCamp/*" element={<ViewCampScreen campaigns={campaigns}/>} />
             {/* <Route path="/viewDonours" element={<ViewDonoursScreen/>} /> */}
             {/* <Route path="/donour/edit/:id" element={<DonourEditScreen/>} /> */}
