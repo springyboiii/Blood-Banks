@@ -17,7 +17,7 @@ import users from "../users";
 import { useState } from "react";
 import React, { useContext } from 'react';
 import {UserContext} from "../UserContext";
-const PublicLayout = ({bloodbanks,campaigns}) => {
+const BankLayout = ({bloodbanks,campaigns}) => {
   const {username,setUsernameState} = useContext(UserContext);
 
   // const [username1, setUsername] = useState(username)
@@ -25,21 +25,22 @@ const PublicLayout = ({bloodbanks,campaigns}) => {
   // setUsername({username});
   return (
     <>
-      <Header isLoggedIn={false}/>
+      <Header IsLoggedIn={true}/>
       {/* {console.log(username,"public")} */}
       <main className="py-3">
         <Container>
           <Routes>
-            <Route path="/" element={<HomeScreen/>}/>
-            <Route path="/bloodbank/:bank_ID" element={<BloodBankScreen/>} />
-            {/* <Route path="/editProfile" element={<EditProfileScreen  />} />
-            <Route path="/updateInventory" element={<UpdateInventoryScreen username={username}/>} /> */}
+            <Route path="/" element={<HomeScreen bloodbanks={bloodbanks}/>}/>
+            <Route path="/bloodbank/:id" element={<BloodBankScreen/>} />
+            <Route path="/editProfile" element={<EditProfileScreen  />} />
+            <Route path="/updateInventory" element={<UpdateInventoryScreen />} />
             <Route path="/viewCamp/*" element={<ViewCampScreen campaigns={campaigns}/>} />
-            {/* <Route path="/viewDonours" element={<ViewDonoursScreen/>} /> */}
-            {/* <Route path="/donour/edit/:id" element={<DonourEditScreen/>} /> */}
-            {/* <Route path="/donour/add" element={<DonourAddScreen/>} /> */}
-            {/* <Route path="/donour/delete/:id" element={<DeleteDonor donorList={users}/>} /> */}
-            {/* <Route path="/addCamp" element={<AddCampScreen username={username}/>} /> */}
+            <Route path="/viewDonours" element={<ViewDonoursScreen/>} />
+            <Route path="/donour/edit/:id" element={<DonourEditScreen/>} />
+            <Route path="/donour/add" element={<DonourAddScreen/>} />
+            <Route path="/donour/delete/:id" element={<DeleteDonor donorList={users}/>} />
+            <Route path="/addCamp" element={<AddCampScreen username={username}/>} />
+            <Route path="/welcome" element={<h1>Welcome {username}</h1>}></Route>
           </Routes>
         </Container>
       </main>
@@ -49,4 +50,4 @@ const PublicLayout = ({bloodbanks,campaigns}) => {
   );
 };
 
-export default PublicLayout;
+export default BankLayout;

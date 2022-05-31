@@ -5,15 +5,18 @@ import { useEffect } from "react";
 import Axios from "axios";
 // import bloodbanks from "../bloodbanks";
 import { useState } from "react";
-const HomeScreen = ({ bloodbanks }) => {
+
+const HomeScreen = () => {
   const [bloodbanksnew, setBloodBanksnew] = useState([]);
+
   useEffect(() => {
     return () => {
       Axios.get("http://localhost:9000/dashboard").then((response) => {
-        setBloodBanksnew(response.data)
+        setBloodBanksnew(response.data);
       });
     };
   }, []);
+  
   return (
     <>
       <div style={{ display: "flex", flexDirection: "row" }}>
@@ -48,7 +51,7 @@ const HomeScreen = ({ bloodbanks }) => {
       <Row>
         {bloodbanksnew.map((bloodbank) => (
           <Col sm={12} md={6} lg={4} xl={3}>
-            <BloodBank bloodbank={bloodbank} />
+            <BloodBank bloodbank = {bloodbank} />
           </Col>
         ))}
       </Row>

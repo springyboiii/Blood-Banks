@@ -7,7 +7,7 @@ const mysql = require("mysql");
 const db = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "Watson 123",
+  password: "password",
   database: "BloodBank",
 });
 
@@ -40,44 +40,36 @@ router.post("/donour/add", (req, res) => {
 
 // router.get('/editProfile', (req, res) => {
 //   const sqlSelect = "Select * from bank ;";
-  
+
 //   db.query(
 //     sqlSelect,
 
 //     (err, result) => {
 //       res.send(result);
-      
+
 //     }
 //   );
 // });
 router.post("/editProfile", (req, res) => {
-  
   const username = req.body.username;
-  
 
-  const sqlSelect =
-    "select * from bank where username=?";
-  db.query(
-    sqlSelect,
-    [ username],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        return;
-      } else {
-        res.send(result);
-      }
+  const sqlSelect = "select * from bank where username=?";
+  db.query(sqlSelect, [username], (err, result) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      res.send(result);
     }
-  );
+  });
 });
 router.get("/dashboard", (req, res) => {
-  const sqlSelect = "Select * from bank ;";
+  const sqlSelect = "Select * from bank;";
   db.query(
     sqlSelect,
 
     (err, result) => {
       res.send(result);
-      
     }
   );
 });
@@ -89,7 +81,8 @@ router.post("/updateBloodbank", (req, res) => {
   const location = req.body.location;
   const contact = req.body.contact;
   console.log("posted");
-  const sqlUpdate ="UPDATE bank SET name=?,contact_no=?,address=?,email=?,about=? WHERE username=?;";
+  const sqlUpdate =
+    "UPDATE bank SET name=?,contact_no=?,address=?,email=?,about=? WHERE username=?;";
   db.query(
     sqlUpdate,
     [name, contact, location, email, description, username],
@@ -123,6 +116,20 @@ router.post("/admin/dashboard/addBd", (req, res) => {
         return;
       } else {
         res.send(result);
+      }
+    }
+  );
+
+  db.query(
+    "INSERT INTO inventory (bank_ID) SELECT ID FROM bank Where username=?;",
+    [username],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        res.send(result);
+        console.log(result);
       }
     }
   );
@@ -168,8 +175,8 @@ router.post("/addCamp", (req, res) => {
   );
 });
 
-router.get('/viewDonours', (req,res)=>{
-  db.query("SELECT * FROM donor;", (err, result) =>{
+router.get("/viewDonours", (req, res) => {
+  db.query("SELECT * FROM donor;", (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -178,9 +185,9 @@ router.get('/viewDonours', (req,res)=>{
   });
 });
 
-router.get('/viewDonourID/:id', (req,res)=>{
+router.get("/viewDonourID/:id", (req, res) => {
   const id = req.params.id;
-  db.query("SELECT * FROM donor WHERE ID=?", id, (err, result) =>{
+  db.query("SELECT * FROM donor WHERE ID=?", id, (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -189,7 +196,7 @@ router.get('/viewDonourID/:id', (req,res)=>{
   });
 });
 
-router.put('/donour/edit/:id', (req, res) => {
+router.put("/donour/edit/:id", (req, res) => {
   const name = req.body.name;
   const phone = req.body.phone;
   const address = req.body.address;
@@ -208,17 +215,15 @@ router.put('/donour/edit/:id', (req, res) => {
   );
 });
 
-router.delete('/donour/delete/:id', (req, res) => {
+router.delete("/donour/delete/:id", (req, res) => {
   const id = req.params.id;
-  db.query(
-    "DELETE FROM donor WHERE id=?", id,(err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send(result);
-      }
+  db.query("DELETE FROM donor WHERE id=?", id, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
     }
-  );
+  });
 });
 
 router.get("/viewCamp", (req, res) => {
@@ -231,10 +236,79 @@ router.get("/viewCamp", (req, res) => {
   });
 });
 
-router.post('/bankID', (req,res)=>{
+router.post("/bankID", (req, res) => {
   const username = req.body.username;
+  db.query("SELECT ID FROM bank WHERE username=?", username, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+router.get("/bank/getInventory/:username", (req, res) => {
+  const username = req.params.username;
   console.log(username,"username");
-  db.query("SELECT ID FROM bank WHERE username=?", username, (err, result) =>{
+  db.query(
+    "SELECT * FROM inventory WHERE bank_ID = (SELECT ID FROM bank WHERE username=?)",
+    username,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+        console.log(result);
+      }
+    }
+  );
+});
+
+router.post("/bank/updateInventory/:username", (req, res) => {
+  const username = req.params.username;
+
+  const a_pos = req.body.a_pos;
+  const a_neg = req.body.a_neg;
+  const b_pos = req.body.b_pos;
+  const b_neg = req.body.b_neg;
+  const ab_pos = req.body.ab_pos;
+  const ab_neg = req.body.ab_neg;
+  const o_pos = req.body.o_pos;
+  const o_neg = req.body.o_neg;
+
+  db.query(
+    "UPDATE inventory SET a_pos =?, a_neg =?, b_pos=?, b_neg=?, ab_pos=?, ab_neg=?,o_pos=?, o_neg=? WHERE bank_ID = (SELECT ID FROM bank WHERE username=?)",
+    [a_pos, a_neg, b_pos, b_neg, ab_pos, ab_neg, o_pos, o_neg, username],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+router.get("/getInventoryDetails/:bank_ID", (req, res) => {
+  const bank_ID = req.params.bank_ID;
+  db.query(
+    "SELECT * FROM inventory WHERE bank_ID=?",
+    bank_ID,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        //console.log(result);
+        res.send(result);
+      }
+    }
+  );
+});
+
+router.get("/getBank/:bank_ID", (req, res) => {
+  const bank_ID = req.params.bank_ID;
+  db.query("SELECT * FROM bank WHERE ID=?", bank_ID, (err, result) => {
     if (err) {
       console.log(err);
     } else {
