@@ -41,7 +41,6 @@ const Login = () => {
 
   return (
     <>
-    <h1>{username}</h1>
       {IsLoggedIn && <div><Header  isLoggedIn={true}/> <EditProfileScreen username={Username}/></div>}
 
       {!IsLoggedIn &&
