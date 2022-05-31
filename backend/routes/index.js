@@ -80,7 +80,6 @@ router.post("/updateBloodbank", (req, res) => {
   const description = req.body.description;
   const location = req.body.location;
   const contact = req.body.contact;
-  console.log("posted");
   const sqlUpdate =
     "UPDATE bank SET name=?,contact_no=?,address=?,email=?,about=? WHERE username=?;";
   db.query(
@@ -142,8 +141,9 @@ router.post("/admin/dashboard/addInventory", (req, res) => {
     if (err) { 
       console.log(err); 
       return; } 
-  else { res.send(result); 
-    console.log(result); } 
+  else { 
+    res.send(result); 
+  } 
   } ); 
 }); 
 
@@ -261,7 +261,6 @@ router.post("/bankID", (req, res) => {
 
 router.get("/bank/getInventory/:username", (req, res) => {
   const username = req.params.username;
-  console.log(username,"username");
   db.query(
     "SELECT * FROM inventory WHERE bank_ID = (SELECT ID FROM bank WHERE username=?)",
     username,
@@ -270,7 +269,6 @@ router.get("/bank/getInventory/:username", (req, res) => {
         console.log(err);
       } else {
         res.send(result);
-        console.log(result);
       }
     }
   );
@@ -311,7 +309,6 @@ router.get("/getInventoryDetails/:bank_ID", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        //console.log(result);
         res.send(result);
       }
     }

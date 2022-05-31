@@ -21,7 +21,6 @@ const App = () => {
       setUsernameState(JSON.parse(localStorage.getItem('username')));
     }
   }, []);
-  console.log(username);
 
   return (
     <Router>

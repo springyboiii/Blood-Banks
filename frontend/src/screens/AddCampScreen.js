@@ -24,7 +24,6 @@ const AddCampScreen = ({username}) => {
         Axios.post("http://localhost:9000/bankID",{
           username: username1
         }).then((response)=>{
-          console.log(response.data);
           setBank_ID(response.data[0].ID);
         });
       };

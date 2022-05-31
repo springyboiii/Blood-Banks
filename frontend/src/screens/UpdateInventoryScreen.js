@@ -47,7 +47,6 @@ const UpdateInventoryScreen = () => {
   const getInventory = async () => {
     let result = await fetch(`http://localhost:9000/bank/getInventory/${username}`);
     result = await result.json();
-    console.log(username);
     setAp(result[0].a_pos);
     setAn(result[0].a_neg);
     setBp(result[0].b_pos);
