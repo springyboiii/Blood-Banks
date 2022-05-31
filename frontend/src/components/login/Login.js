@@ -9,10 +9,11 @@ import EditProfileScreen from "../../screens/EditProfileScreen";
 // import Footer from "../Footer";
 import React, { useState, useContext, createContext } from "react";
 import { UserContext } from "../../UserContext";
-
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const {username,setUsernameState} = useContext(UserContext);
+  
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,19 +32,21 @@ const Login = () => {
         // this.props.setUsername(this.state.userName);
         // setUsernameContext(Username);
         setIsLoggedIn(true);
-        setUsernameState(Username);   
+        setUsernameState(Username);  
+        localStorage.setItem('username', JSON.stringify(Username));
+        
         alert("logged in");
         
-        // window.open("/editProfile","_self");
+        window.open("/bank/welcome","_self");
       }
     });
   };
 
   return (
     <>
-      {IsLoggedIn && <div><Header  isLoggedIn={true}/> <EditProfileScreen username={Username}/></div>}
+      {/* {IsLoggedIn && <div><Header  isLoggedIn={true}/> <EditProfileScreen username={Username}/></div>} */}
 
-      {!IsLoggedIn &&
+      {/* {!IsLoggedIn && */}
       <div style={{ backgroundColor: "#be847a", height: "100vh" }}>
         <div className="nav-header">
           <nav
@@ -106,7 +109,7 @@ const Login = () => {
                       style={{ width: "150%" }}
                       onClick={submitCredentials}
                     >
-                      LOGIN
+                      <Link to= {username!="Context"?("/editProfile"):("")}>LOGIN</Link>
                     </button>
                   </div>
                   <div className="col-5"></div>
@@ -119,7 +122,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      } 
+      {/* }  */}
       <Footer />
     </>
   );
