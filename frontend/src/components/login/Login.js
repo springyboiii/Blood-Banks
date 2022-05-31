@@ -37,7 +37,7 @@ const Login = () => {
         
         alert("logged in");
         
-        window.open("/bank/editProfile","_self");
+        window.open("/bank/welcome","_self");
       }
     });
   };

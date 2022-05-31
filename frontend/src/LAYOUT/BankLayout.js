@@ -30,16 +30,17 @@ const BankLayout = ({bloodbanks,campaigns}) => {
       <main className="py-3">
         <Container>
           <Routes>
-            {/* <Route path="/" element={<HomeScreen bloodbanks={bloodbanks}/>}/> */}
-            {/* <Route path="/bloodbank/:id" element={<BloodBankScreen/>} /> */}
+            <Route path="/" element={<HomeScreen bloodbanks={bloodbanks}/>}/>
+            <Route path="/bloodbank/:id" element={<BloodBankScreen/>} />
             <Route path="/editProfile" element={<EditProfileScreen  />} />
             <Route path="/updateInventory" element={<UpdateInventoryScreen/>} />
-            {/* <Route path="/viewCamp/*" element={<ViewCampScreen campaigns={campaigns}/>} /> */}
+            <Route path="/viewCamp/*" element={<ViewCampScreen campaigns={campaigns}/>} />
             <Route path="/viewDonours" element={<ViewDonoursScreen/>} />
             <Route path="/donour/edit/:id" element={<DonourEditScreen/>} />
             <Route path="/donour/add" element={<DonourAddScreen/>} />
             <Route path="/donour/delete/:id" element={<DeleteDonor donorList={users}/>} />
             <Route path="/addCamp" element={<AddCampScreen username={username}/>} />
+            <Route path="/welcome" element={<h1>Welcome {username}</h1>}></Route>
           </Routes>
         </Container>
       </main>

@@ -52,6 +52,7 @@ const EditProfileScreen = () => {
   return (
     
     <Row>
+      
       <Col md={4}>
         <Card>
           <Card.Header>Profile Picture</Card.Header>
