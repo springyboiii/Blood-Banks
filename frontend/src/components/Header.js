@@ -11,7 +11,7 @@ import {
 import { useState,useContext } from "react";
 import { Link } from "react-router-dom";
 import {UserContext} from "../UserContext"
-const Header = () => {
+const Header = ({IsLoggedIn}) => {
   // const [username1, setUsername] = useState(username)
   // const [IsLoggedIn, setIsLoggedIn] = useState(isLoggedIn)
   const {username,setUsernameState} = useContext(UserContext);
@@ -24,6 +24,7 @@ const Header = () => {
     return (
     
     <Navbar className="px-5" bg="primary" expand="lg" variant="dark">
+      <h1>{username}</h1>
       <Container fluid>
    
         <Navbar.Brand href="/"></Navbar.Brand>
@@ -51,7 +52,9 @@ const Header = () => {
           </Form> */}
 
           <Nav className="me-5 px-5">
-          {username=="Context"&& <div>
+          {/* {username=="Context"&&  */}
+          {!IsLoggedIn &&
+          <div>
             <Nav.Link href="/signIn">SignIn
               {/* {IsLoggedIn ? (username):("Sign in")} */}
               <i className="fas fa-user ms-1"></i>{" "}
@@ -61,22 +64,23 @@ const Header = () => {
            </Nav>
            
            
-{//{IsLoggedIn &&}
- username != "Context" && <div>
+{IsLoggedIn &&
+//  username != "Context" && 
+ <div>
    <Nav className="me-5 px-5">
    <Nav> <Nav.Link ><Link to=" " style={linkStyle}>{username}</Link><i className="fas fa-user ms-1"></i>{" "}</Nav.Link> </Nav>
             <NavDropdown title="" id="basic-nav-dropdown" className="mx-0"> 
             
               <NavDropdown.Item >
-                {/* <Link to="/signIn">Edit Profile</Link> */}
+                <Link to="/bank/editProfile">Edit Profile</Link>
 
               </NavDropdown.Item>
               <NavDropdown.Item >
-                <Link to="/updateInventory">Update Inventory</Link>
+                <Link to="/bank/updateInventory">Update Inventory</Link>
               </NavDropdown.Item>
-              <NavDropdown.Item ><Link to="/addCamp">Add Camp</Link></NavDropdown.Item>
+              <NavDropdown.Item ><Link to="/bank/addCamp">Add Camp</Link></NavDropdown.Item>
               <NavDropdown.Item >
-                <Link to="/viewDonours">View Donours</Link>
+                <Link to="/bank/viewDonours">View Donours</Link>
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/">Logout</NavDropdown.Item>
