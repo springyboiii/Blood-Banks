@@ -23,7 +23,7 @@ const DonourAddScreen = () => {
       address: address,
       email: email
     }).then(()=>{
-      window.location.href='/viewDonours'
+      window.location.href='/bank/viewDonours'
     });
   };
 

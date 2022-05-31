@@ -7,7 +7,7 @@ const mysql = require("mysql");
 const db = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "password",
+  password: "Sandu@123",
   database: "BloodBank",
 });
 
@@ -120,7 +120,7 @@ router.post("/admin/dashboard/addBd", (req, res) => {
     }
   );
 
-  db.query(
+ /*  db.query(
     "INSERT INTO inventory (bank_ID) SELECT ID FROM bank Where username=?;",
     [username],
     (err, result) => {
@@ -132,7 +132,7 @@ router.post("/admin/dashboard/addBd", (req, res) => {
         console.log(result);
       }
     }
-  );
+  ); */
 });
 
 router.post("/signIn", (req, res) => {
