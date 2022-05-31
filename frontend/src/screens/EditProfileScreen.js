@@ -1,10 +1,13 @@
 import React from "react";
 import { Row, Col, Card, Button, Form } from "react-bootstrap";
 //import classes from '../components/EditProfileScreen.css'
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { useEffect } from "react";
 import  Axios  from "axios";
-const EditProfileScreen = ({username}) => {
+import { UserContext } from "../UserContext";
+const EditProfileScreen = () => {
+  const {username,setUsernameState} = useContext(UserContext);
+
   const [username1, setUsername] = useState(username);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

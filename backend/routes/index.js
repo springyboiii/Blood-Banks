@@ -7,7 +7,7 @@ const mysql = require("mysql");
 const db = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "Sandu@123",
+  password: "Watson 123",
   database: "BloodBank",
 });
 
@@ -38,18 +38,18 @@ router.post("/donour/add", (req, res) => {
   });
 });
 
-router.get('/editProfile', (req, res) => {
-  const sqlSelect = "Select * from bank ;";
+// router.get('/editProfile', (req, res) => {
+//   const sqlSelect = "Select * from bank ;";
   
-  db.query(
-    sqlSelect,
+//   db.query(
+//     sqlSelect,
 
-    (err, result) => {
-      res.send(result);
+//     (err, result) => {
+//       res.send(result);
       
-    }
-  );
-});
+//     }
+//   );
+// });
 router.post("/editProfile", (req, res) => {
   
   const username = req.body.username;
@@ -233,7 +233,8 @@ router.get("/viewCamp", (req, res) => {
 
 router.post('/bankID', (req,res)=>{
   const username = req.body.username;
-  db.query("SELECT ID FROM bank WHERE name=?", [username], (err, result) =>{
+  console.log(username,"username");
+  db.query("SELECT ID FROM bank WHERE username=?", username, (err, result) =>{
     if (err) {
       console.log(err);
     } else {

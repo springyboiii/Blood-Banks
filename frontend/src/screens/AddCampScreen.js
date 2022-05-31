@@ -24,6 +24,7 @@ const AddCampScreen = ({username}) => {
         Axios.post("http://localhost:9000/bankID",{
           username: username1
         }).then((response)=>{
+          console.log(response.data);
           setBank_ID(response.data[0].ID);
         });
       };
@@ -44,6 +45,7 @@ const AddCampScreen = ({username}) => {
   };
   return (
     <FormContainer>
+      {/* <h1>{username1}</h1> */}
       <Card>
         <Card.Header>Add Camp</Card.Header>
         <Card.Body>
@@ -129,10 +131,7 @@ const AddCampScreen = ({username}) => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formFile" className="mb-3">
-              <Form.Label>Add Flie</Form.Label>
-              <Form.Control type="file" />
-            </Form.Group>
+            
 
             <Button variant="info" className="justify-content-center" onClick={submitCamp}>
               Add Camp

@@ -68,7 +68,7 @@ const Header = () => {
             <NavDropdown title="" id="basic-nav-dropdown" className="mx-0"> 
             
               <NavDropdown.Item >
-                <Link to="">Edit Profile</Link>
+                {/* <Link to="/signIn">Edit Profile</Link> */}
 
               </NavDropdown.Item>
               <NavDropdown.Item >
