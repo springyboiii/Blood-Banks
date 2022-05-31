@@ -60,8 +60,8 @@ const Header = ({IsLoggedIn}) => {
 <Nav className="me-5 px-5"> <Nav.Link ><Link to="/signIn" style={linkStyle}>{username!=""?username:"Sign up"}</Link><i className="fas fa-user ms-1"></i>{" "}</Nav.Link> 
            
            
-{IsLoggedIn &&
-//  username != "Context" && 
+{//IsLoggedIn &&
+  username != "" && 
  <div>
    
             <NavDropdown title="" id="basic-nav-dropdown" className="mx-0"> 

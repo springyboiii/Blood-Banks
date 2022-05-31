@@ -7,7 +7,7 @@ const DeleteDonor = ({ donorList }) => {
 
   const deleteDonor = ()=>{
     Axios.delete(`http://localhost:9000/donour/delete/${params.id}`).then(()=>{
-      window.location.href='/viewDonours'
+      window.location.href='/bank/viewDonours'
     });
   };
 

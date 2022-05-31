@@ -18,7 +18,7 @@ const ViewDonoursScreen = () => {
     <>  
       <div style={{ display: "flex", flexDirection: "row" }} className="mb-3">
         <h1>Donours</h1>
-        <LinkContainer to={`/donour/add`}>
+        <LinkContainer to={`/bank/donour/add`}>
           <Button variant="info" className="mx-3 sm">
             <i className="fas fa-plus"></i>
           </Button>
@@ -50,12 +50,12 @@ const ViewDonoursScreen = () => {
               </td>
 
               <td>
-                <LinkContainer to={`/donour/edit/${val.ID}`}>
+                <LinkContainer to={`/bank/donour/edit/${val.ID}`}>
                   <Button variant="light" className="btn-sm">
                     <i className="fas fa-edit"></i>
                   </Button>
                 </LinkContainer>
-                <LinkContainer to={`/donour/delete/${val.ID}`}>
+                <LinkContainer to={`/bank/donour/delete/${val.ID}`}>
                   <Button variant="primary" className="btn-sm">
                     <i className="fas fa-trash"></i>
                   </Button>

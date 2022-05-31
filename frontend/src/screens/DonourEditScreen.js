@@ -37,7 +37,7 @@ const DonourEditScreen = () => {
       email: email,
       phone: contact_no
     });
-    window.location.href='/viewDonours'
+    window.location.href='/bank/viewDonours'
   };  
 
   return (
