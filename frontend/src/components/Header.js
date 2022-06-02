@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  Navbar,
-  Nav,
-  Container,
-  NavDropdown,
-  Form,
-  Button,
-  FormControl,
-} from "react-bootstrap";
-import { useState, useContext } from "react";
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 const Header = ({ IsLoggedIn }) => {
@@ -26,7 +18,7 @@ const Header = ({ IsLoggedIn }) => {
   };
 
   return (
-    <Navbar className="px-5" bg="primary" expand="lg" variant="dark">
+    <Navbar className="px-5 nav-header" bg="primary" expand="lg" variant="dark">
       {/* <h1>{username}</h1>
       <h1>{JSON.parse(localStorage.getItem('username'))}Storage</h1> */}
       <Container fluid>
@@ -39,13 +31,13 @@ const Header = ({ IsLoggedIn }) => {
             navbarScroll
           >
             <Nav.Link>
-              <Link to={username == "" ? "/" : "/bank"} style={linkStyle}>
+              <Link to={username === "" ? "/" : "/bank"} style={linkStyle}>
                 Home
               </Link>
             </Nav.Link>
             <Nav.Link>
               <Link
-                to={username == "" ? "/viewCamp" : "/bank/viewCamp"}
+                to={username === "" ? "/viewCamp" : "/bank/viewCamp"}
                 style={linkStyle}
               >
                 Campaign
@@ -67,13 +59,13 @@ const Header = ({ IsLoggedIn }) => {
             {" "}
             <Nav.Link>
               <Link to="/signIn" style={linkStyle}>
-                {username != "" ? username : "Sign up"}
+                {username !== "" ? username : "Sign up"}
               </Link>
               <i className="fas fa-user ms-1"></i>{" "}
             </Nav.Link>
             {
               //IsLoggedIn &&
-              username != "" && (
+              username !== "" && (
                 <div>
                   <NavDropdown
                     title=""

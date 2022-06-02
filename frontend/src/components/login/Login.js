@@ -1,26 +1,25 @@
-
 import "./Login.css";
 import SlideShow from "./SlidesShow";
 import Footer from "../Footer";
 import logo from "../../image/favicon-32x32.png";
 import Axios from "axios";
-import Header from "../Header";
 import EditProfileScreen from "../../screens/EditProfileScreen";
 // import Footer from "../Footer";
 import React, { useState, useContext, createContext } from "react";
 import { UserContext } from "../../UserContext";
-import { Link } from "react-router-dom";
 
 const Login = () => {
-  const {username,setUsernameState} = useContext(UserContext);
-  
+  const { username, setUsernameState } = useContext(UserContext);
+
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
   const submitCredentials = (e) => {
     // setUsernameContext(Username);
     e.preventDefault();
-
+    if (Username === "admin" && Password === "admin1234") {
+      window.open("/admin/dashboard", "_self");
+    }
     Axios.post("http://localhost:9000/signIn", {
       userName: Username,
       password: Password,
@@ -32,12 +31,12 @@ const Login = () => {
         // this.props.setUsername(this.state.userName);
         // setUsernameContext(Username);
         setIsLoggedIn(true);
-        setUsernameState(Username);  
-        localStorage.setItem('username', JSON.stringify(Username));
-        
+        setUsernameState(Username);
+        localStorage.setItem("username", JSON.stringify(Username));
+
         alert("logged in");
-        
-        window.open("/bank/welcome","_self");
+
+        window.open("/bank/welcome", "_self");
       }
     });
   };
@@ -68,7 +67,7 @@ const Login = () => {
               className="col-4 form"
               style={{ backgroundColor: "#880808", color: "white" }}
             >
-              <form >
+              <form>
                 <h2 style={{ textAlign: "center" }}>Login</h2>
                 <br />
                 <br />
@@ -81,7 +80,7 @@ const Login = () => {
                     className="form-control"
                     placeholder="Enter User Name"
                     onChange={(e) => {
-                      setUsername( e.target.value );
+                      setUsername(e.target.value);
                     }}
                   />
                 </div>
@@ -95,7 +94,7 @@ const Login = () => {
                     className="form-control"
                     placeholder="Enter Password"
                     onChange={(e) => {
-                      setPassword( e.target.value );
+                      setPassword(e.target.value);
                     }}
                   />
                 </div>
@@ -109,8 +108,10 @@ const Login = () => {
                       style={{ width: "150%" }}
                       onClick={submitCredentials}
                     >
-                      {//<Link to= {username!=""?("/bank/editProfile"):("")}>LOGIN</Link>
-                      }Login
+                      {
+                        //<Link to= {username!=""?("/bank/editProfile"):("")}>LOGIN</Link>
+                      }
+                      Login
                     </button>
                   </div>
                   <div className="col-5"></div>

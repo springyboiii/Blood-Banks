@@ -17,20 +17,21 @@ const Navbar = ({ isDash }) => {
               <img src={logo} alt="logo" /> Donating blood
             </h2>
           </div>
-          <div className="col-3"></div>
-          <div className="col-3 btn-block">
-            {!isDash && (
-              <Link to="/admin/dashboard" className="btn btn-primary">
-                dashboard
-              </Link>
-            )}{" "}
+          <div className="col-2"></div>
+          <div className="col-4 btn-block">
             <Link to="/" className="btn btn-primary">
               Log out
             </Link>{" "}
             &#160;
             <Link to="/admin/dashboard/addBd" className="btn btn-primary">
               Add blood bank
-            </Link>
+            </Link>{" "}
+            &#160;
+            {!isDash && (
+              <Link to="/admin/dashboard" className="btn btn-primary">
+                dashboard
+              </Link>
+            )}{" "}
           </div>
         </nav>
       </div>

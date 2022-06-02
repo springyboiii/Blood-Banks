@@ -1,14 +1,14 @@
 var express = require("express");
 const cors = require("cors");
 var router = express.Router();
-
+require("dotenv").config();
 const mysql = require("mysql");
 
 const db = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "RUKshan!!07",
-  database: "BloodBank",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
 });
 
 router.use(cors());
