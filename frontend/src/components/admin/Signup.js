@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./styles/admin.css";
 import Axios from "axios";
-import { Form, Button, Card } from "react-bootstrap";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -15,28 +14,26 @@ const Signup = () => {
   const submitHandler = (e) => {
     e.preventDefault();
   };
-
-  const submitBloodbank=()=>{
+  const submitBloodbank = () => {
     Axios.post("http://localhost:9000/admin/dashboard/addBd", {
       name: name,
       username: username,
-      password:password,
-      email:email,
-      description:description,
-      contact:contact,
-      location:location,
-    }).then(()=>{
+      password: password,
+      email: email,
+      description: description,
+      contact: contact,
+      location: location,
+    }).then(() => {
       createInventory();
       alert("succesful insert");
-      
     });
   };
 
-  const createInventory = () => { 
-    Axios.post("http://localhost:9000/admin/dashboard/addInventory", 
-    { username: username, }).then(() => {}); 
+  const createInventory = () => {
+    Axios.post("http://localhost:9000/admin/dashboard/addInventory", {
+      username: username,
+    }).then(() => {});
   };
-
   return (
     <>
       <div className="container">
@@ -61,7 +58,7 @@ const Signup = () => {
             </div>
 
             <br />
-            
+
             <div className="form-group">
               <div className="row">
                 <div className="col-4">
@@ -133,7 +130,7 @@ const Signup = () => {
                 </div>
               </div>
             </div>
-            
+
             <br />
             <div className="form-group">
               <div className="row">
@@ -184,7 +181,6 @@ const Signup = () => {
                 >
                   Creat account
                 </button>
-                
               </div>
               <div className="col-3"></div>
             </div>

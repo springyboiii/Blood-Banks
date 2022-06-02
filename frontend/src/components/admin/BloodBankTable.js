@@ -1,15 +1,12 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Axios from "axios";
-const BloodBankTable = (props) => {
+const BloodBankTable = () => {
   // let { bloodBankList } = props;
-  
   const [bloodBankList, setBloodBankList] = useState([]);
   useEffect(() => {
     return () => {
       Axios.get("http://localhost:9000/dashboard").then((response) => {
-    
-        setBloodBankList(response.data)
+        setBloodBankList(response.data);
       });
     };
   }, []);
@@ -46,12 +43,11 @@ const BloodBankTable = (props) => {
   return (
     <>
       <div>
-        <h1 className="h1" style={{ textAlign: "center" }}>Dashboard</h1>
+        <h1 className="h1" style={{ textAlign: "center" }}>
+          Dashboard
+        </h1>
         <div className="row">
-          <div className="col-1">
-            
-          </div>
-          
+          <div className="col-1"></div>
         </div>
         <table id="myTable">
           <thead>
@@ -75,7 +71,6 @@ const BloodBankTable = (props) => {
                     <td>{bloodBank.username}</td>
                     <td>{bloodBank.address}</td>
                     <td>{bloodBank.contact_no}</td>
-                   
                   </tr>
                 );
               })}

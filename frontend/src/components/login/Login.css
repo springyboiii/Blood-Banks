@@ -1,16 +1,14 @@
-
 .screen {
   background-color: "#bbd0c9";
   height: 100vh;
-} 
+}
 .box {
   margin-top: 2%;
 }
 .nav-header {
   position: relative;
   animation-name: nav-header;
-  animation-duration: 2s;
-  animation-delay: 1s;
+  animation-duration: 1s;
 }
 
 @keyframes nav-header {
@@ -27,8 +25,7 @@
   border: black solid 2px;
   position: relative;
   animation-name: form;
-  animation-duration: 2s;
-  animation-delay: 1s;
+  animation-duration: 1s;
 }
 .label {
   padding-bottom: 5%;

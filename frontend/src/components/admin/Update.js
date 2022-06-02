@@ -9,7 +9,7 @@ const Upadate = ({ bloodBankList }) => {
   const isAvailble = getFilter.length === 1 ? true : false;
   return (
     <>
-      <div className="container align-left" >
+      <div className="container align-left">
         <div className="centerBox">
           {isAvailble && (
             <div>
