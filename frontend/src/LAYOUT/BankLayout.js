@@ -17,6 +17,7 @@ import users from "../users";
 import { useState } from "react";
 import React, { useContext } from 'react';
 import {UserContext} from "../UserContext";
+import WelcomeScreen from "../screens/WelcomeScreen";
 const BankLayout = ({bloodbanks,campaigns}) => {
   const {username,setUsernameState} = useContext(UserContext);
 
@@ -40,7 +41,7 @@ const BankLayout = ({bloodbanks,campaigns}) => {
             <Route path="/donour/add" element={<DonourAddScreen/>} />
             <Route path="/donour/delete/:id" element={<DeleteDonor donorList={users}/>} />
             <Route path="/addCamp" element={<AddCampScreen username={username}/>} />
-            <Route path="/welcome" element={<h1>Welcome {username}</h1>}></Route>
+            <Route path="/welcome" element={<WelcomeScreen username={username}/>}></Route>
           </Routes>
         </Container>
       </main>
