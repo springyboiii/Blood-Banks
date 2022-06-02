@@ -233,13 +233,16 @@ const UpdateInventoryScreen = () => {
           </tr>
         </tbody>
       </Table>
-      <Button
+      <div style={{ textAlign: "center" }}>
+      <Button  
         variant="info"
-        className="justify-content-center"
+        className="justify-content-center my-4"
         onClick={() => submit(username)}
       >
         Update Inventory
       </Button>
+      </div>
+      
     </div>
   );
 };

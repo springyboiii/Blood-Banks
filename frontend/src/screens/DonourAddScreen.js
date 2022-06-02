@@ -29,7 +29,7 @@ const DonourAddScreen = () => {
 
   return (
     <>
-      <Link to="/viewDonours" className="btn btn-light my-3">
+      <Link to="/bank/viewDonours" className="btn btn-light my-3">
         Go Back
       </Link>
       <FormContainer>
@@ -171,7 +171,7 @@ const DonourAddScreen = () => {
               </Form.Group>
 
               <Button type="submit" variant="info" onClick={submitDonor}>
-                Update
+                Add
               </Button>
             </Form>
           </Card.Body>
