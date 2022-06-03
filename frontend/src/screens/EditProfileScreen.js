@@ -1,13 +1,15 @@
 import React from "react";
 import { Row, Col, Card, Button, Form } from "react-bootstrap";
 //import classes from '../components/EditProfileScreen.css'
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import { useEffect } from "react";
-import  Axios  from "axios";
+import Axios from "axios";
 import { UserContext } from "../UserContext";
-const EditProfileScreen = () => {
-  const {username,setUsernameState} = useContext(UserContext);
+import { useNavigate } from "react-router-dom";
 
+const EditProfileScreen = () => {
+  const { username, setUsernameState } = useContext(UserContext);
+  let navigate = useNavigate();
   const [username1, setUsername] = useState(username);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,44 +17,40 @@ const EditProfileScreen = () => {
   const [contact, setContact] = useState("");
   const [location, setLocation] = useState("");
   useEffect(() => {
+    if (!(JSON.parse(localStorage.getItem("type")) === "bloodBank")) {
+      navigate("/signIn");
+    }
     return () => {
       Axios.post("http://localhost:9000/editProfile", {
-      
-      username: username1,
-      
-    }).then((response)=>{
-      setName(response.data[0].name);
-      setContact(response.data[0].contact_no);
-      setUsername(response.data[0].username);
-      setEmail(response.data[0].email);
-      setLocation(response.data[0].address);
-      setDescription(response.data[0].about);
-      
-      // alert("succesful insert");
-      
-    });
+        username: username1,
+      }).then((response) => {
+        setName(response.data[0].name);
+        setContact(response.data[0].contact_no);
+        setUsername(response.data[0].username);
+        setEmail(response.data[0].email);
+        setLocation(response.data[0].address);
+        setDescription(response.data[0].about);
+
+        // alert("succesful insert");
+      });
       // Axios.get('http://localhost:9000/editProfile').then((response) => { console.log(response.data) });
-    
     };
   }, []);
-  const updateBloodbank=()=>{
+  const updateBloodbank = () => {
     Axios.post("http://localhost:9000/updateBloodBank", {
       name: name,
       username: username,
-       
-      email:email,
-      description:description,
-      contact:contact,
-      location:location,
-    }).then(()=>{
+
+      email: email,
+      description: description,
+      contact: contact,
+      location: location,
+    }).then(() => {
       // alert("succesful update");
-      
     });
   };
   return (
-    
     <Row>
-      
       <Col md={4}>
         <Card>
           <Card.Header>Profile Picture</Card.Header>
@@ -110,7 +108,9 @@ const EditProfileScreen = () => {
               <Row>
                 <Col md={6}>
                   <Form.Group className="mb-3">
-                    <Form.Label htmlFor="disabledTextInput">Organization Name</Form.Label>
+                    <Form.Label htmlFor="disabledTextInput">
+                      Organization Name
+                    </Form.Label>
                     <Form.Control
                       id="disabledTextInput"
                       placeholder={name}
@@ -137,7 +137,9 @@ const EditProfileScreen = () => {
               <Row>
                 <Col md={6}>
                   <Form.Group className="mb-3">
-                    <Form.Label htmlFor="disabledTextInput">Telephone</Form.Label>
+                    <Form.Label htmlFor="disabledTextInput">
+                      Telephone
+                    </Form.Label>
                     <Form.Control
                       id="disabledTextInput"
                       placeholder={contact}
@@ -165,7 +167,8 @@ const EditProfileScreen = () => {
                 <Form.Label htmlFor="disabledTextInput">About</Form.Label>
                 <Form.Control
                   type="text"
-                  as="textarea" rows={3}
+                  as="textarea"
+                  rows={3}
                   id="disabledTextInput"
                   placeholder={description}
                   onChange={(e) => {
@@ -181,7 +184,13 @@ const EditProfileScreen = () => {
                 >
                   Update
                 </button> */}
-              <Button variant="info" className="justify-content-center" onClick={updateBloodbank}>Update</Button>
+              <Button
+                variant="info"
+                className="justify-content-center"
+                onClick={updateBloodbank}
+              >
+                Update
+              </Button>
             </Form>
           </Card.Body>
         </Card>

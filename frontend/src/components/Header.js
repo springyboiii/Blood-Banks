@@ -1,4 +1,6 @@
 import React from "react";
+import { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -6,6 +8,8 @@ import { UserContext } from "../UserContext";
 const Header = ({ IsLoggedIn }) => {
   // const [username1, setUsername] = useState(username)
   // const [IsLoggedIn, setIsLoggedIn] = useState(isLoggedIn)
+  let navigate = useNavigate();
+  const url = useLocation();
   const { username, setUsernameState } = useContext(UserContext);
   const linkStyle = {
     margin: "1rem",
@@ -13,10 +17,11 @@ const Header = ({ IsLoggedIn }) => {
     color: "white",
   };
   const logout = () => {
-    localStorage.setItem("username", JSON.stringify(""));
+    navigate("/signIn");
+    localStorage.removeItem("type");
+    localStorage.removeItem("username");
     setUsernameState("");
   };
-
   return (
     <Navbar className="px-5 nav-header" bg="primary" expand="lg" variant="dark">
       {/* <h1>{username}</h1>
@@ -57,15 +62,22 @@ const Header = ({ IsLoggedIn }) => {
 
           <Nav className="me-5 px-5">
             {" "}
+            <h2>
+              {username !== ""
+                ? JSON.parse(localStorage.getItem("username"))
+                : ""}
+            </h2>
             <Nav.Link>
               <Link to="/signIn" style={linkStyle}>
-                {username !== "" ? username : "Sign up"}
+                {localStorage.getItem("username") ? "" : "Login"}
               </Link>
-              <i className="fas fa-user ms-1"></i>{" "}
+              {JSON.parse(localStorage.getItem("username")) && (
+                <i className="fas fa-user ms-1"></i>
+              )}
             </Nav.Link>
             {
               //IsLoggedIn &&
-              username !== "" && (
+              localStorage.getItem("username") && (
                 <div>
                   <NavDropdown
                     title=""

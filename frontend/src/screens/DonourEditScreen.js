@@ -1,44 +1,50 @@
-import React, { useState, useEffect   } from "react";
-import { Link, useParams} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Form, Button, Card } from "react-bootstrap";
 import FormContainer from "../components/FormContainer ";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const DonourEditScreen = () => {
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [email, setEmail] = useState('');
-  const [contact_no, setPhone] = useState('');
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [contact_no, setPhone] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
   };
 
-  const params = useParams()
+  const params = useParams();
 
-  useEffect(()=>{
+  let navigate = useNavigate();
+  useEffect(() => {
     getDonorDetails();
-  },[])
-
-  const getDonorDetails = async ()=>{
+    if (!(JSON.parse(localStorage.getItem("type")) === "bloodBank")) {
+      navigate("/signIn");
+    }
+  }, []);
+  const getDonorDetails = async () => {
     let result = await fetch(`http://localhost:9000/viewDonourID/${params.id}`);
     result = await result.json();
-    setName(result[0].name)
-    setAddress(result[0].address)
-    setEmail(result[0].email)
-    setPhone(result[0].contact_no)
-  }
+    setName(result[0].name);
+    setAddress(result[0].address);
+    setEmail(result[0].email);
+    setPhone(result[0].contact_no);
+  };
 
-  const updateDonor = async () =>{
-  
-    let result = await Axios.put(`http://localhost:9000/donour/edit/${params.id}`, {
-      name: name,
-      address: address,
-      email: email,
-      phone: contact_no
-    });
-    window.location.href='/bank/viewDonours'
-  };  
+  const updateDonor = async () => {
+    let result = await Axios.put(
+      `http://localhost:9000/donour/edit/${params.id}`,
+      {
+        name: name,
+        address: address,
+        email: email,
+        phone: contact_no,
+      }
+    );
+    window.location.href = "/bank/viewDonours";
+  };
 
   return (
     <>
@@ -89,7 +95,7 @@ const DonourEditScreen = () => {
               </Form.Group>
               <Button type="submit" variant="info" onClick={updateDonor}>
                 Update
-              </Button> 
+              </Button>
             </Form>
           </Card.Body>
         </Card>

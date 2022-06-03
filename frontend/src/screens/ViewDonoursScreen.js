@@ -1,12 +1,15 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
 import Axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const ViewDonoursScreen = () => {
-  
+  let navigate = useNavigate();
   const [donorList, setDonorList] = useState([]);
   useEffect(() => {
+    if (!(JSON.parse(localStorage.getItem("type")) === "bloodBank")) {
+      navigate("/signIn");
+    }
     async function fetchData() {
       const req = await Axios.get("http://localhost:9000/viewDonours");
       setDonorList(req.data);
@@ -15,7 +18,7 @@ const ViewDonoursScreen = () => {
   }, []);
 
   return (
-    <>  
+    <>
       <div style={{ display: "flex", flexDirection: "row" }} className="mb-3">
         <h1>Donours</h1>
         <LinkContainer to={`/bank/donour/add`}>

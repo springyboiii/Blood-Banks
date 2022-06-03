@@ -2,44 +2,51 @@ import React from "react";
 import { Row, Col, Card, Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import { useEffect } from "react";
-import  Axios  from "axios";
+import Axios from "axios";
 import FormContainer from "../components/FormContainer ";
-const AddCampScreen = ({username}) => {
-    const [username1, setUsername] = useState(username);
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
-    const [org, setOrg] = useState("");
-    const [location, setLocation] = useState("");
-    const [bank_ID, setBank_ID] = useState("");
+import { useNavigate } from "react-router-dom";
 
-    const submitHandler = (e) => {
-      e.preventDefault();
-    };
+const AddCampScreen = ({ username }) => {
+  const [username1, setUsername] = useState(username);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [org, setOrg] = useState("");
+  const [location, setLocation] = useState("");
+  const [bank_ID, setBank_ID] = useState("");
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (!(JSON.parse(localStorage.getItem("type")) === "bloodBank")) {
+      navigate("/signIn");
+    }
+  }, []);
   useEffect(() => {
     return () => {
       setUsername(username);
-        Axios.post("http://localhost:9000/bankID",{
-          username: username1
-        }).then((response)=>{
-          setBank_ID(response.data[0].ID);
-        });
-      };
-  },[]);
+      Axios.post("http://localhost:9000/bankID", {
+        username: username1,
+      }).then((response) => {
+        setBank_ID(response.data[0].ID);
+      });
+    };
+  }, []);
 
-  const submitCamp=()=>{
+  const submitCamp = () => {
     Axios.post("http://localhost:9000/addCamp", {
       camp_name: name,
-      description : description,
+      description: description,
       date: date,
       time: time,
-      location  : location,
+      location: location,
       org_name: org,
-      bank_ID: bank_ID
-    }).then(()=>{
-      alert("succesful insert")
+      bank_ID: bank_ID,
+    }).then(() => {
+      alert("succesful insert");
     });
   };
   return (
@@ -51,7 +58,7 @@ const AddCampScreen = ({username}) => {
           <Form onSubmit={submitHandler}>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="disabledTextInput">Camp Name</Form.Label>
-              <Form.Control 
+              <Form.Control
                 type="name"
                 placeholder="Name"
                 value={name}
@@ -86,8 +93,8 @@ const AddCampScreen = ({username}) => {
               <Col md={6}>
                 <Form.Group className="mb-3">
                   <Form.Label htmlFor="disabledTextInput">Time</Form.Label>
-                  <Form.Control 
-                    type="time" 
+                  <Form.Control
+                    type="time"
                     placeholder="Last Name"
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
@@ -97,22 +104,18 @@ const AddCampScreen = ({username}) => {
             </Row>
 
             <Form.Group className="mb-3">
-              <Form.Label htmlFor="disabledTextInput">
-                Location
-              </Form.Label>
-              <Form.Control 
-                placeholder="Location" 
+              <Form.Label htmlFor="disabledTextInput">Location</Form.Label>
+              <Form.Control
+                placeholder="Location"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label htmlFor="disabledTextInput">
-                Bank Name
-              </Form.Label>
-              <Form.Control 
-                placeholder="Bank Name" 
+              <Form.Label htmlFor="disabledTextInput">Bank Name</Form.Label>
+              <Form.Control
+                placeholder="Bank Name"
                 value={bank_ID}
                 disabled
                 onChange={(e) => setBank_ID(e.target.value)}
@@ -123,16 +126,18 @@ const AddCampScreen = ({username}) => {
               <Form.Label htmlFor="disabledTextInput">
                 Organization Name
               </Form.Label>
-              <Form.Control 
+              <Form.Control
                 placeholder="Organization Name"
                 value={org}
                 onChange={(e) => setOrg(e.target.value)}
               />
             </Form.Group>
 
-            
-
-            <Button variant="info" className="justify-content-center" onClick={submitCamp}>
+            <Button
+              variant="info"
+              className="justify-content-center"
+              onClick={submitCamp}
+            >
               Add Camp
             </Button>
           </Form>

@@ -1,6 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import logo from "../../image/favicon-32x32.png";
 import { Link } from "react-router-dom";
 const Navbar = ({ isDash }) => {
+  let navigate = useNavigate();
+  const logout = () => {
+    navigate("/signIn");
+    localStorage.removeItem("type");
+    localStorage.removeItem("username");
+  };
   return (
     <div className="nav-header">
       <div className="row">
@@ -19,7 +26,7 @@ const Navbar = ({ isDash }) => {
           </div>
           <div className="col-2"></div>
           <div className="col-4 btn-block">
-            <Link to="/" className="btn btn-primary">
+            <Link to="/" className="btn btn-primary" onClick={logout}>
               Log out
             </Link>{" "}
             &#160;

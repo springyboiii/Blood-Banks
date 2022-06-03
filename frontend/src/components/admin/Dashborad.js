@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import NotFoundPage from "../NotFoundPage";
 import "./styles/admin.css";
 import BloodBankTable from "./BloodBankTable";
@@ -8,10 +8,7 @@ import Upadate from "./Update";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 const Dashborad = ({ bloodbanks }) => {
-  // let bloodBankList = [
-  //   { id: 1, name: "rukshan", location: "xxx", contactNumber: "xxxxxxxxxx" },
-  //   { id: 2, name: "supun", location: "xxx", contactNumber: "xxxxxxxxxx" },
-  // ];
+  let navigate = useNavigate();
   const url = useLocation();
   const [isDash, setIsDash] = useState(
     window.location.href === "http://localhost:3000/admin/dashboard"
@@ -21,6 +18,14 @@ const Dashborad = ({ bloodbanks }) => {
   }
   useEffect(() => {
     handleIsDash(window.location.href);
+    if (
+      !(
+        JSON.parse(localStorage.getItem("type")) === "admin" &&
+        JSON.parse(localStorage.getItem("username")) === "admin"
+      )
+    ) {
+      navigate("/signIn");
+    }
   }, [url]);
   return (
     <>

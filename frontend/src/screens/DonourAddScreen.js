@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Form, Button, Card } from "react-bootstrap";
 import FormContainer from "../components/FormContainer ";
 import Axios from "axios";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const DonourAddScreen = () => {
   const [name, setName] = useState("");
@@ -14,16 +16,21 @@ const DonourAddScreen = () => {
   const submitHandler = (e) => {
     e.preventDefault();
   };
-
-  const submitDonor=()=>{
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (!(JSON.parse(localStorage.getItem("type")) === "bloodBank")) {
+      navigate("/signIn");
+    }
+  }, []);
+  const submitDonor = () => {
     Axios.post("http://localhost:9000/donour/add", {
       name: name,
       b_type: blood,
       contact_no: phone,
       address: address,
-      email: email
-    }).then(()=>{
-      window.location.href='/bank/viewDonours'
+      email: email,
+    }).then(() => {
+      window.location.href = "/bank/viewDonours";
     });
   };
 
@@ -52,15 +59,15 @@ const DonourAddScreen = () => {
                 <div key={`inline-radio`} className="mb-3">
                   <Form.Check
                     className="mx-2"
-                    inline  
+                    inline
                     name="g1"
                     id="gr1"
                     label="A+"
                     type="radio"
                     aria-label="radio 1"
-                    checked={blood==="A+"}
+                    checked={blood === "A+"}
                     value="A+"
-                    onChange={(e) => setBlood(e.target.value)} 
+                    onChange={(e) => setBlood(e.target.value)}
                   />
                   <Form.Check
                     inline
@@ -69,9 +76,9 @@ const DonourAddScreen = () => {
                     id="gr2"
                     type="radio"
                     aria-label="radio 1"
-                    checked={blood==="A-"}
+                    checked={blood === "A-"}
                     value="A-"
-                    onChange={(e) => setBlood(e.target.value)} 
+                    onChange={(e) => setBlood(e.target.value)}
                   />
                   <Form.Check
                     inline
@@ -80,9 +87,9 @@ const DonourAddScreen = () => {
                     id="gr3"
                     type="radio"
                     aria-label="radio 1"
-                    checked={blood==="B+"}
+                    checked={blood === "B+"}
                     value="B+"
-                    onChange={(e) => setBlood(e.target.value)} 
+                    onChange={(e) => setBlood(e.target.value)}
                   />
                   <Form.Check
                     inline
@@ -91,9 +98,9 @@ const DonourAddScreen = () => {
                     id="gr4"
                     type="radio"
                     aria-label="radio 1"
-                    checked={blood==="B-"}
+                    checked={blood === "B-"}
                     value="B-"
-                    onChange={(e) => setBlood(e.target.value)} 
+                    onChange={(e) => setBlood(e.target.value)}
                   />
                   <Form.Check
                     inline
@@ -102,9 +109,9 @@ const DonourAddScreen = () => {
                     id="gr5"
                     type="radio"
                     aria-label="radio 1"
-                    checked={blood==="AB+"}
+                    checked={blood === "AB+"}
                     value="AB+"
-                    onChange={(e) => setBlood(e.target.value)} 
+                    onChange={(e) => setBlood(e.target.value)}
                   />
                   <Form.Check
                     inline
@@ -113,9 +120,9 @@ const DonourAddScreen = () => {
                     id="gr6"
                     type="radio"
                     aria-label="radio 1"
-                    checked={blood==="AB-"}
+                    checked={blood === "AB-"}
                     value="AB-"
-                    onChange={(e) => setBlood(e.target.value)} 
+                    onChange={(e) => setBlood(e.target.value)}
                   />
                   <Form.Check
                     inline
@@ -124,9 +131,9 @@ const DonourAddScreen = () => {
                     id="gr7"
                     type="radio"
                     aria-label="radio 1"
-                    checked={blood==="O+"}
+                    checked={blood === "O+"}
                     value="O+"
-                    onChange={(e) => setBlood(e.target.value)} 
+                    onChange={(e) => setBlood(e.target.value)}
                   />
                   <Form.Check
                     inline
@@ -135,9 +142,9 @@ const DonourAddScreen = () => {
                     id="gr8"
                     type="radio"
                     aria-label="radio 1"
-                    checked={blood==="O-"}
+                    checked={blood === "O-"}
                     value="O-"
-                    onChange={(e) => setBlood(e.target.value)} 
+                    onChange={(e) => setBlood(e.target.value)}
                   />
                 </div>
               </Form.Group>

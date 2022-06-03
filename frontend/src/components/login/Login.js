@@ -18,6 +18,8 @@ const Login = () => {
     // setUsernameContext(Username);
     e.preventDefault();
     if (Username === "admin" && Password === "admin1234") {
+      localStorage.setItem("username", JSON.stringify(Username));
+      localStorage.setItem("type", JSON.stringify("admin"));
       window.open("/admin/dashboard", "_self");
     }
     Axios.post("http://localhost:9000/signIn", {
@@ -33,7 +35,7 @@ const Login = () => {
         setIsLoggedIn(true);
         setUsernameState(Username);
         localStorage.setItem("username", JSON.stringify(Username));
-
+        localStorage.setItem("type", JSON.stringify("bloodBank"));
         alert("logged in");
 
         window.open("/bank/welcome", "_self");

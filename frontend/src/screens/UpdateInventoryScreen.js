@@ -3,8 +3,10 @@ import { useParams } from "react-router-dom";
 import { Form, Table, Button } from "react-bootstrap";
 import Axios from "axios";
 import { UserContext } from "../UserContext";
+import { useNavigate } from "react-router-dom";
 
 const UpdateInventoryScreen = () => {
+  let navigate = useNavigate();
   const { username, setUsernameState } = useContext(UserContext);
   const [username1, setUsername] = useState(username);
   //const params = useParams();
@@ -39,13 +41,17 @@ const UpdateInventoryScreen = () => {
   //     });
   //   };
   // }, []);
-
   useEffect(() => {
     getInventory();
+    if (!(JSON.parse(localStorage.getItem("type")) === "bloodBank")) {
+      navigate("/signIn");
+    }
   }, []);
 
   const getInventory = async () => {
-    let result = await fetch(`http://localhost:9000/bank/getInventory/${username}`);
+    let result = await fetch(
+      `http://localhost:9000/bank/getInventory/${username}`
+    );
     result = await result.json();
     setAp(result[0].a_pos);
     setAn(result[0].a_neg);
@@ -110,7 +116,7 @@ const UpdateInventoryScreen = () => {
     }).catch((error) => {
       console.log(error.response.data);
     });
-    alert("Successfully updated!!")
+    alert("Successfully updated!!");
   };
 
   return (
@@ -234,15 +240,14 @@ const UpdateInventoryScreen = () => {
         </tbody>
       </Table>
       <div style={{ textAlign: "center" }}>
-      <Button  
-        variant="info"
-        className="justify-content-center my-4"
-        onClick={() => submit(username)}
-      >
-        Update Inventory
-      </Button>
+        <Button
+          variant="info"
+          className="justify-content-center my-4"
+          onClick={() => submit(username)}
+        >
+          Update Inventory
+        </Button>
       </div>
-      
     </div>
   );
 };
