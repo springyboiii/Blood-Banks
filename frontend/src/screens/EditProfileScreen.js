@@ -21,7 +21,7 @@ const EditProfileScreen = () => {
       navigate("/signIn");
     }
     return () => {
-      Axios.post("http://localhost:9000/editProfile", {
+      Axios.post("https://blood-bank-g2.herokuapp.com/editProfile", {
         username: username1,
       }).then((response) => {
         setName(response.data[0].name);
@@ -37,7 +37,7 @@ const EditProfileScreen = () => {
     };
   }, []);
   const updateBloodbank = () => {
-    Axios.post("http://localhost:9000/updateBloodBank", {
+    Axios.post("https://blood-bank-g2.herokuapp.com/updateBloodBank", {
       name: name,
       username: username,
 

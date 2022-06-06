@@ -11,10 +11,10 @@ const Dashborad = ({ bloodbanks }) => {
   let navigate = useNavigate();
   const url = useLocation();
   const [isDash, setIsDash] = useState(
-    window.location.href === "http://localhost:3000/admin/dashboard"
+    window.location.href === "https://blood-bank-g2.herokuapp.com/admin/dashboard"
   );
   function handleIsDash(url) {
-    setIsDash(url === "http://localhost:3000/admin/dashboard");
+    setIsDash(url === "https://blood-bank-g2.herokuapp.com/admin/dashboard");
   }
   useEffect(() => {
     handleIsDash(window.location.href);

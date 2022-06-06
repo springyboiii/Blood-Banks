@@ -5,10 +5,10 @@ require("dotenv").config();
 const mysql = require("mysql");
 
 const db = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
+  host: "us-cdbr-east-05.cleardb.net",
+  user: "bfbc8e08c5c270",
+  password: "7be84a76",
+  database: "heroku_059f1fa98dcb5c2"
 });
 
 router.use(cors());
@@ -328,5 +328,7 @@ router.get("/getBank/:bank_ID", (req, res) => {
     }
   });
 });
+
+
 
 module.exports = router;

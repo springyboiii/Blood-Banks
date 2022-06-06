@@ -28,7 +28,7 @@ const AddCampScreen = ({ username }) => {
   useEffect(() => {
     return () => {
       setUsername(username);
-      Axios.post("http://localhost:9000/bankID", {
+      Axios.post("https://blood-bank-g2.herokuapp.com/bankID", {
         username: username1,
       }).then((response) => {
         setBank_ID(response.data[0].ID);
@@ -37,7 +37,7 @@ const AddCampScreen = ({ username }) => {
   }, []);
 
   const submitCamp = () => {
-    Axios.post("http://localhost:9000/addCamp", {
+    Axios.post("https://blood-bank-g2.herokuapp.com/addCamp", {
       camp_name: name,
       description: description,
       date: date,

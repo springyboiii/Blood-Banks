@@ -15,7 +15,7 @@ const Signup = () => {
     e.preventDefault();
   };
   const submitBloodbank = () => {
-    Axios.post("http://localhost:9000/admin/dashboard/addBd", {
+    Axios.post("https://blood-bank-g2.herokuapp.com/admin/dashboard/addBd", {
       name: name,
       username: username,
       password: password,
@@ -30,7 +30,7 @@ const Signup = () => {
   };
 
   const createInventory = () => {
-    Axios.post("http://localhost:9000/admin/dashboard/addInventory", {
+    Axios.post("https://blood-bank-g2.herokuapp.com/admin/dashboard/addInventory", {
       username: username,
     }).then(() => {});
   };

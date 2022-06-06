@@ -11,7 +11,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     return () => {
-      Axios.get("http://localhost:9000/dashboard").then((response) => {
+      Axios.get("https://blood-bank-g2.herokuapp.com/dashboard").then((response) => {
         setBloodBanksnew(response.data);
       });
     };

@@ -23,7 +23,7 @@ const DonourAddScreen = () => {
     }
   }, []);
   const submitDonor = () => {
-    Axios.post("http://localhost:9000/donour/add", {
+    Axios.post("https://blood-bank-g2.herokuapp.com/donour/add", {
       name: name,
       b_type: blood,
       contact_no: phone,

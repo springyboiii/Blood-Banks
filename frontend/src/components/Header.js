@@ -62,17 +62,19 @@ const Header = ({ IsLoggedIn }) => {
 
           <Nav className="me-5 px-5">
             {" "}
-            <h2>
-              {username !== ""
-                ? JSON.parse(localStorage.getItem("username"))
-                : ""}
-            </h2>
-            <Nav.Link>
+            
+            <Nav.Link style={{
+                textDecoration: "none",
+                color: "white",
+              }}>
               <Link to="/signIn" style={linkStyle}>
                 {localStorage.getItem("username") ? "" : "Login"}
               </Link>
+              {username !== ""
+                ? JSON.parse(localStorage.getItem("username"))
+                : ""}
               {JSON.parse(localStorage.getItem("username")) && (
-                <i className="fas fa-user ms-1"></i>
+                <i className="fas fa-user ms-2"></i>
               )}
             </Nav.Link>
             {
@@ -83,6 +85,7 @@ const Header = ({ IsLoggedIn }) => {
                     title=""
                     id="basic-nav-dropdown"
                     className="mx-0"
+                    
                   >
                     <NavDropdown.Item>
                       <Link to="/bank/editProfile">Edit Profile</Link>

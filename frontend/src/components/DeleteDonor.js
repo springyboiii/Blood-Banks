@@ -6,7 +6,7 @@ const DeleteDonor = ({ donorList }) => {
   const params = useParams();
 
   const deleteDonor = ()=>{
-    Axios.delete(`http://localhost:9000/donour/delete/${params.id}`).then(()=>{
+    Axios.delete(`https://blood-bank-g2.herokuapp.com/donour/delete/${params.id}`).then(()=>{
       window.location.href='/bank/viewDonours'
     });
   };

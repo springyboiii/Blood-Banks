@@ -17,12 +17,12 @@ const Login = () => {
   const submitCredentials = (e) => {
     // setUsernameContext(Username);
     e.preventDefault();
-    if (Username === "admin" && Password === "admin1234") {
+    if (Username === "admin" && Password === "admin") {
       localStorage.setItem("username", JSON.stringify(Username));
       localStorage.setItem("type", JSON.stringify("admin"));
       window.open("/admin/dashboard", "_self");
     }
-    Axios.post("http://localhost:9000/signIn", {
+    Axios.post("https://blood-bank-g2.herokuapp.com/signIn", {
       userName: Username,
       password: Password,
     }).then((response) => {
@@ -36,7 +36,7 @@ const Login = () => {
         setUsernameState(Username);
         localStorage.setItem("username", JSON.stringify(Username));
         localStorage.setItem("type", JSON.stringify("bloodBank"));
-        alert("logged in");
+        //alert("logged in");
 
         window.open("/bank/welcome", "_self");
       }

@@ -36,7 +36,7 @@ const BloodBankScreen = () => {
 
   const getInventory = async () => {
     let result1 = await fetch(
-      `http://localhost:9000/getInventoryDetails/${bank_ID}`
+      `https://blood-bank-g2.herokuapp.com/getInventoryDetails/${bank_ID}`
     );
     //console.log(bank_ID);
     result1 = await result1.json();
@@ -53,7 +53,7 @@ const BloodBankScreen = () => {
   };
 
   const getBank = async () => {
-    let result2 = await fetch(`http://localhost:9000/getBank/${bank_ID}`);
+    let result2 = await fetch(`https://blood-bank-g2.herokuapp.com/getBank/${bank_ID}`);
     result2 = await result2.json();
      //console.log(result2);
     setName(result2[0].name);

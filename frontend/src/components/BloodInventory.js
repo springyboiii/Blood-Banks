@@ -23,7 +23,7 @@ const BloodInventory = (props) => {
   const getInventory = async () => {
     //console.log(bank_ID,"sbdckhszdb");
     let result1 = await fetch(
-      `http://localhost:9000/getInventoryDetails/${bank_ID}`
+      `https://blood-bank-g2.herokuapp.com/getInventoryDetails/${bank_ID}`
     );
     result1 = await result1.json();
     //console.log(props.resultValues[0].a_neg);

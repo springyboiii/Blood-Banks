@@ -11,7 +11,7 @@ const ViewDonoursScreen = () => {
       navigate("/signIn");
     }
     async function fetchData() {
-      const req = await Axios.get("http://localhost:9000/viewDonours");
+      const req = await Axios.get("https://blood-bank-g2.herokuapp.com/viewDonours");
       setDonorList(req.data);
     }
     fetchData();

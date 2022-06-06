@@ -12,7 +12,7 @@ import {
  
  
 const Campaign = (props) => {
- 
+  const rand = Math.floor(1 + Math.random() * (7));
   return (
     <Card className="mb-2">
  
@@ -20,7 +20,7 @@ const Campaign = (props) => {
           <Col md={3}>
             <Card.Img
               variant="top"
-              src="/images/blood1.jpg"
+              src={`/images/blood${rand}.jpg`}
               className="mx-3 my-3"
               style={{ height: '250px', width: '250px', objectFit: "cover" }} />
           </Col>

@@ -3,11 +3,13 @@ import { Card } from "react-bootstrap";
 import BloodInventory from "./BloodInventory";
 
 const BloodBank = ({ bloodbank }) => {
+
+    const rand = Math.floor(1 + Math.random() * (7));
   return (
     <Card className="my-3 p-3 rounded">
-      <a href={`/bloodbank/${bloodbank.name}`}>
+      <a href={`/bloodbank/${bloodbank.ID}`}>
         <Card.Img
-          src="/images/blood6.jpg"
+          src={`/images/blood${rand}.jpg`}
           variant="top"
           style={{ objectFit: "cover" }}
         />

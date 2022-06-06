@@ -25,7 +25,7 @@ const DonourEditScreen = () => {
     }
   }, []);
   const getDonorDetails = async () => {
-    let result = await fetch(`http://localhost:9000/viewDonourID/${params.id}`);
+    let result = await fetch(`https://blood-bank-g2.herokuapp.com/viewDonourID/${params.id}`);
     result = await result.json();
     setName(result[0].name);
     setAddress(result[0].address);
@@ -35,7 +35,7 @@ const DonourEditScreen = () => {
 
   const updateDonor = async () => {
     let result = await Axios.put(
-      `http://localhost:9000/donour/edit/${params.id}`,
+      `https://blood-bank-g2.herokuapp.com/donour/edit/${params.id}`,
       {
         name: name,
         address: address,

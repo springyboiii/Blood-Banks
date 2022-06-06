@@ -50,7 +50,7 @@ const UpdateInventoryScreen = () => {
 
   const getInventory = async () => {
     let result = await fetch(
-      `http://localhost:9000/bank/getInventory/${username}`
+      `https://blood-bank-g2.herokuapp.com/bank/getInventory/${username}`
     );
     result = await result.json();
     setAp(result[0].a_pos);
@@ -103,7 +103,7 @@ const UpdateInventoryScreen = () => {
   };
 
   const submit = (username) => {
-    Axios.post(`http://localhost:9000/bank/updateInventory/${username}`, {
+    Axios.post(`https://blood-bank-g2.herokuapp.com/bank/updateInventory/${username}`, {
       a_pos: a_pos,
       a_neg: a_neg,
       b_pos: b_pos,
