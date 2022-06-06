@@ -35,19 +35,16 @@ const Header = ({ IsLoggedIn }) => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link>
-              <Link to={username === "" ? "/" : "/bank"} style={linkStyle}>
-                Home
-              </Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link
-                to={username === "" ? "/viewCamp" : "/bank/viewCamp"}
-                style={linkStyle}
-              >
-                Campaign
-              </Link>
-            </Nav.Link>
+            <Link to={username === "" ? "/" : "/bank"} style={linkStyle}>
+              Home
+            </Link>
+
+            <Link
+              to={username === "" ? "/viewCamp" : "/bank/viewCamp"}
+              style={linkStyle}
+            >
+              Campaign
+            </Link>
           </Nav>
 
           {/* <Form className="d-flex me-auto">
@@ -67,14 +64,12 @@ const Header = ({ IsLoggedIn }) => {
                 ? JSON.parse(localStorage.getItem("username"))
                 : ""}
             </h2>
-            <Nav.Link>
-              <Link to="/signIn" style={linkStyle}>
-                {localStorage.getItem("username") ? "" : "Login"}
-              </Link>
-              {JSON.parse(localStorage.getItem("username")) && (
-                <i className="fas fa-user ms-1"></i>
-              )}
-            </Nav.Link>
+            <Link to="/signIn" style={linkStyle}>
+              {localStorage.getItem("username") ? "" : "Login"}
+            </Link>
+            {JSON.parse(localStorage.getItem("username")) && (
+              <i className="fas fa-user ms-1"></i>
+            )}
             {
               //IsLoggedIn &&
               localStorage.getItem("username") && (
