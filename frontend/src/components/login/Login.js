@@ -3,9 +3,8 @@ import SlideShow from "./SlidesShow";
 import Footer from "../Footer";
 import logo from "../../image/favicon-32x32.png";
 import Axios from "axios";
-import EditProfileScreen from "../../screens/EditProfileScreen";
 // import Footer from "../Footer";
-import React, { useState, useContext, createContext } from "react";
+import React, { useState, useContext } from "react";
 import { UserContext } from "../../UserContext";
 
 const Login = () => {
@@ -17,10 +16,11 @@ const Login = () => {
   const submitCredentials = (e) => {
     // setUsernameContext(Username);
     e.preventDefault();
-    if (Username === "admin" && Password === "admin1234") {
+    if (Username === "admin" && Password === "admin") {
       localStorage.setItem("username", JSON.stringify(Username));
       localStorage.setItem("type", JSON.stringify("admin"));
       window.open("/admin/dashboard", "_self");
+      alert("log in success");
     }
     Axios.post("http://localhost:9000/signIn", {
       userName: Username,
@@ -28,6 +28,7 @@ const Login = () => {
     }).then((response) => {
       if (response.data.message) {
         setIsLoggedIn(false);
+        alert("check your password and user name");
       } else {
         // this.setState({isAuthenticated:response.data[0].username});
         // this.props.setUsername(this.state.userName);
@@ -36,7 +37,7 @@ const Login = () => {
         setUsernameState(Username);
         localStorage.setItem("username", JSON.stringify(Username));
         localStorage.setItem("type", JSON.stringify("bloodBank"));
-        alert("logged in");
+        alert("log in success");
 
         window.open("/bank/welcome", "_self");
       }
@@ -45,9 +46,6 @@ const Login = () => {
 
   return (
     <>
-      {/* {IsLoggedIn && <div><Header  isLoggedIn={true}/> <EditProfileScreen username={Username}/></div>} */}
-
-      {/* {!IsLoggedIn && */}
       <div style={{ backgroundColor: "#be847a", height: "100vh" }}>
         <div className="nav-header">
           <nav
