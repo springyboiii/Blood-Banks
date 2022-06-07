@@ -35,16 +35,19 @@ const Header = ({ IsLoggedIn }) => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Link to={username === "" ? "/" : "/bank"} style={linkStyle}>
-              Home
-            </Link>
-
-            <Link
-              to={username === "" ? "/viewCamp" : "/bank/viewCamp"}
-              style={linkStyle}
-            >
-              Campaign
-            </Link>
+            <Nav.Link>
+              <Link to={username === "" ? "/" : "/bank"} style={linkStyle}>
+                Home
+              </Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link
+                to={username === "" ? "/viewCamp" : "/bank/viewCamp"}
+                style={linkStyle}
+              >
+                Campaign
+              </Link>
+            </Nav.Link>
           </Nav>
 
           {/* <Form className="d-flex me-auto">
@@ -59,17 +62,21 @@ const Header = ({ IsLoggedIn }) => {
 
           <Nav className="me-5 px-5">
             {" "}
-            <h2>
+            
+            <Nav.Link style={{
+                textDecoration: "none",
+                color: "white",
+              }}>
+              <Link to="/signIn" style={linkStyle}>
+                {localStorage.getItem("username") ? "" : "Login"}
+              </Link>
               {username !== ""
                 ? JSON.parse(localStorage.getItem("username"))
                 : ""}
-            </h2>
-            <Link to="/signIn" style={linkStyle}>
-              {localStorage.getItem("username") ? "" : "Login"}
-            </Link>
-            {JSON.parse(localStorage.getItem("username")) && (
-              <i className="fas fa-user ms-1"></i>
-            )}
+              {JSON.parse(localStorage.getItem("username")) && (
+                <i className="fas fa-user ms-2"></i>
+              )}
+            </Nav.Link>
             {
               //IsLoggedIn &&
               localStorage.getItem("username") && (
@@ -78,6 +85,7 @@ const Header = ({ IsLoggedIn }) => {
                     title=""
                     id="basic-nav-dropdown"
                     className="mx-0"
+                    
                   >
                     <NavDropdown.Item>
                       <Link to="/bank/editProfile">Edit Profile</Link>
