@@ -1,3 +1,1 @@
-# Blood-Banks
-
-frontend Folder-contain react js codes run npm start inside frontend folder
+A web-based blood bank management system for blood banks and general public to find the availability of blood in particular blood banks, get the required facilities, get to know about blood donation camps, and donate blood for the blood banks where blood is needed. My role was to develop the back-end of the system and database.
